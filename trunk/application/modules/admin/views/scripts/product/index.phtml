@@ -1,0 +1,72 @@
+<?php 
+    $product = $this->product;
+    //print_r($product);
+    $category = $this->category;
+    //print_r($category);
+?>
+<input type="button" name="themspmoi" value="Thêm Sản Phẩm Mới" onclick="window.location.href='product/add'"/>
+
+<select id="selectcategory" onchange="SearchCategory(document.getElementById('selectcategory').value)" style="float: right; height:25px; padding:4px">
+    <option value="-1">Chọn Loại Sản Phẩm</option>
+    <option value="0">Xem Tất Cả</option>
+    <?php 
+        for($i=0; $i<count($category); $i++)
+        {
+            if($_GET['idcat'] == $category[$i]['idloaisp'])
+                echo "<option selected='selected' value='". $category[$i]['idloaisp'] ."'>". $category[$i]['tenloaisp'] ."</option>";
+            else
+                echo "<option value='". $category[$i]['idloaisp'] ."'>". $category[$i]['tenloaisp'] ."</option>";
+        }
+    ?>
+    
+</select>
+<p style="float: right; margin-right:20px; margin-top:8px">Chọn loại sản phẩm tìm kiếm</p>
+
+<table class="spdg" border="1">
+	<tr>
+		<th width="20">STT</th>
+        <th width="70">Mã sản phẩm</th>
+		<th width="150">Tên sản phẩm</th>
+        <th width="50">Giá</th>
+        <th width="80" align="center">Hình ảnh</th>
+        <th width="40">Hiển thị</th>
+        <th width="40">Hiển thị trang chủ</th>
+		<th width="50">Công Cụ</th>
+	</tr>
+    <?php 
+        for($i=0; $i<count($product); $i++)
+        {
+            
+    ?>
+    
+    
+	<tr>
+		<td align="center"><?php echo $i+1 ?></td>
+        <td><?php echo $product[$i]['masp'] ?></td>
+		<td><a href="product/detail?idsp=<?php echo base64_encode($product[$i]['idsp']) ?>"><?php echo $product[$i]['tensp'] ?></a></td>
+        <td><?php echo number_format($product[$i]['gia'],0,',','.') ?></td>
+        <td align="center"><img class="hinhchinh_product" src="<?php echo APP_DOMAIN . '/application/layouts/tmpstore/images/upload/images/' . $product[$i]['hinhchinh'] ?>" /></td>
+        <td align="center">
+            <?php if ($product[$i]['anhien'] == 1){?>
+                <img src="<?php echo APP_DOMAIN . '/application/templates/giaodien_admin/images/tick.png' ?>" alt="hiện" title="Lọai sản phẩm này đã được hiển thị"/>
+            <?php } else {?>
+                <img src="<?php echo APP_DOMAIN . '/application/templates/giaodien_admin/images/publish.png' ?>" alt="ẩn" title="Lọai sản phẩm này đã được hiển thị"/>
+            <?php } ?>
+        </td>
+        
+        <td align="center">
+            <?php if ($product[$i]['showindex'] == 1){?>
+                <img src="<?php echo APP_DOMAIN . '/application/templates/giaodien_admin/images/tick.png' ?>" alt="hiện" title="Lọai sản phẩm này đã được hiển thị"/>
+            <?php } else {?>
+                <img src="<?php echo APP_DOMAIN . '/application/templates/giaodien_admin/images/publish.png' ?>" alt="ẩn" title="Lọai sản phẩm này đã được hiển thị"/>
+            <?php } ?>
+        </td>
+        <td align="center">
+			<a href="product/detail?idsp=<?php echo base64_encode($product[$i]['idsp']) ?>"><img src="<?php echo APP_DOMAIN . '/application/templates/giaodien_admin/images/chitiet.png' ?>" alt="ct" title="Chi Tiết Sản Phẩm"/></a>
+			<a href="javascript:;" onclick = "DeleteProduct(<?php echo $product[$i]['idsp'] ?>)"><img src="<?php echo APP_DOMAIN . '/application/templates/giaodien_admin/images/xoa.png' ?>" alt="xoa" title="Xóa Sản Phẩm"/></a>
+		</td>
+	</tr>
+    <?php } ?>
+
+</table>
+<input type="button" name="themspmoi" value="Thêm Sản Phẩm Mới" onclick="window.location.href='product/add'"/>

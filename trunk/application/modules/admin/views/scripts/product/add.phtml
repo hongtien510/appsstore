@@ -1,0 +1,140 @@
+<?php 
+    $category = $this->category;
+    //print_r($category);
+?>
+<table width="100%">
+	<tr>
+		<td width="100"><span class="nameinput">Mã Sản Phẩm: </span></td>
+		<td><input class="inputstyle" type="text" name="masp" id="masp"/></td>
+	</tr>
+    <tr>
+		<td><span class="nameinput">Tên Sản Phẩm: </span></td>
+		<td><input class="inputstyle" type="text" name="tensp" id="tensp"/></td>
+	</tr>
+    <tr>
+		<td><span class="nameinput">Thuộc Loại SP: </span></td>
+		<td>
+            <select id="thuocloaisp">
+                <option value="0">Chọn Loại Sản Phẩm</option>
+            <?php 
+                for($i=0; $i<count($category); $i++)
+                {
+            ?>
+                <option value="<?php echo $category[$i]['idloaisp'] ?>"><?php echo $category[$i]['tenloaisp'] ?></option>
+            <?php } ?>
+            </select>
+        </td>
+	</tr>
+	<tr>
+		<td><span class="nameinput">Giá Bán: </span></td>
+		<td><input class="inputstyle" type="text" name="giaban" id="giaban"/></td>
+	</tr>
+	<tr>
+		<td><span class="nameinput">Ảnh Chính: </span></td>
+		<td>
+        <form method="post" enctype="multipart/form-data"  >
+        	<p class="uploadimg">Chỉ chọn 1 tập tin hình ảnh từ máy của bạn làm ảnh chính hiển thị</p>
+        	<input class="inputuploadimg" type="file" name="images" id="images" multiple />
+        	<p class="loading_img"><img src="<?php echo APP_DOMAIN . '/application/layouts/tmpstore/images/loading.gif' ?>"/></p>
+        	<ul class="image_list"></ul>
+            <input type="hidden" id="string_img_upload" value="" />
+
+        	<script src="<?php echo APP_DOMAIN . '/application/templates/giaodien_admin/js/upload.js' ?>"></script>
+
+        </form>	
+        </td>
+	</tr>
+    <tr>
+		<td><span class="nameinput">Ảnh Phụ: </span></td>
+		<td>
+
+            <form method="post" enctype="multipart/form-data"  >
+            	<p class="uploadimg">Chỉ chọn 4 tập tin hình ảnh từ máy của bạn làm ảnh phụ</p>
+							<input  class="inputuploadimg" type="file" name="images" id="images_ch" multiple />
+							<p class="loading_img_ch"><img src="<?php echo APP_DOMAIN . '/application/layouts/tmpstore/images/loading.gif' ?>"/></p>
+							<ul class="image_list_ch"></ul>
+                            <input type="hidden" id="string_img_upload_ch" value="" />
+            	<script src="<?php echo APP_DOMAIN . '/application/templates/giaodien_admin/js/upload_ha_ch.js' ?>"></script>
+    
+            
+            	</div>
+            </form>	
+        </td>
+	</tr>
+	<tr>
+		<td valign = "top"><span class="nameinput">Mô tả SP: </span></td>
+		<td><textarea  class="textareastyle" name="mota" id="mota"></textarea></td>
+	</tr>
+	<tr>
+		<td valign = "top"><span class="nameinput">Chi Tiết SP: </span></td>
+		<td><textarea  class="textareastyle" name="chitiet" id="chitiet"></textarea></td>
+	</tr>
+	<tr>
+		<td><span class="nameinput">Hết Hàng: </span></td>
+		<td>
+            <label><input type="checkbox" value="1" id="hethang" />(Chọn nếu sản phẩm này đã hết hàng)</label>
+        </td>
+	</tr>
+    <tr>
+		<td><span class="nameinput">Hiển Thị: </span></td>
+		<td>
+            <label><input type="checkbox" checked="checked" value="1" id="hienthi" />(Bỏ chọn nếu không muốn hiển thị sản phẩm này)</label>
+        </td>
+	</tr>
+    <tr>
+		<td><span class="nameinput">Hiển Thị Ngoài Trang Chủ: </span></td>
+		<td>
+            <label><input type="checkbox" value="1" id="showindex" />(Chọn muốn hiển thị sản phẩm này ngoài trang chủ)</label>
+        </td>
+	</tr>
+	<tr>
+		<td valign = "top"><span class="nameinput">Tiêu đề<br/>chia sẻ<br/>Facebook: </span></td>
+		<td><textarea id="titlefb" class="textareastyle2" type="text" name="titlefb"></textarea></td>
+	</tr>
+	<tr>
+		<td valign = "top"><span class="nameinput">Mô tả<br/>chia sẻ<br/>Facebook: </span></td>
+		<td><textarea id="metafb" class="textareastyle2" type="text" name="metafb"></textarea></td>
+	</tr>
+</table>
+<input type="button" name="btnsubmit" value="Thêm Sản Phẩm"
+    onclick="ThemMoiSanPham(
+    document.getElementById('masp').value, 
+    document.getElementById('tensp').value, 
+    document.getElementById('thuocloaisp').value, 
+    document.getElementById('giaban').value, 
+    document.getElementById('string_img_upload').value, 
+    document.getElementById('string_img_upload_ch').value, 
+    document.getElementById('mota').value, 
+    document.getElementById('chitiet').value, 
+    document.getElementById('hethang').checked, 
+    document.getElementById('hienthi').checked, 
+    document.getElementById('showindex').checked, 
+    document.getElementById('titlefb').value, 
+    document.getElementById('metafb').value
+   )"
+/>
+
+
+<script>
+	/*
+	var editor1 = CKEDITOR.replace( 'mota' );
+	CKFinder.setupCKEditor( editor1, '../public/ckfinder/' ) ;
+	
+	var editor1 = CKEDITOR.replace( 'chitiet' );
+	CKFinder.setupCKEditor( editor1, '../public/ckfinder/' ) ;
+*/
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

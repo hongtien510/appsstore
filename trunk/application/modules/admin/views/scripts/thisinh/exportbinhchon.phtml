@@ -1,0 +1,41 @@
+	 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN" "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml" xmlns:og="http://opengraphprotocol.org/schema/"><head>
+        <title>Photo Gallery</title>  
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		</head>
+    <body>
+    <h1><?php echo $this->page_name ?></h1>
+    <h3>Thí sinh: <?php echo $this->tts ?></h3>
+    <span>Tổng số: <?php echo $this->total?></span>
+	<table width="80%" border="1" cellspacing="1" style="text-align:center; vertical-align: middle;">
+	  <tr bgcolor="whitesmoke" height="35px">
+	    <th width="35px" >Stt</th>
+	    <th width="300px"  >Mã facebook người bình chọn</th>
+	    <th width="100px"  >Ngày bình chọn</th>     
+	  </tr>
+<?php
+//$filename ="excelreport.xls";
+
+$export_name = str_replace(" ", "_", $this->tts);
+$filename =$export_name.".xls";
+$binhchonarr = $this->listbinhchon;			
+	foreach ($binhchonarr AS $k=>$binhchon)
+	{
+		?>
+		
+		 <tr>
+		<td><?php echo $k+1 ?></td>
+      <td><?php echo $binhchon['id_fb'] ?></td>
+      <td><?php echo date('d/m/Y', $binhchon['ngay_binh_chon']) ?></td>
+    </tr>
+	<?php
+
+        }
+
+		header("Content-Type:   text/html; charset=utf-8");		
+		header("Content-type: application/ms-excel ; charset=utf-8");		
+		header('Content-Disposition: attachment; filename='.$filename);
+?>
+
+	</body>
+</html>

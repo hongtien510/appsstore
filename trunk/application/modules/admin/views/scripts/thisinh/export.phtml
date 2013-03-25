@@ -1,0 +1,66 @@
+	 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN" "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml" xmlns:og="http://opengraphprotocol.org/schema/"><head>
+        <title>Photo Gallery</title>  
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		</head>
+    <body>
+    <h1><?php echo $this->page_name ?></h1>
+    <span>Tổng số: <?php echo $this->total?></span>
+	<table width="100%" border="1" cellspacing="1" style="text-align:center; vertical-align: middle;">
+	  <tr bgcolor="whitesmoke" height="35px">
+	    <th width="35px" >Stt</th>
+	    <th width="300px"  >Tên Thí sinh</th>
+	     <th width="50px" >Mã thí sinh</th>
+	     <th width="100px"  >Giới tính</th>
+	     <th width="100px"  >Ngày sinh</th>
+	     <th width="100px"  >Email</th>
+	     <th width="100px"  >Số điện thoại</th>
+	     <th width="50px" >CMND</th>
+	     <th width="100px"  >Tham gia</th>
+	     <th width="100px"  >Bình chọn</th>
+	     <th width="100px"  >Lượt xem</th>
+	     <th width="100px"  >Trạng thái</th>	     
+	  </tr>
+<?php
+//$filename ="excelreport.xls";
+
+$export_name = str_replace(" ", "_", $this->page_name);
+$filename =$export_name.".xls";
+$Thisinharr = $this->listThisinh;			
+	foreach ($Thisinharr AS $k=>$thisinh)
+	{
+		?>
+		
+		 <tr>
+		<td><?php echo $k+1 ?></td>
+      <td><?php echo $thisinh->ten_thi_sinh ?></td>
+      <td><?php echo $thisinh->id_fb_thi_sinh ?></td>
+      <td><?php
+	          if($thisinh->gioi_tinh == 1)
+	          {
+	          	echo "Nam";
+	          }else{
+	          	echo "Nữ";
+	          }
+	          ?> 
+	  </td>
+      <td><?php echo date('d/m/Y', $thisinh->ngay_sinh) ?></td>
+      <td><?php echo $thisinh->email ?></td>
+      <td><?php echo $thisinh->so_dien_thoai ?></td>
+      <td><?php echo $thisinh->cmnd ?></td>
+      <td><?php echo date('d/m/Y', $thisinh->ngay_tham_gia) ?></td>
+      <td><?php echo $thisinh->luot_binh_chon ?></td>
+      <td><?php echo $thisinh->luot_xem ?></td>
+      <td><?php echo $thisinh->an_hien ?></td>
+    </tr>
+	<?php
+
+        }
+
+		header("Content-Type:   text/html; charset=utf-8");		
+		header("Content-type: application/ms-excel ; charset=utf-8");		
+		header('Content-Disposition: attachment; filename='.$filename);
+?>
+
+	</body>
+</html>

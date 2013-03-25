@@ -1,0 +1,75 @@
+<center>
+	<h1><?php echo  $this->page_name; ?> </h1>
+</center>
+
+<div style="float:right; margin: 0 5px 5px 0;">
+	<input type="button" onClick="add_article('<?php echo $this->pageid ?>','<?php echo $this->page_name ?>','0')"  value="Thêm bài viết" />
+</div>
+<br/>
+	<table width="100%" border="1" cellspacing="1" style="text-align:center; vertical-align: middle;">
+	  <tr bgcolor="whitesmoke" height="35px">
+	    <th width="35px" >Stt</th>
+	    <th width="300px"  >Tên Bài viết</th>
+	     <th width="50px" >Menu</th>
+	      <th width="100px"  >Ẩn/hiện</th>
+	       <th width="50px" >Chức năng</th>
+	  </tr>
+	
+	<?php 
+		$articlearr = $this->listArticle ;					 
+	foreach ($articlearr AS $k=>$baiviet)
+	{
+		$cltr = ' cl1 ';
+		if($k % 2 == 0)
+		{
+			$cltr = ' cl2 ';
+		}
+	?>
+	<tr height="35px" class="<?php echo $cltr?>" >
+		    <td><?php echo $k+1; ?></td>
+		    
+		    <td>
+		  	<?php echo $baiviet->tieu_de ?>
+		    </td>
+	    
+	        <td>
+	      	 <?php echo $baiviet->ten_menu ?>
+	       </td>
+	       
+	         <td>
+	          <?php 
+	          if($baiviet->an_hien == 1)
+	          {
+				?>
+				<img   src="<?php echo $this->baseUrl ('application/templates/giaodien_admin/images/publish_g.png') ?>" />
+				<?php 
+	          }else{
+	          ?>
+				<img   src="<?php echo $this->baseUrl ('application/templates/giaodien_admin/images/publish_r.png') ?>" />
+				<?php 
+	          }
+	          ?>
+	  		</td>
+	  		
+	       <td>
+		   <select name="config" onchange="chucnang_article(this.value,'<?php echo $this->pageid ?>','<?php echo $this->page_name ?>','<?php echo $baiviet->id_bai_viet  ?>')">
+				<option value="0"></option>
+				<option value="edit" >Sửa</option>
+				<option value="del">Xóa</option>
+		   </select>
+	       	</td>
+	 </tr>
+	<?php 
+	}
+	if(count($articlearr)<=0)
+	{
+		?>
+		<tr height="35px" class="cl1">
+			<td colspan="5">
+				Chưa có bài viết
+			</td>
+		</tr>
+		<?php 
+	}
+	?>
+	</table>
