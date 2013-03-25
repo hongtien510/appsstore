@@ -1,0 +1,6 @@
+<?php 
+		$config = Zend_Registry::get(APPLICATION_CONFIG);
+		$url = 	$config->facebook->appurl."admin/thisinh";
+		echo "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">";
+		exit("Nội dung đang được luu.....<script>window.top.location.replace('$url');</script>");
+?>

@@ -1,0 +1,132 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<center>
+	<h1><?php echo  $this->page_name; ?> </h1>
+</center>
+<br/>
+<table width="100%" border="1" cellspacing="1" style="text-align:center; vertical-align: middle !important;">
+	<tr>
+		<td width="300px" bgcolor="whitesmoke">
+			Tên thí sinh
+		</td>		
+		<td width="300px" bgcolor="FFFFCC">
+			<?php echo $this->ten_thi_sinh?>
+		</td>
+		
+		<td width="300px" bgcolor="whitesmoke">
+			Mã thí sinh
+		</td>		
+		<td width="300px" bgcolor="FFFFCC">
+			<?php echo $this->id_fb_thi_sinh?>
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td width="300px" bgcolor="whitesmoke">
+			Email
+		</td>		
+		<td bgcolor="FFFFCC">
+			<?php echo $this->email?>
+		</td>
+		
+		<td width="300px" bgcolor="whitesmoke">
+			Số điện thoại
+		</td>		
+		<td bgcolor="FFFFCC">
+			<?php echo $this->so_dien_thoai?>
+		</td>
+	</tr>
+	
+	
+	<tr>
+		<td bgcolor="whitesmoke">
+			Ngày sinh
+		</td>		
+		<td bgcolor="FFFFCC">
+			<?php echo 	 date('d/m/Y', $this->ngay_sinh); ?>
+		</td>
+		
+		<td bgcolor="whitesmoke">
+			Ngày tham gia
+		</td>		
+		<td bgcolor="FFFFCC">
+			<?php echo 	 date('d/m/Y', $this->ngay_sinh); ?>
+		</td>
+	</tr>
+	
+	<tr>
+		<td bgcolor="whitesmoke">
+			Giới tính
+		</td>		
+		<td bgcolor="FFFFCC">
+			  <?php 
+	          if($this->gioi_tinh == 1)
+	          {
+	          	echo "Nam";
+	          }else{
+	          	echo "Nữ";
+	          }
+	          ?>
+		</td>
+		
+		<td bgcolor="whitesmoke">
+			Số chứng mình thư
+		</td>		
+		<td bgcolor="FFFFCC">
+			<?php echo $this->cmnd?>
+		</td>
+	</tr>
+	
+	<tr>
+		<td bgcolor="whitesmoke">
+			Lượt xem
+		</td>		
+		<td bgcolor="FFFFCC">
+			<?php echo $this->luot_xem?>
+		</td>
+		
+		<td bgcolor="whitesmoke">
+			Số bình chọn
+		</td>		
+		<td bgcolor="FFFFCC">
+			<?php echo $this->luot_binh_chon?>
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td bgcolor="whitesmoke">
+			Giới thiệu
+		</td>		
+		<td colspan="3" bgcolor="FFFFCC">
+			<?php echo $this->gioi_thieu?>
+		</td>
+	</tr>
+	
+	<tr>
+		<td bgcolor="whitesmoke">
+			Mô tả
+		</td>		
+		<td colspan="3" bgcolor="FFFFCC">
+			<?php echo $this->mo_ta_bai_thi?>
+		</td>
+	</tr>
+	
+	<tr>
+		<td bgcolor="whitesmoke">
+			Hình dự thi
+		</td>		
+		<td colspan="3" bgcolor="FFFFCC">
+		<?php 
+		//TODO: gắn link hình vào
+		  $images = json_decode($this->hinh_du_thi);
+                $imageLink = APP_DOMAIN . '/public/images/' . $images[0];
+		?>
+		<img   width="450px" height="370px" src="<?php echo $imageLink ?>" />
+<!--		<img   src="<?php echo $this->baseUrl ($this->hinh_du_thi) ?>" />-->
+		</td>
+	</tr>
+	
+</table>

@@ -1,0 +1,144 @@
+<?php 
+//echo $this->total;
+echo "<pre>";
+//print_r($this->listThisinh);
+echo "</pre>";
+//exit;	
+?>
+
+<center>
+	<h1><?php echo  $this->page_name; ?> </h1>
+</center>
+
+<div style="float:right; margin: 0 5px 5px 0;">
+	<input type="button" onClick="window.open('<?php echo APP_DOMAIN ?>/admin/thisinh/export/?pagename=<?php echo $this->page_name ?>&ipg=<?php echo base64_encode('a7'.$this->pageid)?>')"  value="Xuất Excel" />
+<!--	<input type="button" onClick="add_thisinh('<?php echo $this->pageid ?>','<?php echo $this->page_name ?>','0')"  value="Thêm thí sinh" />-->
+    <a href="<?php echo APP_DOMAIN ?>/admin/thisinh/add?pageid=<?php echo $this->pageid; ?>&pagename=<?php echo $this->page_name ?>&thisinhid=0">Thêm thí sinh</a>
+</div>
+<br/>
+	<table width="100%" border="1" cellspacing="1" style="text-align:center; vertical-align: middle;">
+	  <tr bgcolor="whitesmoke" height="35px">
+	    <th width="35px" >Stt</th>
+	    <th width="300px"  >Tên Thí sinh</th>
+	     <th width="50px" >Mã thí sinh</th>
+	     <th width="100px"  >Giới tính</th>
+	     <th width="100px"  >Ngày sinh</th>
+	     <th width="100px"  >Tham gia</th>
+	     <th width="100px"  >Bình chọn</th>
+	     <th width="100px"  >Lượt xem</th>
+	     <th width="100px"  >Trạng thái</th>
+	     <th width="50px" >Chức năng</th>
+	  </tr>
+	
+	<?php 
+		$Thisinharr = $this->listThisinh;					 
+	foreach ($Thisinharr AS $k=>$thisinh)
+	{
+		$cltr = ' cl1 ';
+		if($k % 2 == 0)
+		{
+			$cltr = ' cl2 ';
+		}
+	?>
+	<tr height="35px" class="<?php echo $cltr?>" >
+		    <td><?php echo $k+1; ?></td>
+		    
+		    <td>
+		       <a href='javascript:void(0)'  onClick="window.open('http://www.facebook.com/<?php echo $thisinh->id_fb_thi_sinh ?>')" ><?php echo $thisinh->ten_thi_sinh ?></a>
+		    </td>
+	    
+	        <td>
+	         <a href='javascript:void(0)'  onClick="window.open('http://www.facebook.com/<?php echo $thisinh->id_fb_thi_sinh ?>')" ><?php echo $thisinh->id_fb_thi_sinh ?></a>
+	       </td>
+	       
+	       <td>
+	      	  <?php 
+	          if($thisinh->gioi_tinh == 1)
+	          {
+	          	echo "Nam";
+	          }else{
+	          	echo "Nữ";
+	          }
+	          ?>
+	       </td>
+	       
+	       <td>
+	      	 <?php 
+	      	 echo 	 date('d/m/Y', $thisinh->ngay_sinh);
+	      	 ?>
+	       </td>
+	       
+	       <td>
+	      	 <?php 
+	      	 echo 	 date('d/m/Y', $thisinh->ngay_tham_gia);
+	      	 ?>
+	       </td>
+	       
+	       <td>
+	      	 <?php echo $thisinh->luot_binh_chon ?>
+	       </td>
+	       
+	        <td>
+	      	 <?php echo $thisinh->luot_xem ?>
+	       </td>
+	       
+	         <td>
+	         	<div id="an_hien_thisinh_<?php echo $thisinh->id_thi_sinh?>">
+			          <?php 
+			          if($thisinh->an_hien == 1)
+			          {
+						?>
+						    <a href='javascript:void(0)'  onClick="updatestatus_thisinh('<?php echo $thisinh->an_hien?>', '<?php echo $thisinh->id_thi_sinh?>')" >
+								<img   src="<?php echo $this->baseUrl ('application/templates/giaodien_admin/images/publish_g.png') ?>" />
+							</a>
+						<?php 
+			          }else{
+			          ?>
+			           <a href='javascript:void(0)'  onClick="updatestatus_thisinh('<?php echo $thisinh->an_hien?>', '<?php echo $thisinh->id_thi_sinh?>')" >
+							<img   src="<?php echo $this->baseUrl ('application/templates/giaodien_admin/images/publish_r.png') ?>" />
+						</a>
+						<?php 
+			          }
+			          ?>
+	          </div>
+	  		</td>
+	  		
+	       <td>
+		   <select name="config" onchange="chucnang_thisinh(this.value,'<?php echo $this->pageid ?>','<?php echo $this->page_name ?>','<?php echo $thisinh->id_thi_sinh  ?>')">
+				<option value="0"></option>
+				<option value="edit" >Sửa</option>
+				<option value="del">Xóa</option>
+				<option value="detail">Chi tiết</option>
+				<option value="binhchon">Bình chọn</option>
+		   </select>
+	       	</td>
+	 </tr>
+	<?php 
+	}
+	if(count($Thisinharr)<=0)
+	{
+		?>
+		<tr height="35px" class="cl1">
+			<td colspan="10">
+				Chưa có thí sinh
+			</td>
+		</tr>
+		<?php 
+	}
+	?>
+	</table>
+<div id='paging'  align="center" style="display: none;margin: 5px;">
+    <?php
+    echo $this->paging;
+    ?>
+</div>
+
+<div id='paging_ajax'  align="center" style="display: none;margin: 5px;">
+    <?php
+    echo $this->paging;
+    ?>
+</div>
+
+<script>
+    common.renderPagingSearch('paging', 'trang trước', 'trang sau', 'Trang đầu', 'Trang cuối', '<?php echo $this->keyword; ?>');
+</script>

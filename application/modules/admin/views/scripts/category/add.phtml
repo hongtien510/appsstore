@@ -1,0 +1,35 @@
+<?php 
+    $maxvitri = $this->maxvitri +1;
+?>
+<form action = "addcategory/themloaisp" method = "post" enctype="multipart/form-data">
+<table width="100%">
+	<tr>
+		<td width="140"><span class="nameinput">Tên loại sản phẩm: </span></td>
+		<td><input class="inputstyle" type="text" name="tenlsp" id="tenlsp"/></td>
+	</tr>
+	<tr>
+		<td><span class="nameinput">vị trí: </span></td>
+		<td><input class="inputstyle" type="text" name="vitri" id="vitri" value="<?php echo $maxvitri ?>"/></td>
+	</tr>
+    <tr>
+		<td><span class="nameinput">Hiển thị: </span></td>
+		<td><label><input type="checkbox" value="1" checked="checked" name="anhien" id="anhien" /> (bỏ chọn để ẩn loại sản phẩm này)</label></td>
+	</tr>
+	
+</table>
+<input type="button" name="btnsubmit" value="Thêm Loại Sản Phẩm"
+    onclick = "ThemLoaiSanPham(document.getElementById('tenlsp').value, document.getElementById('vitri').value, document.getElementById('anhien').checked)"
+/>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+

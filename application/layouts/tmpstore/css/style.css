@@ -1,0 +1,245 @@
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td { 
+	margin:0;
+	padding:0;
+}
+table {
+	border-collapse:collapse;
+	border-spacing:0;
+}
+fieldset,img { 
+	border:0;
+}
+address,caption,cite,code,dfn,em,strong,th,var {
+	font-style:normal;
+	font-weight:normal;
+}
+ol,ul {
+	list-style:none;
+}
+caption,th {
+	text-align:left;
+}
+h1,h2,h3,h4,h5,h6 {
+	font-size:100%;
+	font-weight:normal;
+}
+q:before,q:after {
+	content:'';
+}
+abbr,acronym { border:0;
+}
+body
+{
+	line-height:1.5em;
+	font-size:62.5%;
+	font-family:Tahoma, Arial,times new roman;
+}
+
+#container{
+	width:800px; //height:1000px; margin:0 auto;	
+}
+
+#banner{width:100%; height:100px; background:#CFF}
+
+#main_nav{width:100%; height:36px; border-bottom:5px solid #3B5998; padding-top:5px}
+#main_nav ul.menu li{
+	padding:10px 40px;
+	float:left;
+	background:#efefef;
+	border-radius:5px 5px 0 0;
+	border:1px solid #3B5998;
+	border-bottom:none;
+	margin-right:3px;
+}
+#main_nav ul.menu li.active{background:#3B5998; color:white}
+#main_nav ul.menu a{
+	color:black;
+	font-size:14px; font-weight:bold;
+	text-decoration:none
+}
+
+#main_nav ul.menu li:hover{background:#3B5998; color:white}
+
+#content{display:inline-block; width:100%}
+
+#product{padding-top:20px}
+#product ul.pro li{
+	width:185px; height: 280px; box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
+	float:left; margin-right:20px; margin-bottom:20px
+}
+#product ul.pro li.pro_last{float:right; margin-right:0px}
+
+#product ul.pro li img{width:165px; height:200px; margin:10px 0 10px 10px}
+#product ul.pro li a.pro_name{color:#3B5998; font-size:14px; text-decoration:none; font-weight:bold; margin-left:15px}
+#product ul.pro li p.pro_price{color:#FF7A04; font-size:13px; text-align:right; margin-right:15px; margin-top:5px}
+
+
+#anhdaidien{
+	width:400px; height: 600px; float:left; margin-top:20px
+}
+.anhchinh img{width:385px; height:450px; box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);}
+
+
+.anhphu ul.aphu{margin-top:30px; margin-left:42px}
+.anhphu ul.aphu li{width:50px; height:70px; border: 1px solid #DCDBDB; margin-right:10px; float:left}
+.anhphu ul.aphu li:hover{border:1px solid #666}
+.anhphu ul.aphu li img {width:100%; height:100%;}
+
+#thongtin{width:400px; height: 600px; float:left; position: relative;
+
+}
+
+.masp{color:#FC0; font-size:13px; margin-top:30px; //font-weight:bold; margin-left:15px;}
+.tensp{color:#333; font-size:15px; font-weight:bold; margin-left:15px; margin-top:10px; margin-bottom:10px}
+.giaban{color:#FFC800; font-size:16px; font-weight:bold; margin-left:15px; margin-bottom:30px}
+
+.motasp{color:#333; font-size:12px; margin-left:15px; margin-bottom:20px; line-height:20px;}
+.chitietsp{color:#333; font-size:12px; margin-left:15px; line-height:20px}
+.text1{color:#3B5998; font-size:15px; font-weight:bold; margin-left:15px; margin-bottom:5px}
+
+
+p.order{
+    width:100px; height:25px; background:#3B5998; border-radius:5px; box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
+    color:white;
+    font-weight:bold;
+    text-decoration: none;
+    font-size: 15px;
+    text-align: center;
+    padding-top:9px;
+    cursor: pointer;
+    position:relative;
+    top:-50px;
+    right:50px;
+    float: right;
+}
+p.order:hover {color:#ffd200}
+
+div.chiase{
+    position:absolute;
+    bottom:200px;
+    left: 15px;
+}
+
+
+div.splienquan{
+    width: 100%;
+    height:160px;
+    position:absolute;
+    bottom:30px
+}
+ul.splienquan{margin-top:15px}
+ul.splienquan li img{width:100%; height:100%}
+ul.splienquan li{width:90px; height:130px; float:left; margin-right: 10px;}
+
+
+div#dathang{
+    width:500px; height:325px; 
+    //border:10px solid #bebebe;
+    border:10px solid #262626;
+    border-radius:10px;
+    position: fixed;
+    background:white;
+    z-index:100;
+    display:none
+}
+.close_dathang{
+    width:30px; height:30px; background: url("../images/bt_close.png") no-repeat;
+    margin-top:-20px; margin-right:-20px;
+    float:right;
+    cursor: pointer;
+}
+.close_dathang:hover{
+    opacity: 0.8;
+}
+#nd_dathang{padding:10px 20px}
+p.title_dathang{
+    color:#3B5998;
+    font-size: 12px;
+    border-bottom:1px solid #bebebe;
+    font-size:15px;
+    height: 20px;
+    font-weight: bold;
+    margin-bottom:10px
+}
+
+#nd_dathang table td{padding:5px 5px 5px 30px}
+.text2{color:#3B5998; font-size:13px;}
+.input1{width:250px; height:23px;}
+.input2{width:250px; height:50px; min-width:250px; max-width:250px; min-height:50px; max-height:50px}
+.sp_dathang{color:#FFC800; font-size:14px; }
+
+p.bt_dathang{
+    width:100px; height:25px; background:#3B5998; border-radius:5px; box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
+    color:white;
+    font-weight:bold;
+    text-decoration: none;
+    font-size: 15px;
+    text-align: center;
+    padding-top:9px;
+    cursor: pointer;
+    float: right;
+}
+p.bt_dathang:hover {color:#ffd200}
+
+#warning{color:red; font-size:14px; font-weight:bold; width:310px; float:left; margin-top: 5px; line-height: 20px;}
+img.loader{width:150px; height:19px; position:relative; top:3px;}
+
+.page{
+    width:100%; height:30px;
+    display: inline-block;
+}
+ul.ulpage{float:right}
+ul.ulpage li{
+    float:left;
+    border:1px solid #3B5998;
+    width:20px; height:19px;
+    padding-top:1px;
+    text-align: center;
+    margin-left:5px
+}
+ul.ulpage a{
+    font-size:12px;
+    font-weight:bold;
+    text-decoration: none;
+    color:#333;
+}
+ul.ulpage a:hover{
+    color:#FF7A04;
+}
+ul.ulpage a:hover li{
+    border:1px solid #FF7A04;
+}
+
+a.page_open{
+    color:#FF7A04 !important;
+}
+a.page_open li{
+    border:1px solid #FF7A04;
+}
+
+
+
+
+
+
+
+
+
+#footer{width:100%; height:50px; text-align:right}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
