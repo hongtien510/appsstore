@@ -220,7 +220,10 @@ a.page_open li{
 
 
 
-
+.comment_facebook{
+	width:800px; height:auto;
+	overflow:auto;
+}
 
 
 

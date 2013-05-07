@@ -119,3 +119,23 @@
     </div>
 
 </div>
+<div class="comment_facebook">
+
+<?php
+	$host = $_SERVER['HTTP_HOST']; //->ishalimedia.com
+	$path=$_SERVER['REQUEST_URI']; //->/appfb/ishalistore/product?id=Mg==&sp=MTc=
+	$link = 'http://'.$host.$path;
+?>
+
+
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/vi_VN/all.js#xfbml=1&appId=535578746483923";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
+	<div class="fb-comments" data-href="<?php echo $link; ?>" data-width="800" data-num-posts="10" data-colorscheme="dark"></div>
+
+</div>
