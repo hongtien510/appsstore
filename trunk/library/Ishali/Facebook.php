@@ -81,7 +81,7 @@ class Ishali_Facebook extends Ishali_Api{
 
 					$config = Zend_Registry::get(APPLICATION_CONFIG);
 					$app_secret = $config->facebook->appsecret;
-				    $data =Ishali_Api::parse_signed_request($_REQUEST["signed_request"], $app_secret);
+				    @$data =Ishali_Api::parse_signed_request($_REQUEST["signed_request"], $app_secret);
 					//print_r($data);
 					
 					return $data;
