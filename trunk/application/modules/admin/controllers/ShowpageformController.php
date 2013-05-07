@@ -10,7 +10,7 @@ class Admin_ShowpageformController extends Zend_Controller_Action
 
     public function indexAction()
     {
- 	   $this->view->mausac = App_Models_BangmauModel::getInstance()->getList();
+ 	   //$this->view->mausac = App_Models_BangmauModel::getInstance()->getList();
     }
 	    
     public function luuAction()

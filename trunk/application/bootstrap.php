@@ -53,6 +53,10 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
         self::$front->addControllerDirectory(APPLICATION_PATH . '/modules/admin/controllers', 'admin');
         $admin = new Zend_Controller_Router_Route('admin/:controller/:action/*', array('controller' => 'index', 'action' => 'index', 'module' => 'admin'));
 
+		self::$front->addControllerDirectory(APPLICATION_PATH . '/modules/ishali/controllers', 'ishali');
+
+        $ishali = new Zend_Controller_Router_Route('ishali/:controller/:action/*', array('controller' => 'index', 'action' => 'index', 'module' => 'ishali'));
+
         //Init route
         $registry = new Zend_Controller_Router_Route('/registry/:action/*', array('controller' => 'registry', 'action' => 'index', 'module' => 'default'));
         $manage = new Zend_Controller_Router_Route('/manage/:action/*', array('controller' => 'manage', 'action' => 'index', 'module' => 'default'));
@@ -62,7 +66,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
         $routers = self::$front->getRouter();
         $routers->addRoute('default', $default);
         $routers->addRoute('admin', $admin);
-
+		$routers->addRoute('ishali', $ishali);
         $routers->addRoute('registry', $registry);
         $routers->addRoute('manage', $manage);
         $routers->addRoute('article', $article);

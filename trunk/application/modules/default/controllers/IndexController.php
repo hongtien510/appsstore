@@ -4,6 +4,11 @@ class IndexController extends App_Controller_FrontController {
 
     public function init() {
         parent::init();
+        
+        $facebook = new Ishali_Facebook();
+		$idpage = $facebook->getpageid();
+        if(isset($idpage))
+            $_SESSION['idpage'] = $idpage;
     }
 
     public function indexAction() {
@@ -11,10 +16,13 @@ class IndexController extends App_Controller_FrontController {
         
         //$id = $this->_request->getParam("id");
         //echo base64_decode($id);
-        
+
+        $idpage = $_SESSION['idpage'];
+
+
         $sql = "select count(*) as tongsp ";
         $sql.= "from ishali_sanpham ";
-        $sql.= "where anhien = 1 and showindex=1";
+        $sql.= "where anhien = 1 and showindex=1 and idpage = ". $idpage;
         $data = $store->SelectQuery($sql);
         $tongsp = $data[0]['tongsp'];
         $sp1trang = 12;
@@ -27,7 +35,7 @@ class IndexController extends App_Controller_FrontController {
             {
                 $sql = "Select idsp, masp, idloaisp, tensp, gia, hinhchinh ";
                 $sql.= "from ishali_sanpham ";
-                $sql.= "where showindex = 1 and anhien = 1 order by ngaycapnhat desc ";
+                $sql.= "where showindex = 1 and anhien = 1 and idpage = ". $idpage ." order by ngaycapnhat desc ";
                 $sql.= "limit 0,". $sp1trang; 
                 
                 $data = $store->SelectQuery($sql);
@@ -41,7 +49,7 @@ class IndexController extends App_Controller_FrontController {
                 
                 $sql = "Select idsp, masp, idloaisp, tensp, gia, hinhchinh ";
                 $sql.= "from ishali_sanpham ";
-                $sql.= "where showindex = 1 and anhien = 1 order by ngaycapnhat desc ";
+                $sql.= "where showindex = 1 and anhien = 1 and idpage = ". $idpage ." order by ngaycapnhat desc ";
                 $sql.= "limit ". $sp_start .",". $sp1trang;
                 
                 
@@ -55,7 +63,7 @@ class IndexController extends App_Controller_FrontController {
         {
             $sql = "Select idsp, masp, idloaisp, tensp, gia, hinhchinh ";
             $sql.= "from ishali_sanpham ";
-            $sql.= "where (showindex = 1 || ngaycapnhat < now()) and anhien = 1 order by ngaycapnhat desc ";
+            $sql.= "where (showindex = 1 || ngaycapnhat < now()) and anhien = 1 and idpage = ". $idpage ." order by ngaycapnhat desc ";
             $sql.= "limit 0,12";
 
             $data = $store->SelectQuery($sql);
