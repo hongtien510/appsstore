@@ -32,8 +32,8 @@ class Ishali_Api {
 	    list($encoded_sig, $payload) = explode('.', $signed_request, 2);
 	 
 	    // decode the data
-	    $sig = Ishali_Api::base64_url_decode($encoded_sig);
-	    $data = json_decode(Ishali_Api::base64_url_decode($payload), true);
+	    @$sig = Ishali_Api::base64_url_decode($encoded_sig);
+	    @$data = json_decode(Ishali_Api::base64_url_decode($payload), true);
 	 
 	    if (strtoupper($data['algorithm']) !== 'HMAC-SHA256') {
 	        error_log('Unknown algorithm. Expected HMAC-SHA256');
