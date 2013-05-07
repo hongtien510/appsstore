@@ -246,7 +246,6 @@ function CapNhatSanPham(idsp, masp, tensp, thuocloaisp, giaban, string_img_uploa
             if(data==1)
             {
                 ThongBao('Cập nhật sản phẩm thành công',2000);
-                //window.location = '../product';
             }
             else
                 ThongBaoLoi('Cập nhật không thành công');

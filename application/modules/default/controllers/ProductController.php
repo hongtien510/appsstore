@@ -11,10 +11,19 @@ class ProductController extends App_Controller_FrontController {
         
         $sp = base64_decode($this->_request->getParam("sp"));
         
-        //echo $sp;
+        $facebook = new Ishali_Facebook();
+		$idpage = $facebook->getpageid();
+        //$idpage = '356730004423499';
+        
+        if(isset($idpage))
+            $_SESSION['idpage'] = $idpage;
+        else
+            $idpage = $_SESSION['idpage'];
+        
+        
         $sql = "Select idsp, masp, idloaisp, tensp, gia, hinhchinh, hinhphu, mota, chitietsp, anhien, baohanh ";
         $sql.= "From ishali_sanpham ";
-        $sql.= "Where idsp = " . $sp;
+        $sql.= "Where idsp = " .$sp. " and idpage = ". $idpage;
         //echo $sql;
         $data = $store->SelectQuery($sql);
         $this->view->sanpham = $data;
@@ -26,7 +35,7 @@ class ProductController extends App_Controller_FrontController {
         
         $sql = "Select idsp, idloaisp, masp, tensp, gia, hinhchinh ";
         $sql.= "From ishali_sanpham ";
-        $sql.= "Where anhien = 1 and idloaisp = ". $idloaisp ." and idsp != ". $sp . " ";
+        $sql.= "Where anhien = 1 and idloaisp = ". $idloaisp ." and idsp != ". $sp . " and idpage = ". $idpage;
         $sql.= "Order by rand() limit 0,4";
         
         //echo $sql;

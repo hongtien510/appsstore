@@ -5,12 +5,20 @@ class Admin_ProductController extends App_Controller_AdminController {
     public function init() {
         parent::init();
         $this->_SESSION=new Zend_Session_Namespace();
+        
+        $facebook = new Ishali_Facebook();
+		$idpage = $facebook->getpageid();
+        
+        if(isset($idpage))
+            $_SESSION['idpage'] = $idpage;
     }
 
     public function indexAction() {
         if(!isset($this->_SESSION->iduseradmin))
 			header("Location:login");
-            
+
+        $idpage = $_SESSION['idpage'];
+
         $store = $this->view->info = App_Models_StoreModel::getInstance();
         
         if($this->_request->getParam("idcat") != "")
@@ -19,7 +27,7 @@ class Admin_ProductController extends App_Controller_AdminController {
             $idcat = $this->_request->getParam("idcat");
             $sql = "Select idsp, masp, tensp, gia, hinhchinh, anhien, showindex ";
             $sql.= "From ishali_sanpham ";
-            $sql.= "Where idloaisp = ". $idcat. " ";
+            $sql.= "Where idloaisp = ". $idcat ." and idpage = ".$idpage." ";
             $sql.= "Order by ngaycapnhat desc";
             
             $data = $store->SelectQuery($sql);
@@ -29,6 +37,7 @@ class Admin_ProductController extends App_Controller_AdminController {
         {
             $sql = "Select idsp, masp, tensp, gia, hinhchinh, anhien, showindex ";
             $sql.= "From ishali_sanpham ";
+            $sql.= "Where idpage = ". $idpage ." ";
             $sql.= "Order by ngaycapnhat desc";
             
             $data = $store->SelectQuery($sql);
@@ -37,7 +46,8 @@ class Admin_ProductController extends App_Controller_AdminController {
         
         $sql = "Select idloaisp, tenloaisp ";
         $sql.= "From ishali_loaisp ";
-        $sql.= "Where anhien = 1 order by vitri";
+        $sql.= "Where anhien = 1 and idpage = ". $idpage ." order by vitri";
+        
         
         $data = $store->SelectQuery($sql);
         $this->view->category = $data;
@@ -50,11 +60,13 @@ class Admin_ProductController extends App_Controller_AdminController {
     public function addAction() {
         if(!isset($this->_SESSION->iduseradmin))
 			header("Location:../login");
-            
+   
+        $idpage = $_SESSION['idpage'];
+        
         $store = $this->view->info = App_Models_StoreModel::getInstance();
         $sql = "Select idloaisp, tenloaisp ";
         $sql.= "From ishali_loaisp ";
-        $sql.= "Where anhien = 1 order by vitri";
+        $sql.= "Where anhien = 1 and idpage = ". $idpage ." order by vitri";
         
         $data = $store->SelectQuery($sql);
         $this->view->category = $data;
@@ -64,6 +76,8 @@ class Admin_ProductController extends App_Controller_AdminController {
         $store = $this->view->info = App_Models_StoreModel::getInstance();
         $this->_helper->viewRenderer->setNoRender(true);
         $this->_helper->layout->disableLayout();
+        
+        $idpage = $_SESSION['idpage'];
         
         //masp, tensp, thuocloaisp, giaban ,string_img_upload, string_img_upload_ch, mota, chitiet, hethang, hienthi, titlefb, metafb
         
@@ -135,7 +149,7 @@ class Admin_ProductController extends App_Controller_AdminController {
         
         
         $sql = "Insert into ishali_sanpham (";
-        $sql.= "masp, idloaisp, tensp, gia, hinhchinh, hinhphu, mota, chitietsp, anhien, hethang, baohanh, ngaycapnhat, showindex, titlefb, metafb ) ";
+        $sql.= "masp, idloaisp, tensp, gia, hinhchinh, hinhphu, mota, chitietsp, anhien, hethang, baohanh, ngaycapnhat, showindex, titlefb, metafb, idpage ) ";
         $sql.= "values (";
         $sql.= "'".$masp."', ";
         $sql.= "'".$thuocloaisp."', ";
@@ -151,7 +165,8 @@ class Admin_ProductController extends App_Controller_AdminController {
         $sql.= "now(), ";
         $sql.= "'".$showindex."', ";
         $sql.= "'".$titlefb."', ";
-        $sql.= "'".$metafb."')";
+        $sql.= "'".$metafb."', ";
+        $sql.= "'".$idpage."')";
         
         echo $data = $store->InsertDeleteUpdateQuery($sql);
     }
@@ -159,19 +174,21 @@ class Admin_ProductController extends App_Controller_AdminController {
     
     
     public function detailAction() {
+        $idpage = $_SESSION['idpage'];
+        
         if(!isset($this->_SESSION->iduseradmin))
 			header("Location:../login");
             
         $store = $this->view->info = App_Models_StoreModel::getInstance();
         
         echo $idsp = base64_decode($this->_request->getParam("idsp"));
-        $sql = "Select * from ishali_sanpham where idsp = " . $idsp;
+        $sql = "Select * from ishali_sanpham where idsp = ". $idsp ." and idpage = ". $idpage;
         $data = $store->SelectQuery($sql);
         $this->view->product = $data;
         
         $sql = "Select idloaisp, tenloaisp ";
         $sql.= "From ishali_loaisp ";
-        $sql.= "Where anhien = 1 order by vitri";
+        $sql.= "Where anhien = 1 and idpage = ". $idpage ." order by vitri";
         
         $data = $store->SelectQuery($sql);
         $this->view->category = $data;

@@ -10,9 +10,18 @@ class CategoryController extends App_Controller_FrontController {
         
 		$id = base64_decode($this->_request->getParam("id"));
         
+        $facebook = new Ishali_Facebook();
+		$idpage = $facebook->getpageid();
+        //$idpage = '356730004423499';
+        
+        if(isset($idpage))
+            $_SESSION['idpage'] = $idpage;
+        else
+            $idpage = $_SESSION['idpage'];
+        
         $sql = "select count(*) as tongsp ";
         $sql.= "from ishali_sanpham ";
-        $sql.= "where anhien = 1 and idloaisp = ". $id;
+        $sql.= "where anhien = 1 and idloaisp = ". $id ." and idpage = ". $idpage;
         $data = $store->SelectQuery($sql);
         $tongsp = $data[0]['tongsp'];
         $sp1trang = 12;
@@ -24,7 +33,7 @@ class CategoryController extends App_Controller_FrontController {
             {
                 $sql = "Select idsp, masp, idloaisp, tensp, gia, hinhchinh ";
                 $sql.= "from ishali_sanpham ";
-                $sql.= "where anhien = 1 and idloaisp = " . $id. " order by ngaycapnhat desc ";
+                $sql.= "where anhien = 1 and idloaisp = " . $id. " and idpage = ". $idpage ." order by ngaycapnhat desc ";
                 $sql.= "limit 0,". $sp1trang;
                 
                 $data = $store->SelectQuery($sql);
@@ -38,7 +47,7 @@ class CategoryController extends App_Controller_FrontController {
                 
                 $sql = "Select idsp, masp, idloaisp, tensp, gia, hinhchinh ";
                 $sql.= "from ishali_sanpham ";
-                $sql.= "where anhien = 1 and idloaisp = " . $id. " order by ngaycapnhat desc ";
+                $sql.= "where anhien = 1 and idloaisp = " . $id. " and idpage = ". $idpage ." order by ngaycapnhat desc ";
                 $sql.= "limit ". $sp_start .",". $sp1trang;
                 
                 $data = $store->SelectQuery($sql);
@@ -51,7 +60,7 @@ class CategoryController extends App_Controller_FrontController {
         {
             $sql = "Select idsp, masp, idloaisp, tensp, gia, hinhchinh ";
             $sql.= "from ishali_sanpham ";
-            $sql.= "where anhien = 1 and idloaisp = " . $id. " order by ngaycapnhat desc ";
+            $sql.= "where anhien = 1 and idloaisp = " . $id. " and idpage = ". $idpage ." order by ngaycapnhat desc ";
             $sql.= "limit 0,". $sp1trang;
 
             $data = $store->SelectQuery($sql);
