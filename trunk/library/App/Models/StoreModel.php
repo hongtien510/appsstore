@@ -46,10 +46,11 @@ class App_Models_StoreModel {
     
     public function GetidCategory()
     {
+        $idpage = $_SESSION['idpage'];
+
         $sql = "Select idloaisp, tenloaisp ";
         $sql.= "From ishali_loaisp ";
-        $sql.= "Where anhien = 1 order by vitri";
-        //echo $sql;
+        $sql.= "Where anhien = 1 and idpage = ". $idpage ." order by vitri";
         $data = $this->SelectQuery($sql);
         return $data;
     }
