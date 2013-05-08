@@ -19,18 +19,15 @@ class IndexController extends App_Controller_FrontController {
 		if($facebook->getParameterUrl()!=null)
 		{
 			$param = $facebook->getParameterUrl();
-			//header("location: http://localhost/appfb/ishalistore/product?id=MQ==&sp=MjE=");
-			//echo $param;
 			$data = explode( '-', $param );
 			$id = $data[0];
 			$sp = $data[1];
 			$host = APP_DOMAIN;
-			//echo "http://localhost/appfb/ishalistore/product?id=$id&sp=$sp";
+
 			header("location: $host/product?id=$id&sp=$sp");
 			//http://localhost/appfb/ishalistore/product?id=Mg==&sp=MTg=
 		}
-		$param = $facebook->getLinkPage();
-		print_r($param);
+
 
         $idpage = $_SESSION['idpage'];
 

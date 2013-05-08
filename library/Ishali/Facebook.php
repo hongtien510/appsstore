@@ -99,12 +99,6 @@ class Ishali_Facebook extends Ishali_Api{
 		$param = Ishali_Facebook::getpagearr();
 		return  @$param["app_data"];
 	}
-	
-	public static function getLinkPage()
-	{
-		$link = Ishali_Facebook::getpagearr();
-		return $link;
-	}
 
     public function loginuserfb($isadmin)
 	    {   
