@@ -13,15 +13,21 @@ class ProductController extends App_Controller_FrontController {
         
         $facebook = new Ishali_Facebook();
 		$idpage = $facebook->getpageid();
-        //$idpage = '356730004423499';
-        
-        if(isset($idpage))
+		if(isset($idpage))
             $_SESSION['idpage'] = $idpage;
         else
             $idpage = $_SESSION['idpage'];
+		
+		//Lay Thong Tin Page
+		$fb = $facebook->getFB();
+		$pages_fb =  $fb->api('/'.$idpage);
+		$linkpage = $pages_fb['link'];
+		$this->view->linkpage = $linkpage;
+		
         
         
-        $sql = "Select idsp, masp, idloaisp, tensp, gia, hinhchinh, hinhphu, mota, chitietsp, anhien, baohanh ";
+        
+        $sql = "Select idsp, masp, idloaisp, tensp, gia, hinhchinh, hinhphu, mota, chitietsp, anhien, baohanh, titlefb, metafb ";
         $sql.= "From ishali_sanpham ";
         $sql.= "Where idsp = " .$sp. " and idpage = ". $idpage;
         //echo $sql;

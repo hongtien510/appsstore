@@ -12,7 +12,6 @@ class Ishali_Facebook extends Ishali_Api{
 		{
 			return self::$fb;
 		}
-		
 		$config = Zend_Registry::get(APPLICATION_CONFIG);
 		
 		$fb = New Facebook_Facebook(array(
@@ -68,13 +67,14 @@ class Ishali_Facebook extends Ishali_Api{
     
 	  public  static function getpagearr()
 		  {
+
 			    if(empty($_REQUEST["signed_request"])) {		
 //					Ishali_Facebook::directadminlink();
 //							$Ishali_Api = new Ishali_Api();
 // 	$Ishali_Api->parentRedirect2("http://localhost/tochuccuocthihinh/article?articleId=1");
 //echo "ss";
 //					exit;
-
+				
 				}
 				else 
 				{
@@ -83,9 +83,9 @@ class Ishali_Facebook extends Ishali_Api{
 					$app_secret = $config->facebook->appsecret;
 				    @$data =Ishali_Api::parse_signed_request($_REQUEST["signed_request"], $app_secret);
 					//print_r($data);
-					
 					return $data;
 				}
+
 		  }
     
     public  static function getpageid()
@@ -93,7 +93,19 @@ class Ishali_Facebook extends Ishali_Api{
 			$pageid = Ishali_Facebook::getpagearr();
 			return  @$pageid['page']['id'];
 	    }
+		
+	public  static function getParameterUrl()
+	{
+		$param = Ishali_Facebook::getpagearr();
+		return  @$param["app_data"];
+	}
 	
+	public static function getLinkPage()
+	{
+		$link = Ishali_Facebook::getpagearr();
+		return $link;
+	}
+
     public function loginuserfb($isadmin)
 	    {   
 	    	if(isset($isadmin) && $isadmin==1)

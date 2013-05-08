@@ -84,10 +84,10 @@ function DatHang(hoten, sdt, email, diachi, ghichu, sanpham)
             }
     }
     */
-	alert (taaa.appdomain + '/ajax');
+	//alert (taaa.appdomain + 'ajax');
     document.getElementById("warning").innerHTML = "<span style='color:#00ccff'>Sending Email...</span><img class='loader' src='"+taaa.appdomain+"/application/layouts/tmpstore/images/loader.gif'/>";
     $.ajax({
-		url:taaa.appdomain + '/ajax',
+		url:taaa.appdomain + 'ajax',
 		type:'post',
 		data:{hoten:hoten, sdt:sdt, email:email, diachi:diachi, ghichu:ghichu, sanpham:sanpham},
 		success:function(data){
