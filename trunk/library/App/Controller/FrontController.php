@@ -19,6 +19,22 @@ class App_Controller_FrontController extends Zend_Controller_Action {
     public function preDispatch() {
         $request = $this->getRequest();
         $facebook = new Ishali_Facebook();
+		
+		
+		/*
+http://www.facebook.com/pages/HCM/448507661830693?sk=app_121397851394173&app_data=index/detail?id=109
+
+		$pagedata  = $facebook->getpagearr();
+		echo "<pre>";
+		print_r($pagedata['app_data']);
+		echo "</pre>";
+//exit;
+*/	
+		
+		
+		
+		
+		
         if(isset($_GET['request_ids']))
         {
         	$ts = $_GET['request_ids'];

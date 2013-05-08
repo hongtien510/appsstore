@@ -7,15 +7,30 @@ class IndexController extends App_Controller_FrontController {
         
         $facebook = new Ishali_Facebook();
 		$idpage = $facebook->getpageid();
+		
         if(isset($idpage))
             $_SESSION['idpage'] = $idpage;
     }
 
     public function indexAction() {
 		$store = $this->view->info = App_Models_StoreModel::getInstance();
-        
-        //$id = $this->_request->getParam("id");
-        //echo base64_decode($id);
+		
+        $facebook = new Ishali_Facebook();
+		if($facebook->getParameterUrl()!=null)
+		{
+			$param = $facebook->getParameterUrl();
+			//header("location: http://localhost/appfb/ishalistore/product?id=MQ==&sp=MjE=");
+			//echo $param;
+			$data = explode( '-', $param );
+			$id = $data[0];
+			$sp = $data[1];
+			$host = APP_DOMAIN;
+			//echo "http://localhost/appfb/ishalistore/product?id=$id&sp=$sp";
+			header("location: $host/product?id=$id&sp=$sp");
+			//http://localhost/appfb/ishalistore/product?id=Mg==&sp=MTg=
+		}
+		$param = $facebook->getLinkPage();
+		print_r($param);
 
         $idpage = $_SESSION['idpage'];
 

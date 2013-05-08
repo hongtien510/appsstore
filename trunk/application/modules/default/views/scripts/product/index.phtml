@@ -1,3 +1,17 @@
+<div id="fb-root"></div>
+<script src="http://connect.facebook.net/en_US/all.js"></script>
+<script>
+
+	FB.init({
+	 appId  : '617277141622046',
+	 status : true, // check login status
+	 cookie : true, // enable cookies to allow the server to access the session
+	 xfbml  : true// parse XFBML
+	 });
+	FB.Canvas.setSize({ width: 800, height: 1300 });
+
+ </script>
+
 <script>
     $(function(){
         //alert('aaaaaaaaaa');
@@ -99,9 +113,19 @@
 	<h3 class="chitietsp"><?php echo $sanpham[0]["chitietsp"]?></h3>
     
     <div class="chiase">
-        <a title="Chia sẻ lên Zing Me" target="_blank" href="http://link.apps.zing.vn/share?u="><img src="http://ishali.com.vn/public/default/images/small_zing_icon.png"/></a>
-    	<a title="Chia sẻ trên Google" target="_blank" href="https://plus.google.com/share?url="><img alt="Google +1" src="http://ishali.com.vn/public/default/images/icon_googleplus.jpg"/></a>
-    	<a title="Chia sẻ trên Facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?s=100&p[title]=<Title hien thi>&p[url]=<Url Hien Thi>%23share_button_top&p[images][0]=<Hinh Anh Hien thi>&p[summary]=<Mo Ta>"><img alt="Facebook" src="http://ishali.com.vn/public/default/images/icon_facebook.png"/></a>
+	<?php
+	//http://localhost/appfb/ishalistore/product?id=Mg==&sp=MTg=
+	//http://www.facebook.com/Phtpht/app_617277141622046
+		$linkpage =$this->linkpage;//http://www.facebook.com/Phtpht
+		$linksanpham = base64_encode($sanpham[0]["idloaisp"]).'-'.base64_encode($sanpham[0]["idsp"]);
+		$linkchiase = $linkpage.'/app_'.APP_ID.'?app_data='.$linksanpham;
+		$titlefb = $sanpham[0]["titlefb"];
+		$metafb = $sanpham[0]["metafb"];
+		$hinhanhshare = APP_DOMAIN . '/application/layouts/tmpstore/images/upload/images/' . $sanpham[0]["hinhchinh"];
+	?>
+        <a title="Chia sẻ lên Zing Me" target="_blank" href="http://link.apps.zing.vn/share?u=<?php echo $linkchiase ?>"><img src="http://ishali.com.vn/public/default/images/small_zing_icon.png"/></a>
+    	<a title="Chia sẻ trên Google" target="_blank" href="https://plus.google.com/share?url=<?php echo $linkchiase ?>"><img alt="Google +1" src="http://ishali.com.vn/public/default/images/icon_googleplus.jpg"/></a>
+    	<a title="Chia sẻ trên Facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?s=100&p[title]=<?php echo $titlefb ?>&p[url]=<?php echo $linkchiase ?>&p[images][0]=<?php echo $hinhanhshare; ?>&p[summary]=<?php echo $metafb; ?>"><img alt="Facebook" src="http://ishali.com.vn/public/default/images/icon_facebook.png"/></a>
     </div>
     
     
