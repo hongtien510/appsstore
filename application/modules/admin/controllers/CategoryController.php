@@ -17,9 +17,16 @@ class Admin_CategoryController extends App_Controller_AdminController {
     public function indexAction() {
         if(!isset($this->_SESSION->iduseradmin))
 			header("Location:login");
-            
-        $idpage = $_SESSION['idpage'];
-
+			
+		$controller = $this->getRequest()->getControllerName();
+		$_SESSION['active_menu'] = $controller;
+		
+		if($this->_request->getParam("idpage") != "")
+        {
+			$idpagee = $this->_request->getParam("idpage");
+			$_SESSION['idpage'] = $idpagee;
+		}
+		$idpage = $_SESSION['idpage'];
         
         $store = $this->view->info = App_Models_StoreModel::getInstance();
         $sql = "Select * from ishali_loaisp where idpage = ". $idpage ."  order by vitri";

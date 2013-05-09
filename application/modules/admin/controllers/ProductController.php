@@ -16,14 +16,21 @@ class Admin_ProductController extends App_Controller_AdminController {
     public function indexAction() {
         if(!isset($this->_SESSION->iduseradmin))
 			header("Location:login");
-
-        $idpage = $_SESSION['idpage'];
-
-        $store = $this->view->info = App_Models_StoreModel::getInstance();
+		$store = $this->view->info = App_Models_StoreModel::getInstance();
+		
+		$controller = $this->getRequest()->getControllerName();
+		$_SESSION['active_menu'] = $controller;
+		
+		if($this->_request->getParam("idpage") != "")
+        {
+			$idpagee = $this->_request->getParam("idpage");
+			$_SESSION['idpage'] = $idpagee;
+		}
+		$idpage = $_SESSION['idpage'];
+		
         
         if($this->_request->getParam("idcat") != "")
         {
-            
             $idcat = $this->_request->getParam("idcat");
             $sql = "Select idsp, masp, tensp, gia, hinhchinh, anhien, showindex ";
             $sql.= "From ishali_sanpham ";
