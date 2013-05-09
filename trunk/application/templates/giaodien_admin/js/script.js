@@ -29,8 +29,23 @@ $(document).ready(function(){
         $('#thongbao').hide(); 
         $('#bg_thongbao').hide();
     });
+	
+	$('.close_thongbao2').live('click',function(){
+		$('#thongbao').hide(); 
+        $('#bg_thongbao').hide();
+		var link = taaa.appdomain+'/admin/login/';
+		window.location = link;
+    });
+
 });
 
+function ChangeListPage(idpage)
+{
+	if(idpage != 0)
+		window.location = "?idpage="+idpage;
+}
+
+/*
 function LoginAdmin(ops)
 {
     UserAdmin = ops.useradmin;
@@ -40,20 +55,154 @@ function LoginAdmin(ops)
     //alert(PassAdmin);
     
     $.ajax({
-		url:taaa.appdomain + '/admin/loginadmin/xulylogin',
+		url:taaa.appdomain + '/admin/login/xulylogin',
 		type:'post',
 		data:{useradmin: UserAdmin, passadmin:PassAdmin},
 		success:function(data){
 			if(data==1)
             {
                 alert("Đăng nhập thành công");
-                window.location="../admin/";
+				var link = taaa.appdomain+'/admin/category/';
+				window.location = link;
             }
             else
                 alert("Đăng nhập không thành công");
 		}
 	});	
 }
+*/
+
+function checkmail(email){
+	var emailfilter=/^\w+[\+\.\w-]*@([\w-]+\.)*\w+[\w-]*\.([a-z]{2,4}|\d+)$/i;
+	var returnval=emailfilter.test(email)
+	return returnval;
+}
+
+//Kiem tra SDT
+function checkphone(phone)
+{
+	if(phone.length<10)
+		return false;
+	var phonefilter = /^[0-9]+$/;
+	var returnval = phonefilter.test(phone);
+		return returnval;
+}
+
+
+
+
+function RegisterAdmin(ops)
+{
+
+	IdUserFb = ops.iduser_fb;
+	UserAdmin = ops.useradmin;
+    PassAdmin = ops.passadmin;
+    RePassAdmin = ops.repassadmin;
+    HoTenAdmin = ops.hotenadmin;
+    EmailAdmin = ops.emailadmin;
+    DienThoaiAdmin = ops.dienthoaiadmin;
+	
+
+    //alert(UserAdmin);
+    // alert(PassAdmin);
+    // alert(RePassAdmin);
+    // alert(HoTenAdmin);
+    // alert(EmailAdmin);
+    // alert(DienThoaiAdmin);
+
+	if(UserAdmin=="" || PassAdmin=="" || RePassAdmin=="" || HoTenAdmin=="" || EmailAdmin=="" || DienThoaiAdmin=="")
+	{
+		document.getElementById('warning_register').innerHTML = "Vui lòng nhập đủ thông tin.";
+		return false;
+	}
+	else
+	{
+		if(PassAdmin.length < 6)
+		{
+			document.getElementById('warning_register').innerHTML = "Mật khẩu nhập tối thiểu 6 ký tự.";
+			return false;
+		}
+		else
+			if(PassAdmin != RePassAdmin)
+			{
+				document.getElementById('warning_register').innerHTML = "2 mật khẩu không giống nhau.";
+				return false;
+			}
+			else
+				if(checkmail(EmailAdmin)==false)
+				{
+					document.getElementById('warning_register').innerHTML = "Email chưa đúng định dạng.";
+					return false;
+				}
+				else
+					if(checkphone(DienThoaiAdmin)==false)
+					{
+						document.getElementById('warning_register').innerHTML = "Số điện thoại chưa đúng định dạng.";
+						return false;
+					}
+					else
+					{
+						document.getElementById('warning_register').innerHTML = "";
+					}
+	}
+	
+	kiemtraTenDangNhap(UserAdmin);
+
+}
+
+function kiemtraTenDangNhap(UserName)
+{
+
+	$.ajax({
+		url:taaa.appdomain + '/admin/register/kiemtratendangnhap',
+		type:'post',
+		data:{username: UserName},
+		success:function(data){
+			if(data==0)
+			{
+				document.getElementById('warning_register').innerHTML = "Tên đăng nhập này đã có người đăng ký.";
+				return false;
+			}
+			else
+			{
+				$.ajax({
+				url:taaa.appdomain + '/admin/register/xulyregister',
+				type:'post',
+				data:{iduserfb:IdUserFb, useradmin: UserAdmin, passadmin:PassAdmin, hotenadmin:HoTenAdmin, emailadmin:EmailAdmin, dienthoaiadmin:DienThoaiAdmin},
+				success:function(data){
+						if(data==1)
+						{
+							ThongBaoLoi2("Đăng ký thành công");
+						}
+						else
+							ThongBaoLoi("Đăng ký không thành công");
+					}
+				});
+
+			}
+			
+		}
+	});
+
+}
+
+function kiemtraIdUserFB(IdUserFB)
+{
+	$.ajax({
+		url:taaa.appdomain + '/admin/register/kiemtraiduserfb',
+		type:'post',
+		data:{IdUserFB: IdUserFB},
+		success:function(data){
+			if(data==0)
+            {
+				ThongBaoLoi2("Tài khoản FB này đã tạo tài khoản<br/>Nếu bạn quên mật khẩu hãy liên hệ với Admin");
+            }
+		}
+	});
+}
+
+
+
 
 function getParameterValue(name)
 {
@@ -78,10 +227,17 @@ function ThongBaoLoi(nd)
 {
     $('#bg_thongbao').show();
 	$('#thongbao').show(); 
-	$('#thongbao').html("<p class='title_tb'>Thông Báo</p><div class='content_tb'><p>" +nd+ "</p><p class='close_thongbao'>Đóng</p>");
-	myVar = setTimeout(function(){$('#thongbao').hide(); $('#bg_thongbao').hide();return false},time);
+	$('#thongbao').html("<p class='title_tb'>Thông Báo</p><div class='content_tb'><p>" +nd+ "</p><p class='dong_thongbao close_thongbao'>Đóng</p>");
+	//myVar = setTimeout(function(){$('#thongbao').hide(); $('#bg_thongbao').hide();return false},time);
 }
 
+function ThongBaoLoi2(nd)
+{
+    $('#bg_thongbao').show();
+	$('#thongbao').show(); 
+	$('#thongbao').html("<p class='title_tb'>Thông Báo</p><div class='content_tb'><p>" +nd+ "</p><p class='dong_thongbao close_thongbao2'>Đóng</p>");
+	//myVar = setTimeout(function(){$('#thongbao').hide(); $('#bg_thongbao').hide();return false},time);
+}
 
 
 
@@ -323,7 +479,8 @@ function LoginAdmin(user, pass)
             if(data==1)
             {
                 ThongBao('Đăng nhập thành công',2000);
-                window.location = 'category';
+				var link = taaa.appdomain+'/admin/category/';
+                window.location = link;
             }
             else
             {
