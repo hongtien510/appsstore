@@ -38,7 +38,12 @@ class Admin_CategoryController extends App_Controller_AdminController {
 	public function addAction() {
         if(!isset($this->_SESSION->iduseradmin))
 			header("Location:../login");
-   
+		
+		if($this->_request->getParam("idpage") != "")
+        {
+			$idpagee = $this->_request->getParam("idpage");
+			$_SESSION['idpage'] = $idpagee;
+		}
         $idpage = $_SESSION['idpage'];
         
         $store = $this->view->info = App_Models_StoreModel::getInstance();
