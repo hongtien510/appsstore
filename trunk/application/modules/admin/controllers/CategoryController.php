@@ -17,7 +17,8 @@ class Admin_CategoryController extends App_Controller_AdminController {
     public function indexAction() {
         if(!isset($this->_SESSION->iduseradmin))
 			header("Location:login");
-			
+
+		
 		$controller = $this->getRequest()->getControllerName();
 		$_SESSION['active_menu'] = $controller;
 		

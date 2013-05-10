@@ -103,12 +103,8 @@
 					</ul>
 					<?php
 						$store = App_Models_StoreModel::getInstance();
-						
-							$sql = "select id_pages, id_fb_page, page_name ";
-							$sql.= "from ishali_pages ";
-						$lpage = $store->SelectQuery($sql);
-						//$this->view->lpage = $lpage;
-						//print_r($lpage);
+						$lpage = $store->GetPageFbByIdUserFB();
+					
 						$idpage = $_SESSION['idpage'];
 						
 					?>

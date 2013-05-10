@@ -54,6 +54,17 @@ class App_Models_StoreModel {
         $data = $this->SelectQuery($sql);
         return $data;
     }
+	
+	public function GetPageFbByIdUserFB()
+	{
+		$facebook = new Ishali_Facebook();
+        $iduser_fb = $facebook->getuserfbid();
+		$sql = "select id_pages, id_fb_page, page_name ";
+		$sql.= "from ishali_pages ";
+		$sql.= "where id_fb = " . $iduser_fb;
+		$lpage = $this::SelectQuery($sql);
+		return $lpage;
+	}
 
 }
 
