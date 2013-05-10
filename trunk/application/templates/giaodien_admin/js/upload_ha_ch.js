@@ -26,7 +26,9 @@ var j=0;
 		}
 		if (formdata) {
 			$.ajax({
-				url: "http://localhost/appfb/ishalistore/application/modules/upload/upload_ch.php",
+				
+				//url: "http://localhost/appfb/ishalistore/application/modules/upload/upload_ch.php",
+				url: taaa.appdomain + "/application/modules/upload/upload_ch.php",
 				type: "POST",
 				data: formdata,
 				processData: false,
@@ -54,7 +56,7 @@ var j=0;
 function Get_String_Img_Ch()
 {
     $.ajax({
-			url: "http://localhost/appfb/ishalistore/application/modules/upload/upload_ch.php",
+			url: taaa.appdomain + "/application/modules/upload/upload_ch.php",
 			type: "POST",
 			data: {arrimg:array_img_ul_ch, act:'get_img_upload'},
 			success: function (data) {
@@ -70,7 +72,7 @@ UPLOAD2={
 	del_img_upload_ha:function(obj)
 	{
 		$.ajax({
-			url: "http://localhost/appfb/ishalistore/application/modules/upload/upload_ch.php",
+			url: taaa.appdomain + "/application/modules/upload/upload_ch.php",
 			type: "POST",
 			data: {image:obj, arrimg:array_img_ul_ch, act:'del_img_upload'},
 			success: function (data) {

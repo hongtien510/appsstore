@@ -13,7 +13,7 @@ define('LAYOUT_PATH', APPLICATION_PATH . '/layouts');
 
 define('LINK_APPS', 'http://www.facebook.com/Phtpht/app_617277141622046');
 
-define('APP_DOMAIN', 'http://localhost/appfb/ishalistore');
+define('APP_DOMAIN', 'http://localhost/appfb/ishalistore'); // Khong duoc co dau "/" o cuoi
 define('FB_APP_DOMAIN', 'http://apps.facebook.com/ishalistore');
 define('APP_ID', '617277141622046');
 
