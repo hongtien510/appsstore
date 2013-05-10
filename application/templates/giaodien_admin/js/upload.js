@@ -26,7 +26,8 @@ var j=0;
 		}
 		if (formdata) {
 			$.ajax({
-				url: "http://localhost/appfb/ishalistore/application/modules/upload/upload.php",
+				//url: taaa.appdomain + "/application/modules/upload/upload.php",
+				url: taaa.appdomain + "/application/modules/upload/upload.php",
 				type: "POST",
 				data: formdata,
 				processData: false,
@@ -54,7 +55,7 @@ var j=0;
 function Get_String_Img()
 {
     $.ajax({
-			url: "http://localhost/appfb/ishalistore/application/modules/upload/upload.php",
+			url: taaa.appdomain + "/application/modules/upload/upload.php",
 			type: "POST",
 			data: {arrimg:array_img_ul, act:'get_img_upload'},
 			success: function (data) {
@@ -67,7 +68,7 @@ function Get_String_Img()
 function Count_Img_Upload(max)
 {
     $.ajax({
-			url: "http://localhost/appfb/ishalistore/application/modules/upload/upload.php",
+			url: taaa.appdomain + "/application/modules/upload/upload.php",
 			type: "POST",
 			data: {arrimg:array_img_ul, act:'count_img_upload'},
 			success: function (data) {
@@ -87,7 +88,7 @@ UPLOAD={
 	{
 	//alert(obj);
 		$.ajax({
-			url: "http://localhost/appfb/ishalistore/application/modules/upload/upload.php",
+			url: taaa.appdomain + "/application/modules/upload/upload.php",
 			type: "POST",
 			data: {image:obj, arrimg:array_img_ul, act:'del_img_upload'},
 			success: function (data) {
@@ -108,7 +109,7 @@ UPLOAD={
 
 $('.btn_abc').click(function(){
 	$.ajax({
-			url: "http://localhost/appfb/ishalistore/application/modules/upload/upload.php",
+			url: taaa.appdomain + "/application/modules/upload/upload.php",
 			type: "POST",
 			data: {arrimg:array_img_ul, act:'get_img_upload'},
 			success: function (data) {
