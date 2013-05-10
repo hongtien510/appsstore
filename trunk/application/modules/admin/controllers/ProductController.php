@@ -67,7 +67,12 @@ class Admin_ProductController extends App_Controller_AdminController {
     public function addAction() {
         if(!isset($this->_SESSION->iduseradmin))
 			header("Location:../login");
-   
+		
+		if($this->_request->getParam("idpage") != "")
+        {
+			$idpagee = $this->_request->getParam("idpage");
+			$_SESSION['idpage'] = $idpagee;
+		}
         $idpage = $_SESSION['idpage'];
         
         $store = $this->view->info = App_Models_StoreModel::getInstance();
@@ -75,6 +80,7 @@ class Admin_ProductController extends App_Controller_AdminController {
         $sql.= "From ishali_loaisp ";
         $sql.= "Where anhien = 1 and idpage = ". $idpage ." order by vitri";
         
+		
         $data = $store->SelectQuery($sql);
         $this->view->category = $data;
     }
