@@ -62,8 +62,8 @@ class App_Models_StoreModel {
 		$sql = "select id_pages, id_fb_page, page_name ";
 		$sql.= "from ishali_pages ";
 		$sql.= "where id_fb = " . $iduser_fb;
-		$lpage = $this::SelectQuery($sql);
-		return $lpage;
+			$lpage = $this->SelectQuery($sql);
+			return $lpage;
 	}
 
 }
