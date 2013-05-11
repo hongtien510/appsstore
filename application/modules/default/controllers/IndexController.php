@@ -38,7 +38,7 @@ class IndexController extends App_Controller_FrontController {
         $data = $store->SelectQuery($sql);
         $tongsp = $data[0]['tongsp'];
         $sp1trang = 12;
-        
+       
         
         if($tongsp>$sp1trang)
         {

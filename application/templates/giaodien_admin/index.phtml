@@ -104,9 +104,9 @@
 					<?php
 						$store = App_Models_StoreModel::getInstance();
 						$lpage = $store->GetPageFbByIdUserFB();
-					
 						$idpage = $_SESSION['idpage'];
-						
+						if(count($lpage) > 0)
+						{
 					?>
 					<div class="list_page">
 						
@@ -128,6 +128,7 @@
 							?>
 						</select>
 					</div>
+					<?php } ?>
 				</div>
 				
 				<div class="contents">					
