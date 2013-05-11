@@ -26,8 +26,9 @@
 </script>
 <?php
     $splienquan = $this->splienquan;
-    //print_r($splienquan);
+	$sanpham = $this->sanpham;
 ?>
+
 <div id="dathang">
     <p class="close_dathang"></p>
     <div id="nd_dathang">
@@ -59,7 +60,7 @@
                 <td><span class="text2">Sản phẩm:</span></td>
                 <td>
                     <span class="sp_dathang">Nam003 - Áo thun nam</span>
-                    <input type="hidden" id="dh_sanpham" value="ao" />
+                    <input type="hidden" id="dh_sanpham" value="<?php echo $sanpham[0]["idsp"]; ?>" />
                 </td>
             </tr>
             <tr>
@@ -74,9 +75,7 @@
     </div>
 </div>
 
-<?php
-    $sanpham = $this->sanpham;
-?>
+
 <div id="anhdaidien">
 	<div class="anhchinh">
 		<img class="hinhchinh" src="<?php echo APP_DOMAIN . '/application/layouts/tmpstore/images/upload/images/' . $sanpham[0]["hinhchinh"]?>" alt="<?php echo $sanpham[0]["tensp"]?>" title="<?php echo $sanpham[0]["tensp"]?>" />

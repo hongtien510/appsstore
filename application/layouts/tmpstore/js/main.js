@@ -84,20 +84,26 @@ function DatHang(hoten, sdt, email, diachi, ghichu, sanpham)
             }
     }
     */
-	//alert (taaa.appdomain + 'ajax');
+	
     document.getElementById("warning").innerHTML = "<span style='color:#00ccff'>Sending Email...</span><img class='loader' src='"+taaa.appdomain+"/application/layouts/tmpstore/images/loader.gif'/>";
-    $.ajax({
-		url:taaa.appdomain + 'ajax',
+    //alert(taaa.appdomain + 'ajax');
+	
+	$.ajax({
+		url:taaa.appdomain + '/ajax',
 		type:'post',
 		data:{hoten:hoten, sdt:sdt, email:email, diachi:diachi, ghichu:ghichu, sanpham:sanpham},
 		success:function(data){
+		
 			var obj = jQuery.parseJSON(data);
 			if(obj.result==1)
                 document.getElementById("warning").innerHTML = "<span style='color:#00ccff'>Gửi Email thành công<br/>Chúng tôi sẽ liên hệ tới bạn sớm nhất</span>";
             else
                 document.getElementById("warning").innerHTML = "Gửi Email không thành công<br/>Bạn hãy thử thực hiện lại thao tác";
+		
+		//alert(data);
 		}
-	});	
+	});
+	
 }
 
 
