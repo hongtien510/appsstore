@@ -99,7 +99,7 @@
 							{
 						?>
 							<li class="menu">
-								<a style="display: inline;" class="" href="<?php echo APP_DOMAIN ?>/admin/login/changepass" >Đổi mật khẩu</a>
+								<a style="display: inline;" class="" href="<?php echo APP_DOMAIN ?>/admin/changepass" >Đổi mật khẩu</a>
 							</li>
 							<li class="menu">
 								<a style="display: inline;" class="" onclick="DangXuat();" href="javascript:;" >Đăng Xuất</a>
@@ -111,7 +111,7 @@
 					<?php
 						$store = App_Models_StoreModel::getInstance();
 						$lpage = $store->GetPageFbByIdUserFB();
-						$idpage = $_SESSION['idpage'];
+						@$idpage = $_SESSION['idpage'];
 						if(count($lpage) > 0)
 						{
 					?>
