@@ -30,7 +30,7 @@ class Admin_ProductController extends App_Controller_AdminController {
 			$idpagee = $this->_request->getParam("idpage");
 			$_SESSION['idpage'] = $idpagee;
 		}
-		$idpage = $_SESSION['idpage'];
+		@$idpage = $_SESSION['idpage'];
 		
         
         if($this->_request->getParam("idcat") != "")

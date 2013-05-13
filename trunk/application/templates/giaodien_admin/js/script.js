@@ -531,7 +531,7 @@ function ChangePass(iduserfb, oldpass, newpass, newrepass)
 	}
 	
 	$.ajax({
-        url:taaa.appdomain+'/admin/login/xulychangepass',
+        url:taaa.appdomain+'/admin/changepass/xulychangepass',
         type:'post',
         data:{iduserfb:iduserfb, oldpass:oldpass, newpass:newpass, newrepass:newrepass},
         success:function(data){

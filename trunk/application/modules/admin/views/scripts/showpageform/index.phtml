@@ -112,9 +112,7 @@
 				$url_img= 'public/images/giaodien/'.$page_detail->templates;
 				?>
 				<select name='templates'  style="width: 130px;"  size="8px" onchange="doihinh(this.value)" >
-					<option <?php echo $selected ?>  value='tmpl1'>Mặc định</option>
-					<option <?php echo $selected1 ?>  value='tmpdaugia'>Đấu Giá</option>
-					<option <?php echo $selected1 ?>  value='tmpstore'>STORE</option>
+					<option <?php echo $selected ?>  value='tmpstore'>Mặc định</option>
 	
 				</select>
 		<img  id='img_giaodien' src="<?php echo $this->baseUrl ($url_img) ?>" width='130px' height='130px'  style='padding-left:50px'/>
