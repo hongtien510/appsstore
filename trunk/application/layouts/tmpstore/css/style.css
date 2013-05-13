@@ -184,6 +184,37 @@ p.bt_dathang:hover {color:#ffd200}
 #warning{color:red; font-size:14px; font-weight:bold; width:310px; float:left; margin-top: 5px; line-height: 20px;}
 img.loader{width:150px; height:19px; position:relative; top:3px;}
 
+#thongbao{
+	width:500px; //height:325px; 
+    //border:10px solid #bebebe;
+    border:10px solid #262626;
+    border-radius:10px;
+    position: fixed;
+    background:white;
+    z-index:100;
+    display:none;
+	padding:20px;
+}
+.close_thongbao{
+    width:30px; height:30px; background: url("../images/bt_close.png") no-repeat;
+    margin-top:-40px; margin-right:-40px;
+    float:right;
+    cursor: pointer;
+}
+.close_thongbao:hover{
+    opacity: 0.8;
+}
+#nd_thongbao{
+	color:#3B5998; font-size:15px;
+	line-height:20px;
+}
+
+
+
+
+
+
+
 .page{
     width:100%; height:30px;
     display: inline-block;
