@@ -82,17 +82,17 @@
 	}
 
 	//Menu active
-	$active_menu = @$_SESSION['active_menu'];
+	//$active_menu = @$_SESSION['active_menu'];
 ?>
 				<div class="list_menu">
 					<ul>
-                        <li <?php if($active_menu != "product" && $active_menu != "category") echo "class='active'"; ?>>
+                        <li>
 							<a style="display: inline;" href="<?php echo APP_DOMAIN ?>/admin" target="_top">Home</a>
 						</li>
-						<li <?php if($active_menu == "category") echo "class='active'"; ?>>
+						<li>
 							<a style="display: inline;" href="<?php echo APP_DOMAIN ?>/admin/category" target="_top">Loại Sản Phẩm</a>
 						</li>
-						<li <?php if($active_menu == "product") echo "class='active'"; ?>>
+						<li>
 							<a style="display: inline;" href="<?php echo APP_DOMAIN ?>/admin/product" target="_top">Sản Phẩm</a>
 						</li>	
 

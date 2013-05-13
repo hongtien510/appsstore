@@ -19,8 +19,6 @@ class Admin_CategoryController extends App_Controller_AdminController {
 			header("Location:login");
 
 		
-		$controller = $this->getRequest()->getControllerName();
-		$_SESSION['active_menu'] = $controller;
 		
 		if($this->_request->getParam("idpage") != "")
         {

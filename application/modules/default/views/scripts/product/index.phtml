@@ -3,7 +3,7 @@
 <script>
 
 	FB.init({
-	 appId  : '617277141622046',
+	 appId  : '117126145156645',
 	 status : true, // check login status
 	 cookie : true, // enable cookies to allow the server to access the session
 	 xfbml  : true// parse XFBML
@@ -20,8 +20,10 @@
         $(window).resize(function(){center()})//gọi hàm khi resize
         //alert($(window).width());
       function center(){//hàm xử lý
-        $('#dathang').css({left:($(window).width()-$('div#dathang').width())/2,top:(($(window).height()-$('div#dathang').height())/2)-100})
-        $('#thongbao').css({left:($(window).width()-$('div#thongbao').width())/2,top:(($(window).height()-$('div#thongbao').height())/2)-100})
+        $('#dathang').css({left:($(window).width()-$('div#dathang').width())/2,top:(($(window).height()-$('div#dathang').height())/2)-100});
+		//$('#dathang').css({left:($(window).width()-$('div#dathang').width())/2,top:30});
+        $('#thongbao').css({left:($(window).width()-$('div#thongbao').width())/2,top:(($(window).height()-$('div#thongbao').height())/2)-100});
+		//$('#thongbao').css({left:($(window).width()-$('div#thongbao').width())/2,top:30});
       }
     })
 </script>
@@ -60,7 +62,7 @@
             <tr>
                 <td><span class="text2">Sản phẩm:</span></td>
                 <td>
-                    <span class="sp_dathang">Nam003 - Áo thun nam</span>
+                    <span class="sp_dathang"><?php echo $sanpham[0]["masp"].' - '.$sanpham[0]["tensp"] ?></span>
                     <input type="hidden" id="dh_sanpham" value="<?php echo $sanpham[0]["idsp"]; ?>" />
                 </td>
             </tr>
