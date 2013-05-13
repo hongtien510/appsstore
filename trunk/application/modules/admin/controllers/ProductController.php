@@ -18,8 +18,7 @@ class Admin_ProductController extends App_Controller_AdminController {
 			header("Location:login");
 		$store = $this->view->info = App_Models_StoreModel::getInstance();
 		
-		$controller = $this->getRequest()->getControllerName();
-		$_SESSION['active_menu'] = $controller;
+
 		
 		if($this->_request->getParam("idpage") != "")
         {
