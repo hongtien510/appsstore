@@ -35,6 +35,12 @@
         $('#dathang').hide();
     });
     
+	$('.close_thongbao').click(function(){
+		$('#thongbao').hide();
+	});
+	
+	
+	
 });
 
 function checkmail(email){
@@ -53,6 +59,8 @@ function checkphone(phone)
 		return returnval;
 }
 
+
+
 function DatHang(hoten, sdt, email, diachi, ghichu, sanpham)
 {
     /*
@@ -63,7 +71,7 @@ function DatHang(hoten, sdt, email, diachi, ghichu, sanpham)
     alert(ghichu);
     alert(sanpham);
     */
-    /*
+    
     if(hoten == "" || sdt == "" || email == "" || diachi == "")
     {
         document.getElementById("warning").innerHTML = "Bạn chưa nhập đủ thông tin";
@@ -83,7 +91,7 @@ function DatHang(hoten, sdt, email, diachi, ghichu, sanpham)
                 return false;
             }
     }
-    */
+    
 	
     document.getElementById("warning").innerHTML = "<span style='color:#00ccff'>Sending Email...</span><img class='loader' src='"+taaa.appdomain+"/application/layouts/tmpstore/images/loader.gif'/>";
     //alert(taaa.appdomain + 'ajax');
@@ -96,24 +104,25 @@ function DatHang(hoten, sdt, email, diachi, ghichu, sanpham)
 		
 			var obj = jQuery.parseJSON(data);
 			if(obj.result==1)
-                document.getElementById("warning").innerHTML = "<span style='color:#00ccff'>Gửi Email thành công<br/>Chúng tôi sẽ liên hệ tới bạn sớm nhất</span>";
-            else
+			{
+				$('#dathang').hide();
+				ThongBao('Gửi Mail thành công.<br/>Bạn kiểm tra mail trong hộp thư đến, hoặc trong Spam');
+				document.getElementById("warning").innerHTML = "<span style='color:#00ccff'>Gửi Email thành công<br/>Chúng tôi sẽ liên hệ tới bạn sớm nhất</span>";
+            }
+			else
                 document.getElementById("warning").innerHTML = "Gửi Email không thành công<br/>Bạn hãy thử thực hiện lại thao tác";
-		
-		//alert(data);
+
 		}
 	});
 	
 }
 
 
-
-
-
-
-
-
-
+function ThongBao(nd)
+{
+	$('#nd_thongbao').html(nd);
+	$('#thongbao').show();
+}
 
 
 
