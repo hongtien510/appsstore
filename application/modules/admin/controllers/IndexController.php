@@ -4,11 +4,16 @@ class Admin_IndexController extends App_Controller_AdminController {
 
     public function init() {
         parent::init();
-        
+        $this->_SESSION=new Zend_Session_Namespace();
     }
 
     public function indexAction() {
-        
+        if(!isset($this->_SESSION->iduseradmin))
+		{
+			$link_login = APP_DOMAIN."/admin/login";
+			header("Location:$link_login");
+		}
+			
         $facebookadmin = new Ishali_FacebookAdmin();  
         $facebook = new Ishali_Facebook();  
 		$facebook->begins_works('1');

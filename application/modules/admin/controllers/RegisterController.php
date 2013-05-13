@@ -10,7 +10,7 @@ class Admin_RegisterController extends App_Controller_AdminController {
 
     public function indexAction() {
 		$facebook = new Ishali_Facebook();
-        echo $iduser_fb = $facebook->getuserfbid();
+        $iduser_fb = $facebook->getuserfbid();
 		$this->view->iduser_fb = $iduser_fb;
     }
     
@@ -50,7 +50,7 @@ class Admin_RegisterController extends App_Controller_AdminController {
 	
 		if(count($data)>=1)
 		{
-			echo 0;
+			echo $idUserFB;
 			return;
 		}
 		else
