@@ -193,9 +193,9 @@ function kiemtraIdUserFB(IdUserFB)
 		type:'post',
 		data:{IdUserFB: IdUserFB},
 		success:function(data){
-			if(data==0)
+			if(data!=1)
             {
-				ThongBaoLoi2("Tài khoản FB này đã tạo tài khoản<br/>Nếu bạn quên mật khẩu hãy liên hệ với Admin");
+				ThongBaoLoi2("IDFB : "+data+"<br/>Tài khoản FB này đã tạo tài khoản<br/>Nếu bạn quên mật khẩu hãy liên hệ với Admin");
             }
 		}
 	});
@@ -501,7 +501,60 @@ function DangXuat()
 }
 
 
-
+function ChangePass(iduserfb, oldpass, newpass, newrepass)
+{
+	//alert(iduserfb);
+	//alert(oldpass);
+	//alert(newpass);
+	//alert(newrepass);
+	
+	if(oldpass == "" || newpass == "" || newrepass == "")
+	{
+		document.getElementById('warning').innerHTML = 'Vui lòng nhập đủ thông tin.';
+		return false;
+	}
+	else
+	{
+		if(newpass.length<6)
+		{
+			document.getElementById('warning').innerHTML = 'Mật khẩu mới tối thiểu 6 ký tự.';
+			return false;
+		}
+		else
+		{
+			if(newpass != newrepass)
+			{
+				document.getElementById('warning').innerHTML = 'Nhập lại mật khẩu mới chưa giống nhau.';
+				return false;
+			}
+		}
+	}
+	
+	$.ajax({
+        url:taaa.appdomain+'/admin/login/xulychangepass',
+        type:'post',
+        data:{iduserfb:iduserfb, oldpass:oldpass, newpass:newpass, newrepass:newrepass},
+        success:function(data){
+            if(data==-1)
+			{
+				document.getElementById('warning').innerHTML = 'Mật khẩu cũ chưa đúng.';
+				return false;
+			}
+			if(data==0)
+			{
+				document.getElementById('warning').innerHTML = 'Đổi mật khẩu chưa thành công, vui lòng thực hiện lại thao tác.';
+				return false;
+			}
+			if(data==1)
+			{
+				ThongBaoLoi2("Thay đổi mật khẩu thành công.<br/>Bạn cần phải đăng nhập lại");
+				return false;
+			}
+			
+        }
+    });
+	
+}
 
 
 

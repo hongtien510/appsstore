@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN" "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml" xmlns:og="http://opengraphprotocol.org/schema/"><head>
-        <title>Photo Gallery</title>  
+        <title>ISHALI STORE</title>  
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="canvas_admin.css">
 		<script>
@@ -81,8 +81,6 @@
 	$activehuongdan = 'active';
 	}
 
-	//Menu active
-	//$active_menu = @$_SESSION['active_menu'];
 ?>
 				<div class="list_menu">
 					<ul>
@@ -95,11 +93,20 @@
 						<li>
 							<a style="display: inline;" href="<?php echo APP_DOMAIN ?>/admin/product" target="_top">Sản Phẩm</a>
 						</li>	
-
-                        <li class="menu">
-							<a style="display: inline;" class="" onclick="DangXuat();" href="javascript:;" >Đăng Xuất</a>
-						</li>
 						
+						<?php 
+							if(isset($_SESSION['iduseradmin']))
+							{
+						?>
+							<li class="menu">
+								<a style="display: inline;" class="" href="<?php echo APP_DOMAIN ?>/admin/login/changepass" >Đổi mật khẩu</a>
+							</li>
+							<li class="menu">
+								<a style="display: inline;" class="" onclick="DangXuat();" href="javascript:;" >Đăng Xuất</a>
+							</li>
+						<?php
+							}
+						?>
 					</ul>
 					<?php
 						$store = App_Models_StoreModel::getInstance();

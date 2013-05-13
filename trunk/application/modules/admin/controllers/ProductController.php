@@ -15,7 +15,12 @@ class Admin_ProductController extends App_Controller_AdminController {
 
     public function indexAction() {
         if(!isset($this->_SESSION->iduseradmin))
-			header("Location:login");
+		{
+			$link_login = APP_DOMAIN."/admin/login";
+			header("Location:$link_login");
+		}
+		
+		
 		$store = $this->view->info = App_Models_StoreModel::getInstance();
 		
 

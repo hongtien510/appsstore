@@ -16,8 +16,10 @@ class Admin_CategoryController extends App_Controller_AdminController {
 
     public function indexAction() {
         if(!isset($this->_SESSION->iduseradmin))
-			header("Location:login");
-
+		{
+			$link_login = APP_DOMAIN."/admin/login";
+			header("Location:$link_login");
+		}
 		
 		
 		if($this->_request->getParam("idpage") != "")
