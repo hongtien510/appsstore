@@ -382,16 +382,19 @@ function CapNhatSanPham(idsp, masp, tensp, thuocloaisp, giaban, string_img_uploa
     {
         document.getElementById('tensp').focus();
         ThongBaoLoi('Tên sản phẩm không được để trống');
+		return false;
     }
     if(thuocloaisp == 0)
     {
         document.getElementById('thuocloaisp').focus();
         ThongBaoLoi('Chọn loại sản phẩm');
+		return false;
     }
     if(giaban == "")
     {
         document.getElementById('giaban').focus();
         ThongBaoLoi('Giá bán không được để trống');
+		return false;
     }
     
     $.ajax({
@@ -402,14 +405,15 @@ function CapNhatSanPham(idsp, masp, tensp, thuocloaisp, giaban, string_img_uploa
             if(data==1)
             {
                 ThongBao('Cập nhật sản phẩm thành công',2000);
+				 window.location = taaa.appdomain+'/admin/product';
             }
             else
                 ThongBaoLoi('Cập nhật không thành công');
                 
             document.getElementById('string_img_upload').value = "";
             document.getElementById('string_img_upload_ch').value = "";
-            location.reload();
-            
+            //location.reload();
+           
         }
         
     });

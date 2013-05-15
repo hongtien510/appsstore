@@ -72,6 +72,8 @@ class Admin_ProductController extends App_Controller_AdminController {
         if(!isset($this->_SESSION->iduseradmin))
 			header("Location:../login");
 		
+		$_SESSION['list_page'] = "0";
+		
 		if($this->_request->getParam("idpage") != "")
         {
 			$idpagee = $this->_request->getParam("idpage");
@@ -195,7 +197,9 @@ class Admin_ProductController extends App_Controller_AdminController {
         
         if(!isset($this->_SESSION->iduseradmin))
 			header("Location:../login");
-            
+         
+		$_SESSION['list_page'] = "0";
+		
         $store = $this->view->info = App_Models_StoreModel::getInstance();
         
         echo $idsp = base64_decode($this->_request->getParam("idsp"));

@@ -8,11 +8,11 @@ var j=0;
 	}
 	
  	input.addEventListener("change", function (evt) {
-	$('.ct_post_ha_ch p.loading_img_ch').show();
+	$('p.loading_img_ch').show();
  		var i = 0, len = this.files.length, img, reader, file;
         if(len>4)
         {
-            $('p.loading_img').hide();
+            $('p.loading_img_ch').hide();
             alert("Bạn chỉ được chọn 4 hình để làm hình phụ");
             return false;
         }
@@ -45,7 +45,7 @@ var j=0;
 						array_img_ul_ch[j++]=getData[i]['name'];
 						$('.image_list_ch').append("<li class='"+getData[i]['class']+"'>"+getData[i]['name_old']+" <a onclick = \"UPLOAD2.del_img_upload_ha('"+getData[i]['name']+"')\" href='javascript:;'>xóa</a></li>");
 					}
-					$('.ct_post_ha_ch p.loading_img_ch').fadeOut();
+					$('p.loading_img_ch').fadeOut();
                     Get_String_Img_Ch();
 				}
 			});
