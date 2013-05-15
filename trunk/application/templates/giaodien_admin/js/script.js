@@ -324,16 +324,19 @@ function ThemMoiSanPham(masp, tensp, thuocloaisp, giaban, string_img_upload, str
     {
         document.getElementById('tensp').focus();
         ThongBaoLoi('Tên sản phẩm không được để trống');
+		return false;
     }
     if(thuocloaisp == 0)
     {
         document.getElementById('thuocloaisp').focus();
         ThongBaoLoi('Chọn loại sản phẩm');
+		return false;
     }
     if(giaban == "")
     {
         document.getElementById('giaban').focus();
         ThongBaoLoi('Giá bán không được để trống');
+		return false;
     }
     
     $.ajax({
