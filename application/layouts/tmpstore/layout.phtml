@@ -15,14 +15,25 @@
 </head>
 
 <body>
-
+<?php
+	$store = App_Models_StoreModel::getInstance();
+	$facebook = new Ishali_Facebook();
+	$idpage = $facebook->getpageid();
+	if(isset($idpage))
+            $_SESSION['idpage'] = $idpage;
+        else
+            $idpage = $_SESSION['idpage'];
+	$banner = $store->GetBanner($idpage);
+	
+?>
 
 	<div id="container">
-    	<div id="banner"></div><!--End #banner-->
+    	<div id="banner">
+			<img src="<?php echo APP_DOMAIN.'/public/images/banner/'.$banner[0]['banner']?>"/>
+		</div><!--End #banner-->
     	<div id="main_nav">
         <?php 
             $id = Zend_Controller_Front::getInstance()->getRequest()->getParam('id');
-            $store = App_Models_StoreModel::getInstance();
             $category = $store->GetidCategory(); 
         ?>
         	<ul class="menu">
