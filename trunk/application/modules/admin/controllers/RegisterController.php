@@ -12,6 +12,7 @@ class Admin_RegisterController extends App_Controller_AdminController {
 		$facebook = new Ishali_Facebook();
         $iduser_fb = $facebook->getuserfbid();
 		$this->view->iduser_fb = $iduser_fb;
+		$_SESSION['list_page'] = "0";
     }
     
     public function xulyregisterAction() {

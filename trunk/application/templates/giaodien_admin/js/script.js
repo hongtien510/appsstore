@@ -479,7 +479,7 @@ function LoginAdmin(user, pass)
             if(data==1)
             {
                 ThongBao('Đăng nhập thành công',2000);
-				var link = taaa.appdomain+'/admin/category/';
+				var link = taaa.appdomain+'/admin/';
                 window.location = link;
             }
             else

@@ -20,7 +20,7 @@ class Admin_CategoryController extends App_Controller_AdminController {
 			$link_login = APP_DOMAIN."/admin/login";
 			header("Location:$link_login");
 		}
-		
+		$_SESSION['list_page'] = "1";
 		
 		if($this->_request->getParam("idpage") != "")
         {

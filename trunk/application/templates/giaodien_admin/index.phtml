@@ -109,19 +109,21 @@
 						?>
 					</ul>
 					<?php
-						$store = App_Models_StoreModel::getInstance();
-						$lpage = $store->GetPageFbByIdUserFB();
-						@$idpage = $_SESSION['idpage'];
-						if(count($lpage) > 0)
+						$list_page = $_SESSION['list_page'];
+						if($list_page!=0)
 						{
+							$store = App_Models_StoreModel::getInstance();
+							$lpage = $store->GetPageFbByIdUserFB();
+							@$idpage = $_SESSION['idpage'];
+							if(count($lpage) > 0)
+							{
 					?>
-					<div class="list_page">
-						
-						<select id="slist_page" class="select_list_page" onchange="ChangeListPage(document.getElementById('slist_page').value)">
-							<option value="0">Chọn Page cần chỉnh sửa</option>
-							<?php
-								for($i=0; $i<count($lpage); $i++)
-								{
+						<div class="list_page">
+							<select id="slist_page" class="select_list_page" onchange="ChangeListPage(document.getElementById('slist_page').value)">
+								<option value="0">Chọn Page cần chỉnh sửa</option>
+								<?php
+									for($i=0; $i<count($lpage); $i++)
+									{
 								
 									$idpagefb = $lpage[$i]['id_fb_page'];
 									$namepafefb = $lpage[$i]['page_name'];
@@ -131,11 +133,11 @@
 									}
 									else
 										echo "<option value='$idpagefb'>$namepafefb</option>";
-								}
-							?>
-						</select>
-					</div>
-					<?php } ?>
+									}
+								?>
+							</select>
+						</div>
+					<?php } }?>
 				</div>
 				
 				<div class="contents">					

@@ -19,7 +19,7 @@ class Admin_ProductController extends App_Controller_AdminController {
 			$link_login = APP_DOMAIN."/admin/login";
 			header("Location:$link_login");
 		}
-		
+		$_SESSION['list_page'] = "1";
 		
 		$store = $this->view->info = App_Models_StoreModel::getInstance();
 		
