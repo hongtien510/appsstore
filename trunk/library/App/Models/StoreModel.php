@@ -66,6 +66,12 @@ class App_Models_StoreModel {
 			return $lpage;
 	}
 
+	public function GetBanner($idPage)
+	{
+		$sql = "select banner from ishali_pages where id_fb_page = '".$idPage."'";
+		$data = $this->SelectQuery($sql);
+        return $data;
+	}
 }
 
 
