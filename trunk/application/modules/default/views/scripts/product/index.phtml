@@ -127,12 +127,20 @@
 		$linkchiase = $linkpage.'/app_'.APP_ID.'?app_data='.$linksanpham;
 		$titlefb = $sanpham[0]["titlefb"];
 		$metafb = $sanpham[0]["metafb"];
-		$hinhanhshare = APP_DOMAIN . 'application/layouts/tmpstore/images/upload/images/' . $sanpham[0]["hinhchinh"];
+		$hinhanhshare = APP_DOMAIN . '/application/layouts/tmpstore/images/upload/images/' . $sanpham[0]["hinhchinh"];
 	?>
         <a title="Chia sẻ lên Zing Me" target="_blank" href="http://link.apps.zing.vn/share?u=<?php echo $linkchiase ?>"><img src="http://ishali.com.vn/public/default/images/small_zing_icon.png"/></a>
     	<a title="Chia sẻ trên Google" target="_blank" href="https://plus.google.com/share?url=<?php echo $linkchiase ?>"><img alt="Google +1" src="http://ishali.com.vn/public/default/images/icon_googleplus.jpg"/></a>
-    	<a title="Chia sẻ trên Facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?s=100&p[title]=<?php echo $titlefb ?>&p[url]=<?php echo $linkchiase ?>&p[images][0]=<?php echo $hinhanhshare; ?>&p[summary]=<?php echo $metafb; ?>"><img alt="Facebook" src="http://ishali.com.vn/public/default/images/icon_facebook.png"/></a>
-    </div>
+    	<!--
+		<a title="Chia sẻ trên Facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?s=100&p[title]=<?php echo $titlefb ?>&p[url]=<?php echo $linkchiase ?>&p[images][0]=<?php echo $hinhanhshare; ?>&p[summary]=<?php echo $metafb; ?>"><img alt="Facebook" src="http://ishali.com.vn/public/default/images/icon_facebook.png"/></a>
+		-->
+		
+		<a title="Chia sẻ trên Facebook" href="javascript:;" onclick="danglentuong(<?php echo "'".$titlefb ."', '". $sanpham[0]["tensp"] ."', '". $metafb ."', '". $linkchiase ."', '". $hinhanhshare ."'"; ?>)">
+			<!--danglentuong(title, cap, des, link, pic)-->
+			<img alt="Facebook" src="http://ishali.com.vn/public/default/images/icon_facebook.png"/>
+		</a>
+	
+	</div>
     
     
     <div class="splienquan">
