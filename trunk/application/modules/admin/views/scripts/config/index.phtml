@@ -1,0 +1,46 @@
+<?php
+	$idPage = $this->idpage;
+	$config = $this->config;
+	//print_r($config);
+?>
+<p class="title_page">Cấu hình Apps</p>
+<form action="<?php echo APP_DOMAIN ?>/admin/config/xulyconfig" method="post" enctype="multipart/form-data" onsubmit="cauhinhapp();">
+<input type="hidden" name="idpage" value="<?php echo $idPage; ?>"/>
+<table class="table_config" border="1">
+	<tr>
+		<td width="200">Banner</td>
+		<td>
+			<input type="file" name="banner" id="" size="30" />
+			<img src="<?php echo APP_DOMAIN ?>/public/images/banner/<?php echo $config[0]['banner'] ?>" width="500" alt=""/>
+		</td>
+	</tr>
+	<tr>
+		<td>Footer</td>
+		<td><input class="input_style" type="text" name="footer" value="<?php echo @$config[0]['footer']?>" /></td>
+	</tr>
+	<tr>
+		<td>Email SMTP</td>
+		<td><input class="input_style" type="text" name="emailsmtp" value="<?php echo @$config[0]['emailsmtp']?>" /></td>
+	</tr>
+	<tr>
+		<td>Pass SMTP</td>
+		<td><input class="input_style" type="text" name="passsmtp" value="<?php echo @$config[0]['passsmtp']?>" /></td>
+	</tr>
+	<tr>
+		<td>Email From</td>
+		<td><input class="input_style" type="text" name="emailfrom" value="<?php echo @$config[0]['emailfrom']?>" /></td>
+	</tr>
+	<tr>
+		<td>Tiêu đề email gửi đến KH</td>
+		<td><input class="input_style" type="text" name="titlemail" value="<?php echo @$config[0]['title_from']?>" /></td>
+	</tr>
+	<tr>
+		<td>Subject email gửi đến KH</td>
+		<td><input class="input_style" type="text" name="subjectemail" value="<?php echo @$config[0]['subject_from']?>" /></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td><input type="submit" name="luucauhinh" value="Lưu cấu hình"/></td>
+	</tr>
+</table>
+</form>
