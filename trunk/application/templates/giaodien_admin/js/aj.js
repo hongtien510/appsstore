@@ -40,7 +40,7 @@ function createXmlHttpRequestObject()
 }
  // HAM XU LY CHINH
 
- function has_added_app(pageid, pagename, userid, appid)
+ function (pageid, pagename, userid, appid)
  {
 //	 alert(taaa.appdomain);
 
