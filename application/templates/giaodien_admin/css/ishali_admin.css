@@ -327,3 +327,39 @@ p.loading_img_ch{margin:-22px 0 0 230px; display:none}
 .clear{clear:both}
 #warning{color:red; font-weight:bold; font-size:12px;}
 
+.table_config{
+	margin-left: 15px;
+    margin-top: 10px;
+    width: 96%;
+}
+
+.input_style{
+	border: 1px solid #006633;
+    height: 20px;
+    width: 500px;
+}
+.title_page{
+	font-size: 15px;
+    font-weight: bold;
+    margin-top: 20px;
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

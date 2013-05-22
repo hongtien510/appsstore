@@ -36,6 +36,13 @@ $(document).ready(function(){
 		var link = taaa.appdomain+'/admin/login/';
 		window.location = link;
     });
+	
+	$('.close_thongbao3').live('click',function(){
+		$('#thongbao').hide(); 
+        $('#bg_thongbao').hide();
+		var link = taaa.appdomain+'/admin/config/';
+		window.location = link;
+    });
 
 });
 
@@ -239,6 +246,13 @@ function ThongBaoLoi2(nd)
 	//myVar = setTimeout(function(){$('#thongbao').hide(); $('#bg_thongbao').hide();return false},time);
 }
 
+function ThongBaoLoi3(nd)
+{
+    $('#bg_thongbao').show();
+	$('#thongbao').show(); 
+	$('#thongbao').html("<p class='title_tb'>Thông Báo</p><div class='content_tb'><p>" +nd+ "</p><p class='dong_thongbao close_thongbao3'>Đóng</p>");
+	//myVar = setTimeout(function(){$('#thongbao').hide(); $('#bg_thongbao').hide();return false},time);
+}
 
 
 function ThemLoaiSanPham(tenlsp, vitri, anhien)
@@ -563,6 +577,11 @@ function ChangePass(iduserfb, oldpass, newpass, newrepass)
 	
 }
 
+function cauhinhapp()
+{
+	//alert('12345679');
+	//return false;
+}
 
 
 
