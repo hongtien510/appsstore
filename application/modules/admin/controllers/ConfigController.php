@@ -58,6 +58,11 @@ class Admin_ConfigController extends App_Controller_AdminController {
 		$titlemail = $_POST['titlemail'];
 		$subjectemail = $_POST['subjectemail'];
 		
+		$bg_color_menu = $_POST['bg_color_menu'];
+		$color_text_menu = $_POST['color_text_menu'];
+		$bg_color_menu_act = $_POST['bg_color_menu_act'];
+		$color_text_menu_act = $_POST['color_text_menu_act'];
+		
 		$sql = "Select 1 from ishali_config where idpage = '". $idpage ."'";
 		$data = $store->SelectQuery($sql);
 		
@@ -65,14 +70,14 @@ class Admin_ConfigController extends App_Controller_AdminController {
 		{
 			if($banner == "")
 			{
-				$sql = "insert into ishali_config(footer, emailsmtp, passsmtp, emailfrom, title_from, subject_from, idpage) ";
-				$sql.= "value('$footer', '$emailsmtp', '$passsmtp', '$emailfrom', '$titlemail', '$subjectemail', '$idpage')";
+				$sql = "insert into ishali_config(footer, emailsmtp, passsmtp, emailfrom, title_from, subject_from, idpage, bg_color_menu, color_text_menu, bg_color_menu_act, color_text_menu_act) ";
+				$sql.= "value('$footer', '$emailsmtp', '$passsmtp', '$emailfrom', '$titlemail', '$subjectemail', '$idpage', '$bg_color_menu', '$color_text_menu', '$bg_color_menu_act', '$color_text_menu_act')";
 				
 			}
 			else
 			{
-				$sql = "insert into ishali_config(banner, footer, emailsmtp, passsmtp, emailfrom, title_from, subject_from, idpage) ";
-				$sql.= "value('$banner', '$footer', '$emailsmtp', '$passsmtp', '$emailfrom', '$titlemail', '$subjectemail', '$idpage')";
+				$sql = "insert into ishali_config(banner, footer, emailsmtp, passsmtp, emailfrom, title_from, subject_from, idpage, bg_color_menu, color_text_menu, bg_color_menu_act, color_text_menu_act) ";
+				$sql.= "value('$banner', '$footer', '$emailsmtp', '$passsmtp', '$emailfrom', '$titlemail', '$subjectemail', '$idpage', '$bg_color_menu', '$color_text_menu', '$bg_color_menu_act', '$color_text_menu_act')";
 			}
 		}
 		else
@@ -85,7 +90,11 @@ class Admin_ConfigController extends App_Controller_AdminController {
 				$sql.= "passsmtp = '". $passsmtp . "', ";
 				$sql.= "emailfrom = '". $emailfrom . "', ";
 				$sql.= "title_from = '". $titlemail . "', ";
-				$sql.= "subject_from = '". $subjectemail . "' ";
+				$sql.= "subject_from = '". $subjectemail . "', ";
+				$sql.= "bg_color_menu = '". $bg_color_menu . "', ";
+				$sql.= "color_text_menu = '". $color_text_menu . "', ";
+				$sql.= "bg_color_menu_act = '". $bg_color_menu_act . "', ";
+				$sql.= "color_text_menu_act = '". $color_text_menu_act . "' ";
 				$sql.= "where idpage = '". $idpage ."'";
 			}
 			else
@@ -109,7 +118,11 @@ class Admin_ConfigController extends App_Controller_AdminController {
 				$sql.= "passsmtp = '". $passsmtp . "', ";
 				$sql.= "emailfrom = '". $emailfrom . "', ";
 				$sql.= "title_from = '". $titlemail . "', ";
-				$sql.= "subject_from = '". $subjectemail . "' ";
+				$sql.= "subject_from = '". $subjectemail . "', ";
+				$sql.= "bg_color_menu = '". $bg_color_menu . "', ";
+				$sql.= "color_text_menu = '". $color_text_menu . "', ";
+				$sql.= "bg_color_menu_act = '". $bg_color_menu_act . "', ";
+				$sql.= "color_text_menu_act = '". $color_text_menu_act . "' ";
 				$sql.= "where idpage = '". $idpage ."'";
 			}
 		}

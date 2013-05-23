@@ -72,6 +72,14 @@ class App_Models_StoreModel {
 		$data = $this->SelectQuery($sql);
         return $data;
 	}
+	
+	public function GetColor($idPage)
+	{
+		$sql = "select bg_color_menu, color_text_menu, bg_color_menu_act, color_text_menu_act from ishali_config where idpage = '".$idPage."'";
+		$data = $this->SelectQuery($sql);
+        return $data;
+	}
+	
 }
 
 

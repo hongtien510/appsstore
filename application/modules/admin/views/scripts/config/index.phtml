@@ -39,6 +39,26 @@
 		<td><input class="input_style" type="text" name="subjectemail" value="<?php echo @$config[0]['subject_from']?>" /></td>
 	</tr>
 	<tr>
+		<td>Màu nền menu</td>
+		<td>
+			<input class="input_style1" id="colorpickerField1" maxlength="6" size="6" type="text" name="bg_color_menu" value="<?php echo @$config[0]['bg_color_menu']?>" />
+			&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			Màu chữ menu &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			<input class="input_style1" id="colorpickerField2" maxlength="6" size="6" type="text" name="color_text_menu" value="<?php echo @$config[0]['color_text_menu']?>" />
+		</td>
+	</tr>
+	
+	<tr>
+		<td>Màu nền menu Active</td>
+		<td>
+			<input class="input_style1" id="colorpickerField3" maxlength="6" size="6" type="text" name="bg_color_menu_act" value="<?php echo @$config[0]['bg_color_menu_act']?>" />
+			&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			Màu chữ menu Active 
+			<input class="input_style1" id="colorpickerField4" maxlength="6" size="6" type="text" name="color_text_menu_act" value="<?php echo @$config[0]['color_text_menu_act']?>" />
+		</td>
+	</tr>
+
+	<tr>
 		<td></td>
 		<td><input type="submit" name="luucauhinh" value="Lưu cấu hình"/></td>
 	</tr>
