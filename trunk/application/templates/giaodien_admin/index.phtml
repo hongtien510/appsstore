@@ -84,24 +84,25 @@
 				<div class="list_menu">
 					<ul>
                         <li>
-							<a style="display: inline;" href="<?php echo APP_DOMAIN ?>/admin" target="_top">Home</a>
+							<a style="display: inline;" href="<?php echo FB_APP_DOMAIN ?>/admin" target="_top">Home</a>
+						</li>
+						<li class="menu">
+								<a style="display: inline;" class="" href="<?php echo FB_APP_DOMAIN ?>/admin/config"  target="_top">Cấu hình</a>
 						</li>
 						<li>
-							<a style="display: inline;" href="<?php echo APP_DOMAIN ?>/admin/category" target="_top">Loại Sản Phẩm</a>
+							<a style="display: inline;" href="<?php echo FB_APP_DOMAIN ?>/admin/category" target="_top">Loại Sản Phẩm</a>
 						</li>
 						<li>
-							<a style="display: inline;" href="<?php echo APP_DOMAIN ?>/admin/product" target="_top">Sản Phẩm</a>
+							<a style="display: inline;" href="<?php echo FB_APP_DOMAIN ?>/admin/product" target="_top">Sản Phẩm</a>
 						</li>	
 						
 						<?php 
 							if(isset($_SESSION['iduseradmin']))
 							{
 						?>
+							
 							<li class="menu">
-								<a style="display: inline;" class="" href="<?php echo APP_DOMAIN ?>/admin/config"  target="_top">Cấu hình</a>
-							</li>
-							<li class="menu">
-								<a style="display: inline;" class="" href="<?php echo APP_DOMAIN ?>/admin/changepass"  target="_top">Đổi mật khẩu</a>
+								<a style="display: inline;" class="" href="<?php echo FB_APP_DOMAIN ?>/admin/changepass"  target="_top">Đổi mật khẩu</a>
 							</li>
 							<li class="menu">
 								<a style="display: inline;" class="" onclick="DangXuat();" href="javascript:;" >Đăng Xuất</a>
