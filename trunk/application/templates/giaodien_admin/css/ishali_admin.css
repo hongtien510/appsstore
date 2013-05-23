@@ -338,6 +338,11 @@ p.loading_img_ch{margin:-22px 0 0 230px; display:none}
     height: 20px;
     width: 500px;
 }
+.input_style1{
+	border: 1px solid #006633;
+    height: 20px;
+    width: 60px;
+}
 .title_page{
 	font-size: 15px;
     font-weight: bold;

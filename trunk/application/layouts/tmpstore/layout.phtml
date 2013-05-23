@@ -31,6 +31,8 @@
     	<div id="banner">
 			<img src="<?php echo APP_DOMAIN.'/public/images/banner/'.$banner[0]['banner']?>"/>
 		</div><!--End #banner-->
+		
+		
     	<div id="main_nav">
         <?php 
             $id = Zend_Controller_Front::getInstance()->getRequest()->getParam('id');
@@ -56,5 +58,25 @@
         <div id="footer">Powered by ISHALI MEDIA</div><!--End #footer-->
         
 	</div><!--End #container-->
+	<?php
+		$color = $store->GetColor($idpage);
+	?>
+	<script>
+	/*
+		$("#main_nav ul.menu li").css("color","red");
+		$("#main_nav ul.menu li").css("background","#333333");
+		$("#main_nav ul.menu li.active").css("background","#3B5998");
+		$("#main_nav ul.menu li.active").css("color","white");
+	*/
+		$("#main_nav ul.menu li").css("background","#<?php echo $color[0]['bg_color_menu'] ?>");
+		$("#main_nav ul.menu li").css("color","#<?php echo $color[0]['color_text_menu'] ?>");
+		$("#main_nav ul.menu li").css("border-color","#<?php echo $color[0]['bg_color_menu'] ?>");
+		
+		$("#main_nav ul.menu li.active").css("background","#<?php echo $color[0]['bg_color_menu_act'] ?>");
+		$("#main_nav ul.menu li.active").css("color","#<?php echo $color[0]['color_text_menu_act'] ?>");
+		$("#main_nav ul.menu li.active").css("border-color","#<?php echo $color[0]['bg_color_menu_act'] ?>");
+		
+		$("#main_nav").css("border-bottom-color","#<?php echo $color[0]['bg_color_menu_act'] ?>");
+	</script>
 </body>
 </html>

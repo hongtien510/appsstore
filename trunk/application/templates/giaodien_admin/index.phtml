@@ -15,6 +15,8 @@
 					// ->appendStylesheet ( $this->baseUrl ('public/css/style.css'))
 					->appendStylesheet ( $this->baseUrl ('application/templates/giaodien_admin/css/ishali_admin.css'))
 					->appendStylesheet ( $this->baseUrl ('application/templates/giaodien_admin/css/jquery-ui.css'))
+					
+					->appendStylesheet ( $this->baseUrl ('application/templates/giaodien_admin/css/colorpicker.css'))
 					;
 					
 		
@@ -23,6 +25,11 @@
                     
 					->appendFile ( $this->baseUrl ('/application/templates/giaodien_admin/js/aj.js') )
 					->appendFile ( $this->baseUrl ('/application/templates/giaodien_admin/js/script.js') )
+					
+					
+					->appendFile ( $this->baseUrl ('/application/templates/giaodien_admin/js/colorpicker.js') )
+					->appendFile ( $this->baseUrl ('/application/templates/giaodien_admin/js/eye.js') )
+					->appendFile ( $this->baseUrl ('/application/templates/giaodien_admin/js/layout.js') )
 					
 					
 					//->appendFile ( $this->baseUrl ('/application/templates/giaodien_admin/js/jquery.min.js') )
