@@ -4,18 +4,24 @@ class AjaxController extends App_Controller_FrontController {
 
     public function init() {
         parent::init();
+		$facebook = new Ishali_Facebook();
+		$idpage = $facebook->getpageid();
+        if(isset($idpage))
+            $_SESSION['idpage'] = $idpage;
     }
 
     public function indexAction() {
 	
         $this->_helper->viewRenderer->setNoRender(true);
         $this->_helper->layout->disableLayout();
-    
-
+		$store = $this->view->info = App_Models_StoreModel::getInstance();
         include "sendmail.php";
+		
+		@$idpage = $_SESSION['idpage'];
+		$sql = "Select * from ishali_config where idpage = '". $idpage ."'";
+		$config = $store->SelectQuery($sql);
 
-		
-		
+
 		$hoten = $_POST['hoten'];
 		$sdt = $_POST['sdt'];
 		$email = $_POST['email'];
@@ -23,22 +29,48 @@ class AjaxController extends App_Controller_FrontController {
 		$ghichu = $_POST['ghichu'];
 		$sanpham = $_POST['sanpham'];
 		
-		$usersmtp = "hongtien510@ishali.com.vn";
-		$passsmtp = "phamhongtien510";
 		
-		$mailfrom = "hongtien.51090@gmail.com";
+		if($config[0]['emailsmtp'] != "") 
+			$usersmtp = $config[0]['emailsmtp']; 
+		else		
+			$usersmtp = "hongtien510@ishali.com.vn";
+			
+		
+		if($config[0]['passsmtp'] != "") 
+			$passsmtp = $config[0]['passsmtp']; 
+		else 
+			$passsmtp = "phamhongtien510";
 
-		$namefrom = $namereplay = "ISHALI MEDIA";// Ten khi Admin gui mail den KH, va ten KH tra loi mail
+		
+		
+		if($config[0]['emailfrom'] != "") 
+			$mailfrom = $config[0]['emailfrom']; 
+		else 
+			$mailfrom = "hongtien510@gmail.com";
+		
+		
+		if($config[0]['title_from'] != "") 
+			$namefrom = $namereplay = $config[0]['title_from']; 
+		else 
+			$namefrom = $namereplay = "ISHALI MEDIA";// Ten khi Admin gui mail den KH, va ten KH tra loi mail
+		
+		
 		$namefrom_kh = $namereplay_kh = $hoten;// Ten khi KH gui mail den admin
 		
-		$subject = "Cảm ơn bạn ". $hoten ." đã đặt hàng sản phẩm của Store ISHALI MEDIA";
+		$subject_bk = "Cảm ơn bạn ". $hoten ." đã đặt hàng sản phẩm của Store ISHALI MEDIA";
+		
+		if($config[0]['subject_from'] != "") 
+			$subject =  $config[0]['subject_from']; 
+		else  
+			$subject = $subject_bk;
+
+			
 		$subject_reply = "KH (". $hoten ."-". $sdt .") đã đặt hàng sản phẩm";
-		
-		
+
 		$sql = "Select idsp, masp, tensp, gia, hinhchinh, mota, chitietsp ";
 		$sql.= "From ishali_sanpham ";
 		$sql.= "Where idsp = ". $sanpham;
-		$store = $this->view->info = App_Models_StoreModel::getInstance();
+		
 		$data = $store->SelectQuery($sql);
 		
 		//APP_DOMAIN - http://ishalimedia.com/appfb/ishalistore
@@ -47,7 +79,7 @@ class AjaxController extends App_Controller_FrontController {
 		
 		$noidung = "";
 		$noidung.="<table width='600' border='0' cellpadding='0' cellspacing='0'>";
-		$noidung.="<tr><td height='35' colspan='2'>Cảm ơn bạn <strong>". $hoten ."</strong> đã đặt hàng tại Store ISHALI MEDIA.</td></tr>";
+		$noidung.="<tr><td height='35' colspan='2'>Xin chào bạn <strong>". $hoten ."</strong>.</td></tr>";
 		$noidung.="<tr><td height='30' colspan='2'>Thông tin sản phẩm đặt hàng như sau:</td></tr>";
 		
 		$noidung.="<tr>";
@@ -94,10 +126,10 @@ class AjaxController extends App_Controller_FrontController {
 
 		$mailto = $email;
 		$nameto = $hoten;
-
+		
 		$result = sendmail($usersmtp, $passsmtp, $mailfrom, $mailto, $nameto, $namefrom, $namereplay, $subject, $noidung);
 				  sendmail($usersmtp, $passsmtp, $mailto, $mailfrom, $nameto, $namefrom_kh, $namereplay_kh, $subject_reply, $noidung_reply);
-
+		
 		//$result = 1;
 		
 		if($result == '1')
@@ -110,7 +142,7 @@ class AjaxController extends App_Controller_FrontController {
 				$kq=array('result'=>0);
 				echo json_encode($kq);
 			}
-
+		
 		
 	
     }
