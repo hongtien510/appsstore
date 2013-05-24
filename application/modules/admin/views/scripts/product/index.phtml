@@ -3,6 +3,7 @@
     //print_r($product);
     $category = $this->category;
     //print_r($category);
+	$donvitien = $this->donvitien;
 ?>
 <input type="button" name="themspmoi" value="Thêm Sản Phẩm Mới" onclick="window.location.href='product/add'"/>
 
@@ -27,11 +28,11 @@
 		<th width="20">STT</th>
         <th width="70">Mã sản phẩm</th>
 		<th width="150">Tên sản phẩm</th>
-        <th width="50">Giá</th>
-        <th width="80" align="center">Hình ảnh</th>
-        <th width="40">Hiển thị</th>
+        <th width="70">Giá</th>
+        <th width="40" align="center">Hình ảnh</th>
+        <th width="30">Hiển thị</th>
         <th width="40">Hiển thị trang chủ</th>
-		<th width="50">Công Cụ</th>
+		<th width="30">Công Cụ</th>
 	</tr>
     <?php 
         for($i=0; $i<count($product); $i++)
@@ -44,7 +45,7 @@
 		<td align="center"><?php echo $i+1 ?></td>
         <td><?php echo $product[$i]['masp'] ?></td>
 		<td><a href="product/detail?idsp=<?php echo base64_encode($product[$i]['idsp']) ?>"><?php echo $product[$i]['tensp'] ?></a></td>
-        <td><?php echo number_format($product[$i]['gia'],0,',','.') ?></td>
+        <td><?php echo number_format($product[$i]['gia'],0,',','.') .' '. $donvitien ?></td>
         <td align="center"><img class="hinhchinh_product" src="<?php echo APP_DOMAIN . '/application/layouts/tmpstore/images/upload/images/' . $product[$i]['hinhchinh'] ?>" /></td>
         <td align="center">
             <?php if ($product[$i]['anhien'] == 1){?>
