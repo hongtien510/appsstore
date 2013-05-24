@@ -41,7 +41,7 @@ class ProductController extends App_Controller_FrontController {
         
         $sql = "Select idsp, idloaisp, masp, tensp, gia, hinhchinh ";
         $sql.= "From ishali_sanpham ";
-        $sql.= "Where anhien = 1 and idloaisp = ". $idloaisp ." and idsp != ". $sp . " and idpage = ". $idpage;
+        $sql.= "Where anhien = 1 and idloaisp = ". $idloaisp ." and idsp != ". $sp . " and idpage = '". $idpage ."' ";
         $sql.= "Order by rand() limit 0,4";
         
         //echo $sql;
