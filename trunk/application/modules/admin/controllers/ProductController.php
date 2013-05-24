@@ -63,8 +63,13 @@ class Admin_ProductController extends App_Controller_AdminController {
         $data = $store->SelectQuery($sql);
         $this->view->category = $data;
         
-        
-        
+		$sql = "select donvitien from ishali_config where idpage = '". $idpage ."'";
+        $data = $store->SelectQuery($sql);
+		if($data[0]['donvitien'] == "")
+			$donvitien = "VNĐ";
+		else
+			$donvitien = $data[0]['donvitien'];
+        $this->view->donvitien = $donvitien;
         
     }
     
@@ -202,7 +207,7 @@ class Admin_ProductController extends App_Controller_AdminController {
 		
         $store = $this->view->info = App_Models_StoreModel::getInstance();
         
-        echo $idsp = base64_decode($this->_request->getParam("idsp"));
+        $idsp = base64_decode($this->_request->getParam("idsp"));
         $sql = "Select * from ishali_sanpham where idsp = ". $idsp ." and idpage = ". $idpage;
         $data = $store->SelectQuery($sql);
         $this->view->product = $data;

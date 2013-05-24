@@ -30,6 +30,7 @@
 <?php
     $splienquan = $this->splienquan;
 	$sanpham = $this->sanpham;
+	$donvitien = $this->donvitien;
 ?>
 
 <div id="dathang">
@@ -109,7 +110,7 @@
 <div id="thongtin">
 	<p class="masp">Mã sản phẩm : <?php echo $sanpham[0]["masp"]?></p>
 	<h1 class="tensp"><?php echo $sanpham[0]["tensp"]?></h1>
-    <p class="giaban"><?php echo number_format($sanpham[0]["gia"],0,',','.')?> VNĐ</p>
+    <p class="giaban"><?php echo number_format($sanpham[0]["gia"],0,',','.') .' '. $donvitien ?></p>
    
     <p class="order">Đặt hàng</p>
     

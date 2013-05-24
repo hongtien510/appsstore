@@ -13,6 +13,7 @@
  </script>
 <?php
     $showsp = $this->showsp;
+	$donvitien = $this->donvitien;
     
     if(isset($this->sotrang))
     {
@@ -30,7 +31,7 @@
             	<img src="<?php echo APP_DOMAIN . '/application/layouts/tmpstore/images/upload/images/' . $showsp[$i]["hinhchinh"]?>" alt="<?php echo $showsp[$i]["tensp"] ?>" title="<?php echo $showsp[$i]["tensp"] ?>" />
             </a>
             <a class="pro_name" href=""><?php echo $showsp[$i]["tensp"] ?></a>
-            <p class="pro_price"><?php echo number_format($showsp[$i]["gia"],0,',','.') ?> VNĐ</p>
+            <p class="pro_price"><?php echo number_format($showsp[$i]["gia"],0,',','.') .' '. $donvitien;?></p>
         </li>
         <?php } ?>
     </ul>

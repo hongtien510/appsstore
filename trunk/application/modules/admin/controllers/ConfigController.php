@@ -63,6 +63,8 @@ class Admin_ConfigController extends App_Controller_AdminController {
 		$bg_color_menu_act = $_POST['bg_color_menu_act'];
 		$color_text_menu_act = $_POST['color_text_menu_act'];
 		
+		$donvitien = $_POST['donvitien'];
+		
 		$sql = "Select 1 from ishali_config where idpage = '". $idpage ."'";
 		$data = $store->SelectQuery($sql);
 		
@@ -70,14 +72,14 @@ class Admin_ConfigController extends App_Controller_AdminController {
 		{
 			if($banner == "")
 			{
-				$sql = "insert into ishali_config(footer, emailsmtp, passsmtp, emailfrom, title_from, subject_from, idpage, bg_color_menu, color_text_menu, bg_color_menu_act, color_text_menu_act) ";
-				$sql.= "value('$footer', '$emailsmtp', '$passsmtp', '$emailfrom', '$titlemail', '$subjectemail', '$idpage', '$bg_color_menu', '$color_text_menu', '$bg_color_menu_act', '$color_text_menu_act')";
+				$sql = "insert into ishali_config(footer, emailsmtp, passsmtp, emailfrom, title_from, subject_from, idpage, bg_color_menu, color_text_menu, bg_color_menu_act, color_text_menu_act, donvitien) ";
+				$sql.= "value('$footer', '$emailsmtp', '$passsmtp', '$emailfrom', '$titlemail', '$subjectemail', '$idpage', '$bg_color_menu', '$color_text_menu', '$bg_color_menu_act', '$color_text_menu_act', '$donvitien')";
 				
 			}
 			else
 			{
-				$sql = "insert into ishali_config(banner, footer, emailsmtp, passsmtp, emailfrom, title_from, subject_from, idpage, bg_color_menu, color_text_menu, bg_color_menu_act, color_text_menu_act) ";
-				$sql.= "value('$banner', '$footer', '$emailsmtp', '$passsmtp', '$emailfrom', '$titlemail', '$subjectemail', '$idpage', '$bg_color_menu', '$color_text_menu', '$bg_color_menu_act', '$color_text_menu_act')";
+				$sql = "insert into ishali_config(banner, footer, emailsmtp, passsmtp, emailfrom, title_from, subject_from, idpage, bg_color_menu, color_text_menu, bg_color_menu_act, color_text_menu_act, donvitien) ";
+				$sql.= "value('$banner', '$footer', '$emailsmtp', '$passsmtp', '$emailfrom', '$titlemail', '$subjectemail', '$idpage', '$bg_color_menu', '$color_text_menu', '$bg_color_menu_act', '$color_text_menu_act', '$donvitien')";
 			}
 		}
 		else
@@ -94,7 +96,8 @@ class Admin_ConfigController extends App_Controller_AdminController {
 				$sql.= "bg_color_menu = '". $bg_color_menu . "', ";
 				$sql.= "color_text_menu = '". $color_text_menu . "', ";
 				$sql.= "bg_color_menu_act = '". $bg_color_menu_act . "', ";
-				$sql.= "color_text_menu_act = '". $color_text_menu_act . "' ";
+				$sql.= "color_text_menu_act = '". $color_text_menu_act . "', ";
+				$sql.= "donvitien = '". $donvitien . "' ";
 				$sql.= "where idpage = '". $idpage ."'";
 			}
 			else
@@ -122,7 +125,8 @@ class Admin_ConfigController extends App_Controller_AdminController {
 				$sql.= "bg_color_menu = '". $bg_color_menu . "', ";
 				$sql.= "color_text_menu = '". $color_text_menu . "', ";
 				$sql.= "bg_color_menu_act = '". $bg_color_menu_act . "', ";
-				$sql.= "color_text_menu_act = '". $color_text_menu_act . "' ";
+				$sql.= "color_text_menu_act = '". $color_text_menu_act . "', ";
+				$sql.= "donvitien = '". $donvitien . "' ";
 				$sql.= "where idpage = '". $idpage ."'";
 			}
 		}
