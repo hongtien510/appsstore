@@ -254,6 +254,19 @@ function ThongBaoLoi3(nd)
 	//myVar = setTimeout(function(){$('#thongbao').hide(); $('#bg_thongbao').hide();return false},time);
 }
 
+function ThongBaoDongY(nd, link)
+{
+    $('#bg_thongbao').show();
+	$('#thongbao').show(); 
+	$('#thongbao').html("<p class='title_tb'>Thông Báo</p><div class='content_tb'><p>" +nd+ "</p><p class='dong_thongbao' onclick=\"CloseThongBaoDongY('"+link+"')\">Đóng</p>");
+}
+
+function CloseThongBaoDongY(link)
+{
+	$('#thongbao').hide(); 
+	$('#bg_thongbao').hide();
+	window.location = link;
+}
 
 function ThemLoaiSanPham(tenlsp, vitri, anhien)
 {
@@ -577,8 +590,11 @@ function ChangePass(iduserfb, oldpass, newpass, newrepass)
 	
 }
 
-function cauhinhapp()
+function LuuThongTinSP(idsp, keytab, noidung)
 {
+	alert(idsp);
+	alert(keytab);
+	alert(noidung);
 	//alert('12345679');
 	//return false;
 }
