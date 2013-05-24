@@ -4,6 +4,7 @@
     $category = $this->category;
     //print_r($category);
 	$donvitien = $this->donvitien;
+	$thongtinsp = $this->thongtinsp;
 ?>
 <input type="button" name="themspmoi" value="Thêm Sản Phẩm Mới" onclick="window.location.href='product/add'"/>
 
@@ -63,8 +64,11 @@
             <?php } ?>
         </td>
         <td align="center">
-			<a href="product/detail?idsp=<?php echo base64_encode($product[$i]['idsp']) ?>"><img src="<?php echo APP_DOMAIN . '/application/templates/giaodien_admin/images/chitiet.png' ?>" alt="ct" title="Chi Tiết Sản Phẩm"/></a>
+			<a href="product/detail?idsp=<?php echo base64_encode($product[$i]['idsp']) ?>"><img src="<?php echo APP_DOMAIN . '/application/templates/giaodien_admin/images/sua.png' ?>" alt="ct" title="Chi Tiết Sản Phẩm"/></a>
 			<a href="javascript:;" onclick = "DeleteProduct(<?php echo $product[$i]['idsp'] ?>)"><img src="<?php echo APP_DOMAIN . '/application/templates/giaodien_admin/images/xoa.png' ?>" alt="xoa" title="Xóa Sản Phẩm"/></a>
+			<?php if($thongtinsp == 1){ ?>
+				<a href="product/thongtinsanpham?idsp=<?php echo $product[$i]['idsp'] ?>"><img src="<?php echo APP_DOMAIN . '/application/templates/giaodien_admin/images/chitiet.png' ?>" alt="tt" title="Thêm Thông Tin Sản Phẩm"/></a>
+			<?php } ?>
 		</td>
 	</tr>
     <?php } ?>

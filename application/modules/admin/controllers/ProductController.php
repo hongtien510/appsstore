@@ -63,13 +63,15 @@ class Admin_ProductController extends App_Controller_AdminController {
         $data = $store->SelectQuery($sql);
         $this->view->category = $data;
         
-		$sql = "select donvitien from ishali_config where idpage = '". $idpage ."'";
+		$sql = "select donvitien, thongtinsp from ishali_config where idpage = '". $idpage ."'";
         $data = $store->SelectQuery($sql);
 		if($data[0]['donvitien'] == "")
 			$donvitien = "VNĐ";
 		else
 			$donvitien = $data[0]['donvitien'];
         $this->view->donvitien = $donvitien;
+		$this->view->thongtinsp = $data[0]['thongtinsp'];
+		
         
     }
     
@@ -447,6 +449,81 @@ class Admin_ProductController extends App_Controller_AdminController {
         echo $data;
         
     }
+	
+	public function thongtinsanphamAction(){
+		$store = $this->view->info = App_Models_StoreModel::getInstance();
+		@$idpage = $_SESSION['idpage'];
+		$_SESSION['list_page'] = "0";
+		
+		$sql = "Select menuthongtinsp from ishali_config where idpage = '". $idpage ."'";
+		$data = $store->SelectQuery($sql);
+		$menu = $data[0]['menuthongtinsp'];
+		$list_menu = explode(";", $menu);
+		$this->view->list_menu = $list_menu;
+		
+		$idsp = @$_GET['idsp'];
+		if(@$_GET['keytab']=="")
+			$keytab = 1;
+		else
+			$keytab = @$_GET['keytab'];
+		
+		$this->view->idsp = $idsp;
+		$this->view->keytab = $keytab;
+		
+		$slTab = count($list_menu);
+		$sql = "Delete from ishali_thongtinsp where idsp = '". $idsp ."' and keytab > '". $slTab ."'";
+		$store->InsertDeleteUpdateQuery($sql);
+		
+		
+
+		$sql = "select tensp from ishali_sanpham where idsp = '". $idsp ."'";
+		$data = $store->SelectQuery($sql);
+		$this->view->tensp = $data[0]['tensp'];
+		
+		$sql = "Select noidung from ishali_thongtinsp where idsp = '". $idsp ."' and keytab = '". $keytab ."'";
+		$data = $store->SelectQuery($sql);
+		if(count($data) > 0)
+			$noidung = $data[0]['noidung'];
+		else
+			$noidung = "";
+		
+		$this->view->noidung = $noidung;
+		
+		
+	}
+	
+	public function thongtinsanphamxulyAction(){
+        $store = $this->view->info = App_Models_StoreModel::getInstance();
+		
+		$idsp = $_POST['idsp'];
+		$keytab = $_POST['keytab'];
+		$noidung = $_POST['noidung'];
+		
+		$sql = "Select 1 from ishali_thongtinsp where idsp = '". $idsp ."' and keytab = '". $keytab ."'";
+		$data = $store->SelectQuery($sql);
+		if(count($data) ==0)
+		{
+			$sql = "Insert into ishali_thongtinsp(idsp, keytab, noidung) value(";
+			$sql.= "'".$idsp."', '".$keytab."', '".$noidung."') ";
+		}
+		else
+		{
+			$sql = "Update ishali_thongtinsp set ";
+			$sql.= "noidung = N'".$noidung."' ";
+			$sql.= "where idsp = '". $idsp ."' and keytab = '". $keytab ."'";
+		}
+		$data = $store->InsertDeleteUpdateQuery($sql);
+		
+		if($data == 1)
+		{
+			echo "<script>ThongBaoDongY('Lưu Thành Công.', '".ROOT_DOMAIN."/admin/product/thongtinsanpham?idsp=".$idsp."&keytab=".$keytab."');</script>";	
+		}
+		else
+		{
+			echo "<script>ThongBaoDongY('Lưu không thành công<br/>Vui Lòng thực hiện lại thao tác.', '".ROOT_DOMAIN."/admin/product/thongtinsanpham?idsp=".$idsp."&keytab=".$keytab."');</script>";
+		}
+		
+	}
 
 }
 

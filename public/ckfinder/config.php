@@ -60,9 +60,7 @@ Examples:
 
 ATTENTION: The trailing slash is required.
 */
-//$baseUrl = '/ckfinder/userfiles/';
-//$baseUrl = '/appfb/ishalidaugia/application/layouts/tmpdaugia/images/upload/';
-$baseUrl = '/appfb/ishalidaugia/application/layouts/tmpdaugia/images/upload/';
+$baseUrl = 'application/layouts/tmpstore/images/thongtinsp/';
 
 /*
 $baseDir : the path to the local directory (in the server) which points to the

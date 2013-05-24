@@ -15,6 +15,9 @@ define('LINK_APPS', 'http://www.facebook.com/Phtpht/app_617277141622046');
 
 define('APP_DOMAIN', 'http://localhost/appfb/ishalistore'); // Khong duoc co dau "/" o cuoi
 define('FB_APP_DOMAIN', 'http://apps.facebook.com/ishalistore');
+
+define('ROOT_DOMAIN', APP_DOMAIN);
+
 define('APP_ID', '617277141622046');
 
 define('PATH_UPLOAD', PATH_PUBLIC . '/images');

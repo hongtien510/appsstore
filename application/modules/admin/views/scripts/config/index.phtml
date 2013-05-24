@@ -65,6 +65,16 @@
 			<em>(Mặc định là VNĐ)</em>
 		</td>
 	</tr>
+	<tr>
+		<td>Hiển thị thêm thông tin SP</td>
+		<td>
+			<input type="checkbox" name="thongtinsp" value="1" <?php if(@$config[0]['thongtinsp'] == 1) echo 'checked'; ?> />
+		</td>
+	</tr>
+	<tr>
+		<td>Tên menu thông tin SP</td>
+		<td><input class="input_style" type="text" name="menuthongtinsp" value="<?php echo @$config[0]['menuthongtinsp']?>" /></td>
+	</tr>
 
 	<tr>
 		<td></td>
