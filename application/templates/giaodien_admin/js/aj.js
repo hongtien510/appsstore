@@ -40,8 +40,9 @@ function createXmlHttpRequestObject()
 }
  // HAM XU LY CHINH
 
- function (pageid, pagename, userid, appid)
+ function has_added_app(pageid, pagename, userid, appid)
  {
+ 
 //	 alert(taaa.appdomain);
 
 	 document.getElementById('loading').style.display='block';
@@ -64,17 +65,23 @@ function createXmlHttpRequestObject()
 								var tb = "Thêm Trang '"+ pagename + "' vào ứng dụng";
 								var r=confirm(tb);
 								if (r==true)
-							  {
+								{
 									//alert('da them');
-								window.open("http://www.facebook.com/add.php?api_key="+appid+"&pages=1&page=" + pageid, "mywindow","menubar=1,resizable=1,width=550,height=400");
-							  }
+									//window.open("http://www.facebook.com/add.php?api_key="+appid+"&pages=1&page=" + pageid, "mywindow","menubar=1,resizable=1,width=550,height=400");
+									window.open("http://www.facebook.com/add.php?api_key="+appid+"&pages=1&page=" + pageid,'_blank');
+								}
 			
 							}
+							
 //							else
 //								{
 //								show_page_form(pageid, pagename, userid, appid);
 //								}
-							show_page_form(pageid, pagename, userid, appid);							
+							//show_page_form(pageid, pagename, userid, appid);
+							window.location = taaa.fbappdomain + '/admin';
+							//window.open = (taaa.fbappdomain + '/admin', '_top');
+							
+							//location.reload();
 		
 						}
 						catch(e){
@@ -90,7 +97,8 @@ function createXmlHttpRequestObject()
 		{
 			alert("Không thể try câp server: " + e.toString()); 
 		}
-	}	
+	}
+	
  }
  
  function show_page_form(pageid, pagename, userid, appid)
