@@ -139,7 +139,26 @@ function danglentuong(title, cap, des, link, pic) {
 }
 
 
+function ChangeTabActive(idsp, idtab)
+{
+	$('.menu_tab').removeClass('active');
+	$('#'+idtab).addClass('active');
+	
+	ShowContentTab(idsp, idtab)
+}
 
+function ShowContentTab(idsp, idtab)
+{
+	$.ajax({
+		url:taaa.appdomain+'/product/thongtinsanphamxuly',
+		type:'post',
+		data:{idsp:idsp, idtab:idtab},
+		success:function(data){
+		//alert(data);
+			document.getElementById('ctn_tab').innerHTML = data;
+		}
+	});	
+}
 
 
 

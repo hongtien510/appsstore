@@ -8,7 +8,7 @@
 	 cookie : true, // enable cookies to allow the server to access the session
 	 xfbml  : true// parse XFBML
 	 });
-	FB.Canvas.setSize({ width: 800, height: 1300 });
+	FB.Canvas.setSize({ width: 800, height: 2000 });
 
  </script>
 
@@ -158,6 +158,58 @@
     </div>
 
 </div>
+
+<?php
+	$list_menu = $this->list_menu;
+	if($list_menu != "")
+	{
+?>
+
+<div class="clear"></div>
+
+<div class="ctn_ttsp">
+
+	<div class="list_tab">
+		<ul class="ul_list_tab">
+		<?php 
+			for($i=0; $i<count($list_menu); $i++)
+			{
+		?>
+			<li onclick="ChangeTabActive('<?php echo $sanpham[0]["idsp"]; ?>',this.id)" class="menu_tab <?php if($i == 0) echo 'active'; ?>" id="<?php echo $i+1; ?>"><a href="javascript:;"><?php echo $list_menu[$i]; ?></a></li>
+		
+		<?php } ?>
+			<!--
+				<li onclick="ChangeTabActive('<?php echo $sanpham[0]["idsp"]; ?>',this.id)" class="menu_tab" id="2"><a href="javascript:;">Tab1</a></li>
+			-->
+		</ul>
+	</div>
+	<div id="ctn_tab">
+		
+	</div>
+</div>
+<script>
+	ShowContentTab(<?php echo $sanpham[0]["idsp"]; ?>, 1)
+</script>
+<?php } ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="comment_facebook">
 
 <?php
