@@ -56,9 +56,45 @@ class ProductController extends App_Controller_FrontController {
 		else
 			$donvitien = $data[0]['donvitien'];
         $this->view->donvitien = $donvitien;
+		
+		
+		$sql = "select thongtinsp from ishali_config where idpage = '". $idpage ."'";
+		$data = $store->SelectQuery($sql);
+		if($data[0]['thongtinsp']==1)
+		{
+			$sql = "Select menuthongtinsp from ishali_config where idpage = '". $idpage ."'";
+			$data = $store->SelectQuery($sql);
+			$menu = $data[0]['menuthongtinsp'];
+			$list_menu = explode(";", $menu);
+			$this->view->list_menu = $list_menu;
+		}
+		else
+		{
+			$this->view->list_menu = "";
+		}
+		
+		
 
     }
-    
+    public function thongtinsanphamxulyAction() {
+		$this->_helper->viewRenderer->setNoRender(true);
+		$this->_helper->layout->disableLayout();
+		$store = $this->view->info = App_Models_StoreModel::getInstance();
+		
+		$idsp = $_POST['idsp'];
+		$idtab = $_POST['idtab'];
+		
+		
+		$sql = "Select noidung from ishali_thongtinsp where idsp = '". $idsp ."' and keytab = '". $idtab ."'";
+		$data = $store->SelectQuery($sql);
+		if(count($data)>0)
+			$noidung = $data[0]['noidung'];
+		else
+			$noidung ="";
+		
+		echo $noidung;
+		
+	}
     
 
    

@@ -40,7 +40,7 @@ body
 }
 
 #banner{width:100%; min-height:100px; background:#CFF}
-#banner img{width:800px; max-height:150px;}
+#banner img{width:800px; //max-height:150px;}
 #main_nav{width:100%; height:36px; border-bottom:5px solid #3B5998; padding-top:5px}
 #main_nav ul.menu li{
 	padding:10px 40px;
@@ -129,7 +129,13 @@ div.splienquan{
 }
 ul.splienquan{margin-top:15px}
 ul.splienquan li img{width:100%; height:100%}
-ul.splienquan li{width:90px; height:130px; float:left; margin-right: 10px;}
+ul.splienquan li{
+	border: 1px solid #DCDBDB;
+    float: left;
+    height: 130px;
+    margin-right: 5px;
+    width: 90px;
+}
 
 
 div#dathang{
@@ -267,7 +273,55 @@ a.page_open li{
 
 #footer{width:100%; text-align:right}
 
+.ctn_ttsp{
+	width:100%;
+	margin:0 auto;
+	//margin-top:20px;
+}
+.list_tab{
+	width:100%; height:30px; //background:red;
+	border-bottom:3px solid #3B5998;
+	//margin-top:20px;
+}
 
+ul.ul_list_tab li{
+	list-style:none;
+	float:left;
+	background:#EFEFEF;
+	border-radius:5px 5px 0px 0px;
+	margin-right:1px;
+	height:23px;
+	padding-top:7px;
+	border:1px solid #3B5998
+}
+ul.ul_list_tab li a{
+	color:black;
+	font-size:13px;
+	font-weight:bold;
+	padding:6px 30px;
+	text-decoration:none;
+}
+ul.ul_list_tab li.active{
+	background:#3B5998;
+}
+ul.ul_list_tab li.active a{color:white;}
+
+#ctn_tab{
+	background: none repeat scroll 0 0 white;
+    border: 1px solid #3B5998;
+    font-size: 12px;
+    max-height: 500px;
+	min-height:100px;
+    line-height: 20px;
+    margin: 0 auto;
+    overflow: auto;
+    padding: 20px;
+    width: 758px;
+	margin-bottom:20px;
+	text-align:justify;
+}
+
+.clear{clear:both}
 
 
 
