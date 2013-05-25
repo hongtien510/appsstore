@@ -265,7 +265,8 @@ function CloseThongBaoDongY(link)
 {
 	$('#thongbao').hide(); 
 	$('#bg_thongbao').hide();
-	window.location = link;
+	//window.location = link;
+	top.location.href = link;
 }
 
 function ThemLoaiSanPham(tenlsp, vitri, anhien)

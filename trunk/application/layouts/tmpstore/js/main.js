@@ -154,10 +154,9 @@ function ShowContentTab(idsp, idtab)
 		type:'post',
 		data:{idsp:idsp, idtab:idtab},
 		success:function(data){
-		//alert(data);
 			document.getElementById('ctn_tab').innerHTML = data;
 		}
-	});	
+	});
 }
 
 

@@ -8,7 +8,7 @@
 	 cookie : true, // enable cookies to allow the server to access the session
 	 xfbml  : true// parse XFBML
 	 });
-	FB.Canvas.setSize({ width: 800, height: 2000 });
+	FB.Canvas.setSize({ width: 800, height: 2500 });
 
  </script>
 
@@ -19,11 +19,9 @@
       //alert('aaaaa');
         $(window).resize(function(){center()})//gọi hàm khi resize
         //alert($(window).width());
-      function center(){//hàm xử lý
-        $('#dathang').css({left:($(window).width()-$('div#dathang').width())/2,top:(($(window).height()-$('div#dathang').height())/2)-100});
-		//$('#dathang').css({left:($(window).width()-$('div#dathang').width())/2,top:30});
-        $('#thongbao').css({left:($(window).width()-$('div#thongbao').width())/2,top:(($(window).height()-$('div#thongbao').height())/2)-100});
-		//$('#thongbao').css({left:($(window).width()-$('div#thongbao').width())/2,top:30});
+      function center(){
+        $('#dathang').css({left:($(window).width()-$('div#dathang').width())/2,top:100});
+        $('#thongbao').css({left:($(window).width()-$('div#thongbao').width())/2,top:100});
       }
     })
 </script>
@@ -195,21 +193,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <div class="comment_facebook">
 
 <?php
@@ -227,6 +210,6 @@
 	  js.src = "//connect.facebook.net/vi_VN/all.js#xfbml=1&appId=535578746483923";
 	  fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'facebook-jssdk'));</script>
-	<div class="fb-comments" data-href="<?php echo $link; ?>" data-width="775" data-num-posts="10" data-colorscheme="dark"></div>
+	<div class="fb-comments" data-href="<?php echo $linkchiase; ?>" data-width="775" data-num-posts="10" data-colorscheme="dark"></div>
 
 </div>
