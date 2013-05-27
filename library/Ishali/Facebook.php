@@ -49,19 +49,23 @@ class Ishali_Facebook extends Ishali_Api{
 	public static function begins_works($isadmin=NULL)
 	    {
 	    	
-			 $userid= Ishali_Facebook::getuserfbid();
-
-		    if ($userid) {
-				return true;
+			$userid= Ishali_Facebook::getuserfbid();
+			if($isadmin == 1)
+			{
+				if ($userid) {
+					return true;
+				}
+				else
+				{
+					 try {
+						Ishali_Facebook::loginuserfb($isadmin);
+					 } catch (FacebookApiException $e) {
+						Ishali_Facebook::loginuserfbException($isadmin);
+					 }
+				}
 			}
 			else
-			{
-				 try {
-					Ishali_Facebook::loginuserfb($isadmin);
-			     } catch (FacebookApiException $e) {
-			     	Ishali_Facebook::loginuserfbException($isadmin);
-	 			 }
-			}
+				return true;
 	       
 	    }
     

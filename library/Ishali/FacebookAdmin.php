@@ -10,7 +10,8 @@ class Ishali_FacebookAdmin extends Ishali_Facebook{
 	
 	    	$fb = Ishali_Facebook::getFB();
 	    	$Ishali_Api = new Ishali_Api();
-	    	$paramsp['scope'] = 'email,manage_pages';
+	    	//$paramsp['scope'] = 'email,manage_pages';
+	    	$paramsp['scope'] = 'manage_pages';
 	    	$paramsp['response_type'] = 'code';
 	    	$paramsp['redirect_uri'] =$config->facebook->appurl."admin";
 //	    	$paramsp['redirect_uri'] ="http://apps.facebook.com/tochuccuocthihinh/admin/";
