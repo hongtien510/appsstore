@@ -306,7 +306,7 @@ ul.ul_list_tab li.active{
 }
 ul.ul_list_tab li.active a{color:white;}
 
-#ctn_tab{
+.ctn_tab{
 	background: none repeat scroll 0 0 white;
     border: 1px solid #3B5998;
     font-size: 12px;
@@ -319,6 +319,7 @@ ul.ul_list_tab li.active a{color:white;}
     width: 758px;
 	margin-bottom:20px;
 	text-align:justify;
+	display:none;
 }
 #ctn_tab img{max-width:760px;}
 .clear{clear:both}

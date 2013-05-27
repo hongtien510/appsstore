@@ -22,7 +22,6 @@ class Admin_ProductController extends App_Controller_AdminController {
 		$_SESSION['list_page'] = "1";
 		
 		$store = $this->view->info = App_Models_StoreModel::getInstance();
-		
 
 		
 		if($this->_request->getParam("idpage") != "")
@@ -71,8 +70,7 @@ class Admin_ProductController extends App_Controller_AdminController {
 			$donvitien = $data[0]['donvitien'];
         $this->view->donvitien = $donvitien;
 		$this->view->thongtinsp = $data[0]['thongtinsp'];
-		
-        
+
     }
     
     public function addAction() {
@@ -220,6 +218,18 @@ class Admin_ProductController extends App_Controller_AdminController {
         
         $data = $store->SelectQuery($sql);
         $this->view->category = $data;
+		
+		//Kiem tra co nhap menu ko, ko nhap thi xoa het menu trong ishali_thongtinsp
+		$sql = "select menuthongtinsp from ishali_config where idpage = '". $idpage ."'";
+		$data = $store->SelectQuery($sql);
+		if(count($data)>0)
+		{
+			if($data[0]['menuthongtinsp'] == "")
+			{
+				$sql = "Delete from ishali_thongtinsp where idsp = '". $idsp ."'";
+				$store->InsertDeleteUpdateQuery($sql);
+			}
+		}
         
     }
     
@@ -279,8 +289,7 @@ class Admin_ProductController extends App_Controller_AdminController {
                     }
                 }
                 if($dem==1)
-                    break;    
-                
+                    break;
             }
         }
         
@@ -469,6 +478,7 @@ class Admin_ProductController extends App_Controller_AdminController {
 		
 		$this->view->idsp = $idsp;
 		$this->view->keytab = $keytab;
+		
 		
 		$slTab = count($list_menu);
 		$sql = "Delete from ishali_thongtinsp where idsp = '". $idsp ."' and keytab > '". $slTab ."'";

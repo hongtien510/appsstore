@@ -161,12 +161,12 @@
 	$list_menu = $this->list_menu;
 	if($list_menu != "")
 	{
+	$noidung = $this->noidung;
 ?>
 
 <div class="clear"></div>
 
 <div class="ctn_ttsp">
-
 	<div class="list_tab">
 		<ul class="ul_list_tab">
 		<?php 
@@ -181,12 +181,17 @@
 			-->
 		</ul>
 	</div>
-	<div id="ctn_tab">
-		
+	<?php 
+			for($i=0; $i<count($list_menu); $i++)
+			{
+		?>
+	<div id="ctn_tab<?php echo $i+1; ?>" class="ctn_tab">
+		<?php echo $noidung[$i]; ?>
 	</div>
+	<?php } ?>
 </div>
 <script>
-	ShowContentTab(<?php echo $sanpham[0]["idsp"]; ?>, 1)
+	ShowContentTab(1)
 </script>
 <?php } ?>
 
