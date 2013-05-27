@@ -50,12 +50,42 @@ class Admin_IndexController extends App_Controller_AdminController {
     }
 
     public function installpageAction() {
-    	
-    	 $layoutPath = APPLICATION_PATH . '/templates/giaodien_admin';
-        $option = array('layout' => 'install', 'layoutPath' => $layoutPath);
-        Zend_Layout::startMvc($option);
+		$store = $this->view->info = App_Models_StoreModel::getInstance();
+		
+		$pageid = $_GET['pageid'];
+		$pagename = $_GET['pagename'];
+		$userid = $_GET['userid'];
+		$appid = $_GET['appid'];
 
-     App_Models_PagesModel::getInstance()->checkHasAddedApp();
+		
+		$sql = "Select 1 from ishali_pages where id_fb_page = '". $pageid ."' and id_fb = '". $userid ."'";
+		$data = $store->SelectQuery($sql);
+		if(count($data) > 0)
+		{
+			echo "<script>ThongBaoDongY('Ứng dụng này đã được cài lên Fanpage<br/><u>$pagename</u>.', '".ROOT_DOMAIN."/admin');</script>";	
+		}
+		else
+		{
+			$link = "http://www.facebook.com/add.php?api_key=$appid&pages=1&page=$pageid";
+			echo "<script>customerLoadWindow('$link', '', '540', '400');</script>";
+			
+			$sql = "Insert into ishali_pages(id_fb_page, page_name, id_fb, templates) value(";
+			$sql.= "'".$pageid."', ";
+			$sql.= "'".$pagename."', ";
+			$sql.= "'".$userid."', ";
+			$sql.= "'tmpstore') ";
+			
+			$data = $store->InsertDeleteUpdateQuery($sql);
+			
+			if($data == 1)
+			{
+				echo "<script>ThongBaoDongY('Sau khi cài ứng dụng lên FanPage thành công,<br/>Hãy nhấn nút Đóng', '".ROOT_DOMAIN."/admin');</script>";	
+			}
+			else
+			{
+				echo "<script>ThongBaoDongY('Lưu không thành công<br/>Vui Lòng thực hiện lại thao tác.', '".ROOT_DOMAIN."/admin');</script>";
+			}
+		}
     }
 }
 

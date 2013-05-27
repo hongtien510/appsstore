@@ -139,12 +139,35 @@ function danglentuong(title, cap, des, link, pic) {
 }
 
 
-function ChangeTabActive(idsp, idtab)
+function ChangeTabActive(idsp, idtab, bg1, co1, bg2, co2)
 {
 	$('.menu_tab').removeClass('active');
 	$('#'+idtab).addClass('active');
 	
-	ShowContentTab(idtab)
+	changeColorTab(bg1, co1, bg2, co2);
+	ShowContentTab(idtab);
+}
+
+	// $("ul.ul_list_tab li").css("background","#f0f0f0");
+	// $("ul.ul_list_tab li").css("color","#000000");
+	// $("ul.ul_list_tab li").css("border-color","#ffd000");
+	
+	// $("ul.ul_list_tab li.active").css("background","#ffd000");
+	// $("ul.ul_list_tab li.active").css("color","#ffffff");
+	// $(".ctn_tab").css("border-color","#ffd000");
+	// $(".list_tab").css("border-bottom-color","#ffd000");
+
+function changeColorTab(bg1, co1, bg2, co2)
+{
+	
+	$("ul.ul_list_tab li").css("background",bg1);
+	$("ul.ul_list_tab li a").css("color",co1);
+	$("ul.ul_list_tab li").css("border-color",bg2);
+	
+	$("ul.ul_list_tab li.active").css("background",bg2);
+	$("ul.ul_list_tab li.active a").css("color",co2);
+	$(".ctn_tab").css("border-color",bg2);
+	$(".list_tab").css("border-bottom-color",bg2);
 }
 
 function ShowContentTab(idtab)
