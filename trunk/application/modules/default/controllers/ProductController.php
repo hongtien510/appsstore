@@ -18,15 +18,14 @@ class ProductController extends App_Controller_FrontController {
         else
             $idpage = $_SESSION['idpage'];
 		
+		
 		//Lay Thong Tin Page
 		$fb = $facebook->getFB();
 		$pages_fb =  $fb->api('/'.$idpage);
 		$linkpage = $pages_fb['link'];
 		$this->view->linkpage = $linkpage;
 		
-        
-        
-        
+
         $sql = "Select idsp, masp, idloaisp, tensp, gia, hinhchinh, hinhphu, mota, chitietsp, anhien, baohanh, titlefb, metafb ";
         $sql.= "From ishali_sanpham ";
         $sql.= "Where idsp = " .$sp. " and idpage = ". $idpage;
@@ -67,6 +66,23 @@ class ProductController extends App_Controller_FrontController {
 			$menu = $data[0]['menuthongtinsp'];
 			$list_menu = explode(";", $menu);
 			$this->view->list_menu = $list_menu;
+			
+
+			for($i=0; $i<count($list_menu); $i++)
+			{
+				$sql = "select noidung from ishali_thongtinsp where idsp = '". $sp ."' and keytab = '". ($i+1) ."'";
+				$data = $store->SelectQuery($sql);
+				if(count($data) > 0)
+				{
+					$noidung[$i] = $data[0]['noidung'];
+				}
+				else
+				{
+					$noidung[$i] = "";
+				}
+			}
+			$this->view->noidung = $noidung;
+			
 		}
 		else
 		{

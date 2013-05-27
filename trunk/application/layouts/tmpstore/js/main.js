@@ -144,11 +144,12 @@ function ChangeTabActive(idsp, idtab)
 	$('.menu_tab').removeClass('active');
 	$('#'+idtab).addClass('active');
 	
-	ShowContentTab(idsp, idtab)
+	ShowContentTab(idtab)
 }
 
-function ShowContentTab(idsp, idtab)
+function ShowContentTab(idtab)
 {
+/*
 	$.ajax({
 		url:taaa.appdomain+'/product/thongtinsanphamxuly',
 		type:'post',
@@ -157,6 +158,10 @@ function ShowContentTab(idsp, idtab)
 			document.getElementById('ctn_tab').innerHTML = data;
 		}
 	});
+*/
+	//alert('12345');
+	$('.ctn_tab').hide();
+	$('#ctn_tab'+idtab).show();
 }
 
 
