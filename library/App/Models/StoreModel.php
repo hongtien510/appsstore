@@ -77,7 +77,13 @@ class App_Models_StoreModel {
 	{
 		$sql = "select bg_color_menu, color_text_menu, bg_color_menu_act, color_text_menu_act from ishali_config where idpage = '".$idPage."'";
 		$data = $this->SelectQuery($sql);
-        return $data;
+		
+		if($data[0]['bg_color_menu']!="") {$color['bg_color_menu'] = $data[0]['bg_color_menu'];} else {$color['bg_color_menu'] = "EFEFEF";}
+		if($data[0]['color_text_menu']!="") {$color['color_text_menu'] = $data[0]['color_text_menu'];} else {$color['color_text_menu'] = "000000";}
+		if($data[0]['bg_color_menu_act']!="") {$color['bg_color_menu_act'] = $data[0]['bg_color_menu_act'];} else {$color['bg_color_menu_act'] = "3B5998";}
+		if($data[0]['color_text_menu_act']!="") {$color['color_text_menu_act'] = $data[0]['color_text_menu_act'];} else {$color['color_text_menu_act'] = "FFFFFF";}
+        
+		return $color;
 	}
 	
 }

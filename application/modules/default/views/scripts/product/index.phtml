@@ -169,11 +169,14 @@
 <div class="ctn_ttsp">
 	<div class="list_tab">
 		<ul class="ul_list_tab">
-		<?php 
+		<?php
+			$store = App_Models_StoreModel::getInstance();
+			$idpage = $_SESSION['idpage'];
+			$color = $store->GetColor($idpage);
 			for($i=0; $i<count($list_menu); $i++)
 			{
 		?>
-			<li onclick="ChangeTabActive('<?php echo $sanpham[0]["idsp"]; ?>',this.id)" class="menu_tab <?php if($i == 0) echo 'active'; ?>" id="<?php echo $i+1; ?>"><a href="javascript:;"><?php echo $list_menu[$i]; ?></a></li>
+			<li onclick="ChangeTabActive('<?php echo $sanpham[0]["idsp"]; ?>', this.id, '#<?php echo $color['bg_color_menu'];?>', '#<?php echo $color['color_text_menu'];?>', '#<?php echo $color['bg_color_menu_act'];?>', '#<?php echo $color['color_text_menu_act'];?>')" class="menu_tab <?php if($i == 0) echo 'active'; ?>" id="<?php echo $i+1; ?>"><a href="javascript:;"><?php echo $list_menu[$i]; ?></a></li>
 		
 		<?php } ?>
 			<!--
@@ -191,7 +194,8 @@
 	<?php } ?>
 </div>
 <script>
-	ShowContentTab(1)
+	ShowContentTab(1);
+	changeColorTab('#<?php echo $color['bg_color_menu'];?>', '#<?php echo $color['color_text_menu'];?>', '#<?php echo $color['bg_color_menu_act'];?>', '#<?php echo $color['color_text_menu_act'];?>');
 </script>
 <?php } ?>
 
