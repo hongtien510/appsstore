@@ -19,15 +19,15 @@
 		<td><input class="input_style" type="text" name="footer" value="<?php echo @$config[0]['footer']?>" /></td>
 	</tr>
 	<tr>
-		<td>Email SMTP</td>
+		<td>Email gửi đến Khách hàng</td>
 		<td><input class="input_style" type="text" name="emailsmtp" value="<?php echo @$config[0]['emailsmtp']?>" /></td>
 	</tr>
 	<tr>
-		<td>Pass SMTP</td>
-		<td><input class="input_style" type="text" name="passsmtp" value="<?php echo @$config[0]['passsmtp']?>" /></td>
+		<td>Mật khẩu Email gửi</td>
+		<td><input class="input_style" type="password" name="passsmtp" value="<?php echo @$config[0]['passsmtp']?>" /></td>
 	</tr>
 	<tr>
-		<td>Email From</td>
+		<td>Email Khách hàng trả lời</td>
 		<td><input class="input_style" type="text" name="emailfrom" value="<?php echo @$config[0]['emailfrom']?>" /></td>
 	</tr>
 	<tr>
@@ -69,11 +69,18 @@
 		<td>Hiển thị thêm thông tin SP</td>
 		<td>
 			<input type="checkbox" name="thongtinsp" value="1" <?php if(@$config[0]['thongtinsp'] == 1) echo 'checked'; ?> />
+			<em>Bạn chọn chức năng này thì bạn phải nhập Tên menu bên dưới.</em>
 		</td>
 	</tr>
 	<tr>
 		<td>Tên menu thông tin SP</td>
-		<td><input class="input_style" type="text" name="menuthongtinsp" value="<?php echo @$config[0]['menuthongtinsp']?>" /></td>
+		<td>
+			<input class="input_style" type="text" name="menuthongtinsp" value="<?php echo @$config[0]['menuthongtinsp']?>" />
+			<br/><br/>
+			<em>Mỗi tên Menu Tab cách nhau bởi dấu ';'. Kết thúc 1 tên menu và bắt đầu 1 tên menu không có khoảng trắng</em>
+			<br/><br/>
+			Ví dụ : Hình ảnh;Thông Tin;Video;Bảng giá;Khuyến mãi
+		</td>
 	</tr>
 
 	<tr>
