@@ -1,7 +1,13 @@
 <?php
-	$idPage = $this->idpage;
-	$config = $this->config;
-	//print_r($config);
+	$checkSessionIdpage = $this->checkSessionIdpage;
+	if($checkSessionIdpage == 0)
+	{
+		echo "<center><img  src='".APP_DOMAIN."/application/templates/giaodien_admin/images/chon page.jpg'/></center>";
+	}
+	else
+	{
+		$idPage = $this->idpage;
+		$config = $this->config;
 ?>
 <p class="title_page">Cấu hình Apps</p>
 <form action="<?php echo APP_DOMAIN ?>/admin/config/xulyconfig" method="post" enctype="multipart/form-data" onsubmit="cauhinhapp();">
@@ -89,3 +95,4 @@
 	</tr>
 </table>
 </form>
+<?php } ?>

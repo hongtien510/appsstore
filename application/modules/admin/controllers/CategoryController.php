@@ -15,6 +15,7 @@ class Admin_CategoryController extends App_Controller_AdminController {
     }
 
     public function indexAction() {
+		$store = $this->view->info = App_Models_StoreModel::getInstance();
         if(!isset($this->_SESSION->iduseradmin))
 		{
 			$link_login = APP_DOMAIN."/admin/login";
@@ -29,10 +30,19 @@ class Admin_CategoryController extends App_Controller_AdminController {
 		}
 		@$idpage = $_SESSION['idpage'];
         
-        $store = $this->view->info = App_Models_StoreModel::getInstance();
-        $sql = "Select * from ishali_loaisp where idpage = ". $idpage ."  order by vitri";
-        $data = $store->SelectQuery($sql);
-        $this->view->category = $data;
+		$checkSessionIdpage = $store->KiemTraSessionIdPage($idpage);
+		if($checkSessionIdpage == 0)
+		{
+			$this->view->checkSessionIdpage = $checkSessionIdpage;
+		}
+		else
+		{
+			$sql = "Select * from ishali_loaisp where idpage = ". $idpage ."  order by vitri";
+			$data = $store->SelectQuery($sql);
+			$this->view->category = $data;
+			
+			$this->view->checkSessionIdpage = $checkSessionIdpage;
+		}	
     }
 	
 	public function addAction() {

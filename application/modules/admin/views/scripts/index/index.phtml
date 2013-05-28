@@ -26,6 +26,8 @@
 	$appid = $this->appid;
 	$pagelistarr = $this->pageslist;
 	
+	//print_r($pagelistarr);
+	
 	$facebook = new Ishali_Facebook(); 
 	$fb = $facebook->getFB();
 							 
@@ -33,11 +35,10 @@
 	{
 		$id_fb_page = '/'.$page['id_fb_page'];
 		$pages_fb =  $fb->api($id_fb_page);
-	
-		$cltr = ' cl1 ';
+		$cltr = 'cl1';
 		if($k % 2 == 0)
 		{
-			$cltr = ' cl2 ';
+			$cltr = 'cl2';
 		}
 	?>
 	<tr class="<?php echo $cltr?>" >
@@ -56,12 +57,12 @@
 	        if(@$pages_fb['has_added_app']==1)
 	        {
 	        ?>
-	        	 <a href='javascript:void(0)'  onClick="window.open('<?php echo $pages_fb['link']."?sk=app_".$appid ?>')" >xem App</a>
+	        	 <a href='javascript:void(0)'  onClick="window.open('<?php echo $pages_fb['link']."?sk=app_".$appid ?>')" >Xem ứng dụng</a>
 	        <?php 
 	        }else 
 	        {
 	        ?>
-	        	<a href='javascript:void(0)'  onClick="has_added_app(<?php echo $page['id_fb_page'] ?>,'to chuc cuoc thi',<?php echo $this->fbuserid ?>, <?php echo $appid ?>)" >cài ứng dụng</a>
+	        	<a href='javascript:void(0)'  onClick="has_added_app(<?php echo $page['id_fb_page'] ?>,'to chuc cuoc thi',<?php echo $this->fbuserid ?>, <?php echo $appid ?>, 0)" >Cài ứng dụng</a>
 	        <?php
 	        }
 	        ?>

@@ -1,10 +1,7 @@
-function has_added_app(pageid, pagename, userid, appid)
+function has_added_app(pageid, pagename, userid, appid, status)
 {
-	
-	//customerLoadWindow("http://www.facebook.com/add.php?api_key="+appid+"&pages=1&page=" + pageid, '', '540', '400');
-
-	var link = taaa.fbappdomain + "/admin/index/installpage?pageid="+pageid+"&pagename="+pagename+"&userid="+userid+"&appid="+appid;
-	top.location.href = link;
+		var link = taaa.fbappdomain + "/admin/index/installpage?pageid="+pageid+"&pagename="+pagename+"&userid="+userid+"&appid="+appid+"&status="+status;
+		top.location.href = link;
 }
  
 
