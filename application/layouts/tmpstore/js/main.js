@@ -71,7 +71,6 @@ function DatHang(hoten, sdt, email, diachi, ghichu, sanpham)
     alert(ghichu);
     alert(sanpham);
     */
-    
     if(hoten == "" || sdt == "" || email == "" || diachi == "")
     {
         document.getElementById("warning").innerHTML = "Bạn chưa nhập đủ thông tin";
@@ -91,17 +90,17 @@ function DatHang(hoten, sdt, email, diachi, ghichu, sanpham)
                 return false;
             }
     }
-    
+
 	
-    document.getElementById("warning").innerHTML = "<span style='color:#00ccff'>Sending Email...</span><img class='loader' src='"+taaa.appdomain+"/application/layouts/tmpstore/images/loader.gif'/>";
-    //alert(taaa.appdomain + 'ajax');
-	
+	document.getElementById("warning").innerHTML = "<span style='color:#00ccff'>Sending Email...</span><img class='loader' src='"+taaa.appdomain+"/application/layouts/tmpstore/images/loader.gif'/>";
+
+	//alert(taaa.appdomain + '/ajax');
 	$.ajax({
-		url:taaa.appdomain + '/ajax',
+		//url:taaa.appdomain + '/ajax',
+		url:'/appfb/ishalistore/ajax',
 		type:'post',
 		data:{hoten:hoten, sdt:sdt, email:email, diachi:diachi, ghichu:ghichu, sanpham:sanpham},
 		success:function(data){
-		
 			var obj = jQuery.parseJSON(data);
 			if(obj.result==1)
 			{
@@ -111,7 +110,6 @@ function DatHang(hoten, sdt, email, diachi, ghichu, sanpham)
             }
 			else
                 document.getElementById("warning").innerHTML = "Gửi Email không thành công<br/>Bạn hãy thử thực hiện lại thao tác";
-
 		}
 	});
 	
