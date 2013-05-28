@@ -86,6 +86,16 @@ class App_Models_StoreModel {
 		return $color;
 	}
 	
+	public function KiemTraSessionIdPage($sessionIdPage)
+	{
+		$facebook = new Ishali_Facebook();
+		$idUserFB = $facebook->getuserfbid();
+		
+		$sql = "select 1 from ishali_pages where id_fb_page = '". $sessionIdPage ."' and id_fb = '". $idUserFB ."'";
+		$data = $this->SelectQuery($sql);
+		return count($data);
+	}
+	
 }
 
 

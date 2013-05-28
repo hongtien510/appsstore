@@ -1,6 +1,13 @@
 <?php
-	$category = $this->category;
-   // print_r($category);
+	
+	$checkSessionIdpage = $this->checkSessionIdpage;
+	if($checkSessionIdpage == 0)
+	{
+		echo "<center><img  src='".APP_DOMAIN."/application/templates/giaodien_admin/images/chon page.jpg'/></center>";
+	}
+	else
+	{
+		$category = $this->category;
 
 ?>
 
@@ -34,3 +41,4 @@
 
 </table>
 <input type="button" name="themspmoi" value="Thêm Loại Sản Phẩm Mới" onclick="window.location.href='category/add'"/>
+<?php } ?>

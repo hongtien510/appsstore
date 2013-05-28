@@ -1,10 +1,15 @@
-<?php 
-    $product = $this->product;
-    //print_r($product);
-    $category = $this->category;
-    //print_r($category);
-	$donvitien = $this->donvitien;
-	$thongtinsp = $this->thongtinsp;
+<?php
+	$checkSessionIdpage = $this->checkSessionIdpage;
+	if($checkSessionIdpage == 0)
+	{
+		echo "<center><img  src='".APP_DOMAIN."/application/templates/giaodien_admin/images/chon page.jpg'/></center>";
+	}
+	else
+	{
+		$product = $this->product;
+		$category = $this->category;
+		$donvitien = $this->donvitien;
+		$thongtinsp = $this->thongtinsp;
 ?>
 <input type="button" name="themspmoi" value="Thêm Sản Phẩm Mới" onclick="window.location.href='product/add'"/>
 
@@ -75,3 +80,4 @@
 
 </table>
 <input type="button" name="themspmoi" value="Thêm Sản Phẩm Mới" onclick="window.location.href='product/add'"/>
+<?php } ?>

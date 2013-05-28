@@ -31,46 +31,72 @@ class Admin_ProductController extends App_Controller_AdminController {
 		}
 		@$idpage = $_SESSION['idpage'];
 		
-        
-        if($this->_request->getParam("idcat") != "")
-        {
-            $idcat = $this->_request->getParam("idcat");
-            $sql = "Select idsp, masp, tensp, gia, hinhchinh, anhien, showindex ";
-            $sql.= "From ishali_sanpham ";
-            $sql.= "Where idloaisp = ". $idcat ." and idpage = ".$idpage." ";
-            $sql.= "Order by ngaycapnhat desc";
-            
-            $data = $store->SelectQuery($sql);
-            $this->view->product = $data;
-        }
-        else
-        {
-            $sql = "Select idsp, masp, tensp, gia, hinhchinh, anhien, showindex ";
-            $sql.= "From ishali_sanpham ";
-            $sql.= "Where idpage = ". $idpage ." ";
-            $sql.= "Order by ngaycapnhat desc";
-            
-            $data = $store->SelectQuery($sql);
-            $this->view->product = $data;
-        }
-        
-        $sql = "Select idloaisp, tenloaisp ";
-        $sql.= "From ishali_loaisp ";
-        $sql.= "Where anhien = 1 and idpage = ". $idpage ." order by vitri";
-        
-        
-        $data = $store->SelectQuery($sql);
-        $this->view->category = $data;
-        
-		$sql = "select donvitien, thongtinsp from ishali_config where idpage = '". $idpage ."'";
-        $data = $store->SelectQuery($sql);
-		if($data[0]['donvitien'] == "")
-			$donvitien = "VNĐ";
+		$checkSessionIdpage = $store->KiemTraSessionIdPage($idpage);
+		if($checkSessionIdpage == 0)
+		{
+			$this->view->checkSessionIdpage = $checkSessionIdpage;
+		}
 		else
-			$donvitien = $data[0]['donvitien'];
-        $this->view->donvitien = $donvitien;
-		$this->view->thongtinsp = $data[0]['thongtinsp'];
-
+		{
+        
+			if($this->_request->getParam("idcat") != "")
+			{
+				$idcat = $this->_request->getParam("idcat");
+				$sql = "Select idsp, masp, tensp, gia, hinhchinh, anhien, showindex ";
+				$sql.= "From ishali_sanpham ";
+				$sql.= "Where idloaisp = ". $idcat ." and idpage = ".$idpage." ";
+				$sql.= "Order by ngaycapnhat desc";
+				
+				$data = $store->SelectQuery($sql);
+				$this->view->product = $data;
+			}
+			else
+			{
+				$sql = "Select idsp, masp, tensp, gia, hinhchinh, anhien, showindex ";
+				$sql.= "From ishali_sanpham ";
+				$sql.= "Where idpage = ". $idpage ." ";
+				$sql.= "Order by ngaycapnhat desc";
+				
+				$data = $store->SelectQuery($sql);
+				$this->view->product = $data;
+			}
+			
+			$sql = "Select idloaisp, tenloaisp ";
+			$sql.= "From ishali_loaisp ";
+			$sql.= "Where anhien = 1 and idpage = ". $idpage ." order by vitri";
+			
+			
+			$data = $store->SelectQuery($sql);
+			$this->view->category = $data;
+			
+			$sql = "select donvitien, thongtinsp from ishali_config where idpage = '". $idpage ."'";
+			$data = $store->SelectQuery($sql);
+			if(count($data) == 0)
+			{
+				$donvitien = "VNĐ";
+				$thongtinsp = 0;
+			}
+			else
+			{
+				if($data[0]['donvitien'] == "")
+					$donvitien = "VNĐ";
+				else
+					$donvitien = $data[0]['donvitien'];
+					
+				if($data[0]['thongtinsp'] == "")
+					$thongtinsp = 0;
+				else
+					$thongtinsp = $data[0]['thongtinsp'];
+				
+			}
+			
+			
+			$this->view->donvitien = $donvitien;
+			$this->view->thongtinsp = $thongtinsp;
+		
+			$this->view->checkSessionIdpage = $checkSessionIdpage;
+			
+		}
     }
     
     public function addAction() {

@@ -29,12 +29,22 @@ class Admin_ConfigController extends App_Controller_AdminController {
 			$_SESSION['idpage'] = $idpagee;
 		}
 		@$idpage = $_SESSION['idpage'];
-		//$idpage = 9999999999999;
-		$this->view->idpage = $idpage;
 		
-		$sql = "Select * from ishali_config where idpage = '". $idpage ."'";
-		$config = $store->SelectQuery($sql);
-		$this->view->config = $config;
+		$checkSessionIdpage = $store->KiemTraSessionIdPage($idpage);
+		if($checkSessionIdpage == 0)
+		{
+			$this->view->checkSessionIdpage = $checkSessionIdpage;
+		}
+		else
+		{
+			$this->view->idpage = $idpage;
+			
+			$sql = "Select * from ishali_config where idpage = '". $idpage ."'";
+			$config = $store->SelectQuery($sql);
+			$this->view->config = $config;
+			
+			$this->view->checkSessionIdpage = $checkSessionIdpage;
+		}
     }
 	
 	public function xulyconfigAction() {
