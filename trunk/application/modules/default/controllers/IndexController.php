@@ -84,10 +84,17 @@ class IndexController extends App_Controller_FrontController {
 		
 		$sql = "select donvitien from ishali_config where idpage = '". $idpage ."'";
         $data = $store->SelectQuery($sql);
-		if($data[0]['donvitien'] == "")
+		if(count($data)==0)
+		{
 			$donvitien = "VNĐ";
+		}
 		else
-			$donvitien = $data[0]['donvitien'];
+		{
+			if($data[0]['donvitien'] == "")
+				$donvitien = "VNĐ";
+			else
+				$donvitien = $data[0]['donvitien'];
+		}
         $this->view->donvitien = $donvitien;
         
     }

@@ -77,12 +77,20 @@ class App_Models_StoreModel {
 	{
 		$sql = "select bg_color_menu, color_text_menu, bg_color_menu_act, color_text_menu_act from ishali_config where idpage = '".$idPage."'";
 		$data = $this->SelectQuery($sql);
-		
-		if($data[0]['bg_color_menu']!="") {$color['bg_color_menu'] = $data[0]['bg_color_menu'];} else {$color['bg_color_menu'] = "EFEFEF";}
-		if($data[0]['color_text_menu']!="") {$color['color_text_menu'] = $data[0]['color_text_menu'];} else {$color['color_text_menu'] = "000000";}
-		if($data[0]['bg_color_menu_act']!="") {$color['bg_color_menu_act'] = $data[0]['bg_color_menu_act'];} else {$color['bg_color_menu_act'] = "3B5998";}
-		if($data[0]['color_text_menu_act']!="") {$color['color_text_menu_act'] = $data[0]['color_text_menu_act'];} else {$color['color_text_menu_act'] = "FFFFFF";}
-        
+		if(count($data)==0)
+		{
+			$color['bg_color_menu'] = "EFEFEF";
+			$color['color_text_menu'] = "000000";
+			$color['bg_color_menu_act'] = "3B5998";
+			$color['color_text_menu_act'] = "FFFFFF";
+		}
+		else
+		{
+			if($data[0]['bg_color_menu']!="") {$color['bg_color_menu'] = $data[0]['bg_color_menu'];} else {$color['bg_color_menu'] = "EFEFEF";}
+			if($data[0]['color_text_menu']!="") {$color['color_text_menu'] = $data[0]['color_text_menu'];} else {$color['color_text_menu'] = "000000";}
+			if($data[0]['bg_color_menu_act']!="") {$color['bg_color_menu_act'] = $data[0]['bg_color_menu_act'];} else {$color['bg_color_menu_act'] = "3B5998";}
+			if($data[0]['color_text_menu_act']!="") {$color['color_text_menu_act'] = $data[0]['color_text_menu_act'];} else {$color['color_text_menu_act'] = "FFFFFF";}
+        }
 		return $color;
 	}
 	
@@ -94,6 +102,25 @@ class App_Models_StoreModel {
 		$sql = "select 1 from ishali_pages where id_fb_page = '". $sessionIdPage ."' and id_fb = '". $idUserFB ."'";
 		$data = $this->SelectQuery($sql);
 		return count($data);
+	}
+	
+	//Chua su dung
+	public function chuyenLinkThanhHttps($idpage)
+	{
+		if($_SERVER["HTTPS"] != "on")//Link ko phai la https
+		{
+			$facebook = new Ishali_Facebook(); 
+			$fb = $facebook->getFB();
+			$id_fb_page = '/'.$idpage;
+			$pages_fb =  $fb->api($id_fb_page);
+			$linkPage = $pages_fb['link'];//http://www.facebook.com/Phtpht
+			
+			$lPage = substr($linkPage,4);
+			$linkHttps = 'https'.$lPage.'/app_'.APP_ID;
+			return $linkHttps;
+		}
+		else
+			return true;
 	}
 	
 }
