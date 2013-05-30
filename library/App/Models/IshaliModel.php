@@ -33,23 +33,16 @@ class App_Models_IshaliModel {
         $result['data'] = array();
         $result['total'] = 0;
         $result = array();
-        $output = 'id_pages,
-						id_fb_page,
-						page_name,
-						date_create,
-						an_hien
-						';
-
-        $order = "";
- 		 if ($count > 0) {
-            $limit = ' limit ' . $offset . ',' . $count;
+        $output = 'DISTINCT id_fb_page,					id_pages,
+					page_name,					date_create,					an_hien				';
+        $order = "";		
+ 		if ($count > 0) {
+            $limit = ' limit ' . $offset . ',' . $count;
         } else {
-            $limit = '';
+            $limit = '';
         }
-        
-         $queryTotal = "select count(*) as total from " . App_Entities_Pages::$TABLE ;
-
-        $query = "select " . $output . " from " . App_Entities_Pages::$TABLE  . $order . $limit;
+        $queryTotal = "select count(*) as total from " . App_Entities_Pages::$TABLE ;		
+		$query = "select " . $output . " from " . App_Entities_Pages::$TABLE  . $order . $limit;
 
         $total = $this->_db->executeReader($queryTotal);
         if (!empty($total)) {

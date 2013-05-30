@@ -44,10 +44,8 @@ class App_Models_StoreModel {
         return explode(',', $str);
     }
     
-    public function GetidCategory()
+    public function GetidCategory($idpage)
     {
-        $idpage = $_SESSION['idpage'];
-
         $sql = "Select idloaisp, tenloaisp ";
         $sql.= "From ishali_loaisp ";
         $sql.= "Where anhien = 1 and idpage = ". $idpage ." order by vitri";
@@ -121,6 +119,13 @@ class App_Models_StoreModel {
 		}
 		else
 			return true;
+	}
+	
+	public function getLinkPage($idpage)
+	{
+		$sql = "select link_page from ishali_pages where id_fb_page = '". $idpage ."'";
+		$data = $this->SelectQuery($sql);
+		return $data[0]['link_page'];
 	}
 	
 }
