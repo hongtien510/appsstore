@@ -47,56 +47,95 @@ class Ishali_Facebook extends Ishali_Api{
 	}
 	
 	public static function begins_works($isadmin=NULL)
-	    {
-	    	
-			$userid= Ishali_Facebook::getuserfbid();
-			if($isadmin == 1)
-			{
-				if ($userid) {
-					return true;
-				}
-				else
-				{
-					 try {
-						Ishali_Facebook::loginuserfb($isadmin);
-					 } catch (FacebookApiException $e) {
-						Ishali_Facebook::loginuserfbException($isadmin);
-					 }
-				}
+	{
+		
+		$userid= Ishali_Facebook::getuserfbid();
+		if($isadmin == 1)
+		{
+			if ($userid) {
+				return true;
 			}
 			else
-				return true;
-	       
-	    }
+			{
+				 try {
+					Ishali_Facebook::loginuserfb($isadmin);
+				 } catch (FacebookApiException $e) {
+					Ishali_Facebook::loginuserfbException($isadmin);
+				 }
+			}
+		}
+		else
+			return true;
+	   
+	}
     
-	  public  static function getpagearr()
-		  {
-
-			    if(empty($_REQUEST["signed_request"])) {		
-//					Ishali_Facebook::directadminlink();
-//							$Ishali_Api = new Ishali_Api();
-// 	$Ishali_Api->parentRedirect2("http://localhost/tochuccuocthihinh/article?articleId=1");
+	public  static function getpagearr()
+	{
+		if(empty($_REQUEST["signed_request"])) {		
+//			Ishali_Facebook::directadminlink();
+//				$Ishali_Api = new Ishali_Api();
+// 				$Ishali_Api->parentRedirect2("http://localhost/tochuccuocthihinh/article?articleId=1");
 //echo "ss";
 //					exit;
-				
-				}
-				else 
-				{
+		}
+		else 
+		{
+			$config = Zend_Registry::get(APPLICATION_CONFIG);
+			$app_secret = $config->facebook->appsecret;
+			@$data =Ishali_Api::parse_signed_request($_REQUEST["signed_request"], $app_secret);
+			return $data;
+		}
+	}
+	/*Ket qua cua getpagearr()//chay tren facebook moi lay duoc
+	Array
+	(
+    [algorithm] => HMAC-SHA256
+    [expires] => 1369882800
+    [issued_at] => 1369877438
+    [oauth_token] => CAAIxaQjBHR4BABcqMfs0HO3SnTaiKznpc2CvZCXQGRz4T5x1IbHfgTG2cYiRQH1eI8SvpeoAY82kRpmLMxixF8k9XoHZCImGWS01gmHIITYr6PMfZB5uRnwiKNnq0uKviRUnY1Fpv2GW7ETk9es2ZATvsKDL7fRA9e2khApdxAZDZD
+    [page] => Array
+        (
+            [id] => 356730004423499
+            [liked] => 
+            [admin] => 1
+        )
 
-					$config = Zend_Registry::get(APPLICATION_CONFIG);
-					$app_secret = $config->facebook->appsecret;
-				    @$data =Ishali_Api::parse_signed_request($_REQUEST["signed_request"], $app_secret);
-					//print_r($data);
-					return $data;
-				}
+    [user] => Array
+        (
+            [country] => vn
+            [locale] => en_US
+            [age] => Array
+                (
+                    [min] => 21
+                )
 
-		  }
+        )
+
+    [user_id] => 100002151254254
+	)
+	*/
+	
+	
     
     public  static function getpageid()
-	    {
-			$pageid = Ishali_Facebook::getpagearr();
-			return  @$pageid['page']['id'];
-	    }
+	{
+		$pageid = Ishali_Facebook::getpagearr();
+		return  $pageid['page']['id'];
+	}
+	
+	public  static function kiemTraLike()
+	{
+		$pageid = Ishali_Facebook::getpagearr();
+		return  $pageid['page']['liked'];
+	}
+	
+	public static function getLinkPage($idpage)
+	{
+		$fb = Ishali_Facebook::getFB();
+		$pages_fb =  $fb->api('/'.$idpage);
+		$linkpage = $pages_fb['link'];
+		return $linkpage;
+	}
 		
 	public  static function getParameterUrl()
 	{
@@ -105,62 +144,62 @@ class Ishali_Facebook extends Ishali_Api{
 	}
 
     public function loginuserfb($isadmin)
-	    {   
-	    	if(isset($isadmin) && $isadmin==1)
-	    	{
-	    		$config = Zend_Registry::get(APPLICATION_CONFIG);
-	    		$pagelink =$config->facebook->appurl."admin";
-	    		Ishali_Facebook::userlogin($pagelink);
-	    	}else if(isset($isadmin) && $isadmin!=0)
-	    	{
-				$pagelink = Ishali_Facebook::getpage_app_redirect();
-				Ishali_Facebook::userlogin($pagelink."?request_ids=".$isadmin);
-	    	}else
-	    	{
-				$pagelink = Ishali_Facebook::getpage_app_redirect();
-				Ishali_Facebook::userlogin($pagelink);
-	    	}
-	    }
+	{   
+		if(isset($isadmin) && $isadmin==1)
+		{
+			$config = Zend_Registry::get(APPLICATION_CONFIG);
+			$pagelink =$config->facebook->appurl."admin";
+			Ishali_Facebook::userlogin($pagelink);
+		}else if(isset($isadmin) && $isadmin!=0)
+		{
+			$pagelink = Ishali_Facebook::getpage_app_redirect();
+			Ishali_Facebook::userlogin($pagelink."?request_ids=".$isadmin);
+		}else
+		{
+			$pagelink = Ishali_Facebook::getpage_app_redirect();
+			Ishali_Facebook::userlogin($pagelink);
+		}
+	}
 	    
     public function loginuserfbException($isadmin)
-	    {   
-	    	if(isset($isadmin) && $isadmin==1)
-	    	{
-	    		$config = Zend_Registry::get(APPLICATION_CONFIG);
-	    		$pagelink =$config->facebook->appurl."admin";
-	    		Ishali_Facebook::userlogin($pagelink);
-	    	}else if(isset($isadmin) && $isadmin!=0)
-	    	{
-				$config = Zend_Registry::get(APPLICATION_CONFIG);
-				$pagelink = $config->facebook->appurl;
-				Ishali_Facebook::userlogin($pagelink."?request_ids=".$isadmin);
-	    	}else
-	    	{
-				$pagelink = Ishali_Facebook::getpage_app_redirect();
-				Ishali_Facebook::userlogin($pagelink);
-	    	}
-				
-	    }
-    
- 	 public static function converuserfb($app_url)
-	    {
-	    	$Ishali_Api = new Ishali_Api();
-	    	$convertUrl = "http://www.facebook.com/login/roadblock.php?target_url=$app_url" ;
-  			$Ishali_Api->parentRedirect($convertUrl);
-	    }
-	    
-	    
- 	 public static function userlogin($app_url)
-	    {
+	{   
+		if(isset($isadmin) && $isadmin==1)
+		{
 			$config = Zend_Registry::get(APPLICATION_CONFIG);
-	    	$fb = Ishali_Facebook::getFB();
-	    	$Ishali_Api = new Ishali_Api();
-	    	$paramsp['scope'] = $config->facebook->login->scope;
-	    	$paramsp['response_type'] = $config->facebook->login->response_type;
-	    	$paramsp['redirect_uri'] = $app_url;
-			$loginUrl = $fb->getLoginUrl($paramsp);
-			$Ishali_Api->parentRedirect($loginUrl);
-	    }
+			$pagelink =$config->facebook->appurl."admin";
+			Ishali_Facebook::userlogin($pagelink);
+		}else if(isset($isadmin) && $isadmin!=0)
+		{
+			$config = Zend_Registry::get(APPLICATION_CONFIG);
+			$pagelink = $config->facebook->appurl;
+			Ishali_Facebook::userlogin($pagelink."?request_ids=".$isadmin);
+		}else
+		{
+			$pagelink = Ishali_Facebook::getpage_app_redirect();
+			Ishali_Facebook::userlogin($pagelink);
+		}
+			
+	}
+    
+ 	public static function converuserfb($app_url)
+	{
+		$Ishali_Api = new Ishali_Api();
+		$convertUrl = "http://www.facebook.com/login/roadblock.php?target_url=$app_url" ;
+		$Ishali_Api->parentRedirect($convertUrl);
+	}
+	    
+	    
+ 	public static function userlogin($app_url)
+	{
+		$config = Zend_Registry::get(APPLICATION_CONFIG);
+		$fb = Ishali_Facebook::getFB();
+		$Ishali_Api = new Ishali_Api();
+		$paramsp['scope'] = $config->facebook->login->scope;
+		$paramsp['response_type'] = $config->facebook->login->response_type;
+		$paramsp['redirect_uri'] = $app_url;
+		$loginUrl = $fb->getLoginUrl($paramsp);
+		$Ishali_Api->parentRedirect($loginUrl);
+	}
 	    
 	    
 	
@@ -176,6 +215,7 @@ class Ishali_Facebook extends Ishali_Api{
 		return $is_fb_request;
 	}
 	
+	//Chua chay duoc
  	public function getpagenamearr()
     {    	
     	$fb = Ishali_Facebook::getFB();
@@ -186,7 +226,7 @@ class Ishali_Facebook extends Ishali_Api{
 		
     }
     
-
+	//Chua chay duoc
  	public function getpagelink()
     {    	
     	$pagearr = Ishali_Facebook::getpagenamearr();
@@ -273,7 +313,7 @@ class Ishali_Facebook extends Ishali_Api{
 //		exit;	
     }
     
-     public function guiyeucauchobanbe()
+    public function guiyeucauchobanbe()
     {    
     		
     		
@@ -283,7 +323,6 @@ class Ishali_Facebook extends Ishali_Api{
 	{
 		$config = Zend_Registry::get(APPLICATION_CONFIG);
 		return $config->facebook->appid;
-
 	}
     
 
