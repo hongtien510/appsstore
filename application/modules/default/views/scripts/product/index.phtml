@@ -14,11 +14,8 @@
 
 <script>
     $(function(){
-        //alert('aaaaaaaaaa');
       center()//gọi hàm mới load web
-      //alert('aaaaa');
         $(window).resize(function(){center()})//gọi hàm khi resize
-        //alert($(window).width());
       function center(){
         $('#dathang').css({left:($(window).width()-$('div#dathang').width())/2,top:100});
         $('#thongbao').css({left:($(window).width()-$('div#thongbao').width())/2,top:100});

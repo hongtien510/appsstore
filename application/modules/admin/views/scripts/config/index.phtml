@@ -17,7 +17,9 @@
 		<td width="200">Banner</td>
 		<td>
 			<input type="file" name="banner" id="" size="30" />
-			<img src="<?php echo APP_DOMAIN ?>/public/images/banner/<?php echo $config[0]['banner'] ?>" width="500" alt=""/>
+			<?php if($config[0]['banner']!=""){ ?>
+				<img src="<?php echo APP_DOMAIN ?>/public/images/banner/<?php echo $config[0]['banner'] ?>" width="500" alt=""/>
+			<?php } ?>
 		</td>
 	</tr>
 	<tr>

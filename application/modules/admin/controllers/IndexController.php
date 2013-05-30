@@ -57,6 +57,8 @@ class Admin_IndexController extends App_Controller_AdminController {
 		$userid = $_GET['userid'];
 		$appid = $_GET['appid'];
 		$status = $_GET['status'];
+		$facebook = new Ishali_Facebook();
+		$linkpage = $facebook->getLinkPage($pageid);
 		
 		if($status == 1)
 		{
@@ -64,17 +66,18 @@ class Admin_IndexController extends App_Controller_AdminController {
 			$data = $store->SelectQuery($sql);
 			if(count($data) > 0)
 			{
-				echo "<script>ThongBaoDongY('Ứng dụng này đã được cài lên Fanpage<br/><u>$pagename</u>.', '".ROOT_DOMAIN."/admin');</script>";	
+				echo "<script>ThongBaoDongY('Fanpage <u>$pagename</u><br/>Đã được cài thành công vào ứng dụng.', '".ROOT_DOMAIN."/admin');</script>";	
 			}
 			else
 			{
 				$link = "http://www.facebook.com/add.php?api_key=$appid&pages=1&page=$pageid";
 				echo "<script>customerLoadWindow('$link', '', '540', '400');</script>";
 				
-				$sql = "Insert into ishali_pages(id_fb_page, page_name, id_fb, templates) value(";
+				$sql = "Insert into ishali_pages(id_fb_page, page_name, id_fb, link_page, templates) value(";
 				$sql.= "'".$pageid."', ";
 				$sql.= "'".$pagename."', ";
 				$sql.= "'".$userid."', ";
+				$sql.= "'".$linkpage."', ";
 				$sql.= "'tmpstore') ";
 				
 				$data = $store->InsertDeleteUpdateQuery($sql);
@@ -85,7 +88,7 @@ class Admin_IndexController extends App_Controller_AdminController {
 				}
 				else
 				{
-					echo "<script>ThongBaoDongY('Lưu không thành công<br/>Vui Lòng thực hiện lại thao tác.', '".ROOT_DOMAIN."/admin');</script>";
+					echo "<script>ThongBaoDongY('Cài ứng dụng không thành công<br/>Vui Lòng thực hiện lại thao tác.', '".ROOT_DOMAIN."/admin');</script>";
 				}
 			}
 		}

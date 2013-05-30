@@ -2,9 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<!--
 <link type="text/css" rel="stylesheet" href="<?php echo APP_DOMAIN . '/application/layouts/' . $this->page->templates . '/css/style.css'; ?>"></link>
-<script type="text/javascript" src="<?php echo APP_DOMAIN . '/application/layouts/' . $this->page->templates . '/js/jquery-1.8.0.min.js'; ?>"></script>
-<script type="text/javascript" src="<?php echo APP_DOMAIN . '/application/layouts/' . $this->page->templates . '/js/main.js'; ?>"></script>
+-->
+
+<link type="text/css" rel="stylesheet" href="<?php echo APP_DOMAIN . '/application/layouts/tmpstore/css/style.css'; ?>"></link>
+<script type="text/javascript" src="<?php echo APP_DOMAIN . '/application/layouts/tmpstore/js/jquery-1.8.0.min.js'; ?>"></script>
+<script type="text/javascript" src="<?php echo APP_DOMAIN . '/application/layouts/tmpstore/js/main.js'; ?>"></script>
 <script>
 	var taaa = {};
 	taaa.appdomain = "<?php echo APP_DOMAIN ?>";
@@ -15,28 +20,32 @@
 </head>
 
 <body>
+
 <?php
 	$store = App_Models_StoreModel::getInstance();
+	/*
 	$facebook = new Ishali_Facebook();
 	$idpage = $facebook->getpageid();
 	if(isset($idpage))
             $_SESSION['idpage'] = $idpage;
         else
-            $idpage = $_SESSION['idpage'];
-	$banner = $store->GetBanner($idpage);
-	
+	*/
+        @$idpage = $_SESSION['idpage'];
+		@$banner = $store->GetBanner($idpage);
 ?>
 
 	<div id="container">
     	<div id="banner">
-			<img src="<?php echo APP_DOMAIN.'/public/images/banner/'.$banner[0]['banner']?>"/>
+			<?php if(@$banner[0]['banner'] != ""){ ?>
+				<img src="<?php echo APP_DOMAIN.'/public/images/banner/'.$banner[0]['banner']?>"/>
+			<?php } ?>
 		</div><!--End #banner-->
 		
 		
     	<div id="main_nav">
         <?php 
             $id = Zend_Controller_Front::getInstance()->getRequest()->getParam('id');
-            $category = $store->GetidCategory(); 
+            $category = $store->GetidCategory($idpage); 
         ?>
         	<ul class="menu">
             <a href="index"><li <?php if($id=="") echo "class='active'";?> >Home</li></a>
