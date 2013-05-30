@@ -9,15 +9,9 @@ class CategoryController extends App_Controller_FrontController {
 		$store = $this->view->info = App_Models_StoreModel::getInstance();
         
 		$id = base64_decode($this->_request->getParam("id"));
-        
-        $facebook = new Ishali_Facebook();
-		$idpage = $facebook->getpageid();
+
         //$idpage = '356730004423499';
-        
-        if(isset($idpage))
-            $_SESSION['idpage'] = $idpage;
-        else
-            $idpage = $_SESSION['idpage'];
+        $idpage = $_SESSION['idpage'];
         
         $sql = "select count(*) as tongsp ";
         $sql.= "from ishali_sanpham ";
@@ -66,22 +60,6 @@ class CategoryController extends App_Controller_FrontController {
             $data = $store->SelectQuery($sql);
             $this->view->showsp = $data;
         }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
     }
-    
-    
-
-   
 
 }

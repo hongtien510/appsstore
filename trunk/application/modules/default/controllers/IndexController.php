@@ -4,12 +4,6 @@ class IndexController extends App_Controller_FrontController {
 
     public function init() {
         parent::init();
-        
-        $facebook = new Ishali_Facebook();
-		$idpage = $facebook->getpageid();
-		
-        if(isset($idpage))
-            $_SESSION['idpage'] = $idpage;
     }
 
     public function indexAction() {
@@ -28,9 +22,8 @@ class IndexController extends App_Controller_FrontController {
 			//http://localhost/appfb/ishalistore/product?id=Mg==&sp=MTg=
 		}
 
-
-        $idpage = $_SESSION['idpage'];
-
+		//356730004423499
+		$idpage = $_SESSION['idpage'];
 
         $sql = "select count(*) as tongsp ";
         $sql.= "from ishali_sanpham ";

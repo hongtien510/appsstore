@@ -514,8 +514,9 @@ function LoginAdmin(user, pass)
             if(data==1)
             {
                 ThongBao('Đăng nhập thành công',2000);
-				var link = taaa.appdomain+'/admin/';
-                window.location = link;
+				var link = taaa.fbappdomain+'/admin/';
+                //window.location = link;
+				top.location.href = link;
             }
             else
             {
