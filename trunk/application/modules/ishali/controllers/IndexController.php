@@ -55,12 +55,12 @@ class Ishali_IndexController extends App_Controller_IshaliController {
 	
     public function delpageAction() {
     	$id_encode = $_GET['idpage'];
-    	echo $id_decode = base64_decode($id_encode);
+    	$id_decode = base64_decode($id_encode);
 	  	$this->view->pageid = substr($id_decode, 2,strlen($id_decode));   		
     	
-    	//App_Models_IshaliModel::getInstance()->remove($this->view->pageid);
-    	//$url = FB_APP_DOMAIN.'/ishali';
-    	//$this->_redirect($url);
+    	App_Models_IshaliModel::getInstance()->remove($this->view->pageid);
+    	$url = FB_APP_DOMAIN.'/ishali';
+    	$this->_redirect($url);
     	
     	
 	}

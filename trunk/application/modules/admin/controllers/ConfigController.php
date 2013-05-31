@@ -74,6 +74,7 @@ class Admin_ConfigController extends App_Controller_AdminController {
 		$color_text_menu_act = $_POST['color_text_menu_act'];
 		
 		$donvitien = $_POST['donvitien'];
+		$linkpage = $_POST['linkpage'];
 		
 		if(@$_POST['thongtinsp'] != "")
 			$thongtinsp = @$_POST['thongtinsp'];
@@ -90,13 +91,13 @@ class Admin_ConfigController extends App_Controller_AdminController {
 		{
 			if($banner == "")
 			{
-				$sql = "insert into ishali_config(footer, emailsmtp, passsmtp, emailfrom, title_from, subject_from, idpage, bg_color_menu, color_text_menu, bg_color_menu_act, color_text_menu_act, donvitien, thongtinsp, menuthongtinsp) ";
-				$sql.= "value('$footer', '$emailsmtp', '$passsmtp', '$emailfrom', '$titlemail', '$subjectemail', '$idpage', '$bg_color_menu', '$color_text_menu', '$bg_color_menu_act', '$color_text_menu_act', '$donvitien', '$thongtinsp', '$menuthongtinsp')";
+				$sql = "insert into ishali_config(footer, emailsmtp, passsmtp, emailfrom, title_from, subject_from, idpage, bg_color_menu, color_text_menu, bg_color_menu_act, color_text_menu_act, donvitien, thongtinsp, menuthongtinsp, link_page) ";
+				$sql.= "value('$footer', '$emailsmtp', '$passsmtp', '$emailfrom', '$titlemail', '$subjectemail', '$idpage', '$bg_color_menu', '$color_text_menu', '$bg_color_menu_act', '$color_text_menu_act', '$donvitien', '$thongtinsp', '$menuthongtinsp', '$linkpage')";
 			}
 			else
 			{
-				$sql = "insert into ishali_config(banner, footer, emailsmtp, passsmtp, emailfrom, title_from, subject_from, idpage, bg_color_menu, color_text_menu, bg_color_menu_act, color_text_menu_act, donvitien, thongtinsp, menuthongtinsp) ";
-				$sql.= "value('$banner', '$footer', '$emailsmtp', '$passsmtp', '$emailfrom', '$titlemail', '$subjectemail', '$idpage', '$bg_color_menu', '$color_text_menu', '$bg_color_menu_act', '$color_text_menu_act', '$donvitien', '$thongtinsp', '$menuthongtinsp')";
+				$sql = "insert into ishali_config(banner, footer, emailsmtp, passsmtp, emailfrom, title_from, subject_from, idpage, bg_color_menu, color_text_menu, bg_color_menu_act, color_text_menu_act, donvitien, thongtinsp, menuthongtinsp, link_page) ";
+				$sql.= "value('$banner', '$footer', '$emailsmtp', '$passsmtp', '$emailfrom', '$titlemail', '$subjectemail', '$idpage', '$bg_color_menu', '$color_text_menu', '$bg_color_menu_act', '$color_text_menu_act', '$donvitien', '$thongtinsp', '$menuthongtinsp', '$linkpage')";
 			}
 		}
 		else
@@ -116,7 +117,8 @@ class Admin_ConfigController extends App_Controller_AdminController {
 				$sql.= "color_text_menu_act = '". $color_text_menu_act . "', ";
 				$sql.= "donvitien = '". $donvitien . "', ";
 				$sql.= "thongtinsp = '". $thongtinsp . "', ";
-				$sql.= "menuthongtinsp = '". $menuthongtinsp . "' ";
+				$sql.= "menuthongtinsp = '". $menuthongtinsp . "', ";
+				$sql.= "link_page = '". $linkpage . "' ";
 				
 				$sql.= "where idpage = '". $idpage ."'";
 			}
@@ -148,7 +150,8 @@ class Admin_ConfigController extends App_Controller_AdminController {
 				$sql.= "color_text_menu_act = '". $color_text_menu_act . "', ";
 				$sql.= "donvitien = '". $donvitien . "', ";
 				$sql.= "thongtinsp = '". $thongtinsp . "', ";
-				$sql.= "menuthongtinsp = '". $menuthongtinsp . "' ";
+				$sql.= "menuthongtinsp = '". $menuthongtinsp . "', ";
+				$sql.= "link_page = '". $linkpage . "' ";
 				
 				$sql.= "where idpage = '". $idpage ."'";
 			}

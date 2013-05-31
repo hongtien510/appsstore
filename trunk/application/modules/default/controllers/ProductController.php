@@ -16,7 +16,7 @@ class ProductController extends App_Controller_FrontController {
 
 		$linkpage = $store->getLinkPage($idpage);
 		$this->view->linkpage = $linkpage;
-
+		
         $sql = "Select idsp, masp, idloaisp, tensp, gia, hinhchinh, hinhphu, mota, chitietsp, anhien, baohanh, titlefb, metafb ";
         $sql.= "From ishali_sanpham ";
         $sql.= "Where idsp = " .$sp. " and idpage = ". $idpage;
@@ -38,21 +38,25 @@ class ProductController extends App_Controller_FrontController {
         $data = $store->SelectQuery($sql);
         $this->view->splienquan = $data;
 		
-		$sql = "select donvitien from ishali_config where idpage = '". $idpage ."'";
-        $data = $store->SelectQuery($sql);
+		$sql = "select donvitien, thongtinsp, menuthongtinsp, link_page from ishali_config where idpage = '". $idpage ."'";
+		$data = $store->SelectQuery($sql);
+		
+	//Thay doi don vi tien
 		if($data[0]['donvitien'] == "")
 			$donvitien = "VNĐ";
 		else
 			$donvitien = $data[0]['donvitien'];
         $this->view->donvitien = $donvitien;
 		
+	//Link Page de gan vao Plugin Like
+		if($data[0]['link_page'] != "")
+			$this->view->link_page = $data[0]['link_page'];
+		else
+			$this->view->link_page = 'http://www.facebook.com/AgencySocialMediaMarketing';
 		
-		$sql = "select thongtinsp from ishali_config where idpage = '". $idpage ."'";
-		$data = $store->SelectQuery($sql);
+	//KT xem co tuy chon mo tab menu thong tin san pham
 		if($data[0]['thongtinsp']==1)
 		{
-			$sql = "Select menuthongtinsp from ishali_config where idpage = '". $idpage ."'";
-			$data = $store->SelectQuery($sql);
 			$menu = $data[0]['menuthongtinsp'];
 			$list_menu = explode(";", $menu);
 			$this->view->list_menu = $list_menu;
@@ -78,6 +82,7 @@ class ProductController extends App_Controller_FrontController {
 		{
 			$this->view->list_menu = "";
 		}
+		
 		
 		
 
