@@ -10,6 +10,7 @@ class IndexController extends App_Controller_FrontController {
 		$store = $this->view->info = App_Models_StoreModel::getInstance();
 		
         $facebook = new Ishali_Facebook();
+		/*
 		if($facebook->getParameterUrl()!=null)
 		{
 			$param = $facebook->getParameterUrl();
@@ -21,6 +22,7 @@ class IndexController extends App_Controller_FrontController {
 			header("location: $host/product?id=$id&sp=$sp");
 			//http://localhost/appfb/ishalistore/product?id=Mg==&sp=MTg=
 		}
+		*/
 
 		//356730004423499
 		$idpage = $_SESSION['idpage'];

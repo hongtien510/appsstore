@@ -14,7 +14,6 @@ class Admin_IndexController extends App_Controller_AdminController {
 			header("Location:$link_login");
 		}
 		
-		$_SESSION['list_page'] = "0";
 
         $facebookadmin = new Ishali_FacebookAdmin();  
         $facebook = new Ishali_Facebook();  
