@@ -1,15 +1,4 @@
 <?php
-
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of FrontController
- *
- * @author root
- */
 class App_Controller_FrontController extends Zend_Controller_Action {
 
     public function init() {
