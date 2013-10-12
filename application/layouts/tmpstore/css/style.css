@@ -65,7 +65,8 @@ body
 #product{padding-top:20px}
 #product ul.pro li{
 	width:185px; height: 280px; box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
-	float:left; margin-right:20px; margin-bottom:20px
+	float:left; margin-right:20px; margin-bottom:20px;
+	background:#FFFFFF;
 }
 #product ul.pro li.pro_last{float:right; margin-right:0px}
 
