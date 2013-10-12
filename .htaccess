@@ -4,4 +4,3 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule !\.(js|ico|gif|jpg|png|css)$ index.php
 SetEnv SPECIAL_PATH /foo/bin
-php_flag display_errors off
