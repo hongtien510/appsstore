@@ -122,7 +122,7 @@ function ThongBao(nd)
 	$('#thongbao').show();
 }
 
-function danglentuong(title, cap, des, link, pic) {
+function danglentuong_bk(title, cap, des, link, pic) {
 	FB.ui(
 	  {
 		method: 'feed',
@@ -134,6 +134,21 @@ function danglentuong(title, cap, des, link, pic) {
 		description: des
 	  }
 	);
+}
+
+function danglentuong(title, cap, des, link, pic) {
+	/* FB.ui(
+	  {
+		method: 'feed',
+		name: title,
+		link: link,
+		caption: cap,
+		picture: pic,
+		message: 'Message',
+		description: des
+	  }
+	); */
+	alert(FB);
 }
 
 
