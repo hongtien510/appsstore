@@ -11,8 +11,17 @@ class CategoryController extends App_Controller_FrontController {
 		$id = base64_decode($this->_request->getParam("id"));
 
         //$idpage = '356730004423499';
-        $idpage = $_SESSION['idpage'];
-        
+		if(isset($_SESSION['idpage']) && $_SESSION['idpage'] != "")
+		{
+			$idpage = $_SESSION['idpage'];
+			$this->view->idpage = $idpage;
+		}
+		else
+		{
+			//$idpage = $_GET["idpage"];
+			$idpage = $this->_request->getParam("idpage");
+			echo $this->view->idpage = $idpage;
+		}
         $sql = "select count(*) as tongsp ";
         $sql.= "from ishali_sanpham ";
         $sql.= "where anhien = 1 and idloaisp = ". $id ." and idpage = ". $idpage;

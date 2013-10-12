@@ -327,7 +327,11 @@ ul.ul_list_tab li.active a{color:white;}
 }
 #ctn_tab img{max-width:760px;}
 .clear{clear:both}
-
+.input-share{
+	margin-top: 2px;
+    padding: 3px;
+    width: 360px;
+}
 
 
 

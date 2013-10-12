@@ -14,11 +14,11 @@
         ?>
     	<li <?php if(($i+1)%4==0) echo "class='pro_last'"; ?>>
         	<p class="pro_img">
-				<a href="product?id=<?php echo base64_encode(stripslashes($showsp[$i]["idloaisp"])) ?>&sp=<?php echo base64_encode(stripslashes($showsp[$i]["idsp"]))?>">
+				<a href="product?id=<?php echo base64_encode(stripslashes($showsp[$i]["idloaisp"])) ?>&sp=<?php echo base64_encode(stripslashes($showsp[$i]["idsp"]))?>&idpage=<?php echo $this->idpage ?>">
 					<img src="<?php echo APP_DOMAIN . '/application/layouts/tmpstore/images/upload/images/' . $showsp[$i]["hinhchinh"]?>" alt="<?php echo $showsp[$i]["tensp"] ?>" title="<?php echo $showsp[$i]["tensp"] ?>" />
 				</a>
 			</p>
-            <p class="pro_name"><a href=""><?php echo $showsp[$i]["tensp"] ?></a></p>
+            <p class="pro_name"><a href="product?id=<?php echo base64_encode(stripslashes($showsp[$i]["idloaisp"])) ?>&sp=<?php echo base64_encode(stripslashes($showsp[$i]["idsp"]))?>&idpage=<?php echo $this->idpage ?>"><?php echo $showsp[$i]["tensp"] ?></a></p>
             <p class="pro_price"><?php echo number_format($showsp[$i]["gia"],0,',','.') ?> VNĐ</p>
         </li>
         <?php } ?>
@@ -37,7 +37,7 @@
                     
                 for($i=2; $i<=$sotrang; $i++)
                 {
-                        echo "<a href='category?id=". $idcat ."&page=". base64_encode($i) ."'><li>". $i ."</li></a>";
+                        echo "<a href='category?id=". $idcat ."&idpage=$this->idpage&page=". base64_encode($i) ."'><li>". $i ."</li></a>";
                 }
             }
             else
@@ -49,7 +49,7 @@
                     if($i== $npage)
                         echo "<a class='page_open' href='javascript:;'><li>". $npage ."</li></a>";
                     else
-                        echo "<a href='category?id=". $idcat ."&page=". base64_encode($i) ."'><li>". $i ."</li></a>";
+                        echo "<a href='category?id=". $idcat ."&idpage=$this->idpage&page=". base64_encode($i) ."'><li>". $i ."</li></a>";
                 }
             }
         ?>

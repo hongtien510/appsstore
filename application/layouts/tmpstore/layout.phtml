@@ -30,7 +30,16 @@
             $_SESSION['idpage'] = $idpage;
         else
 	*/
-        @$idpage = $_SESSION['idpage'];
+        //@$idpage = $_SESSION['idpage'];
+		if(isset($_SESSION['idpage']) && $_SESSION['idpage'] != "")
+		{
+			$idpage = $_SESSION['idpage'];
+		}
+		else
+		{
+			$idpage = $_GET["idpage"];
+		}
+		
 		@$banner = $store->GetBanner($idpage);
 ?>
 
@@ -48,12 +57,12 @@
             $category = $store->GetidCategory($idpage); 
         ?>
         	<ul class="menu">
-            <a href="index"><li <?php if($id=="") echo "class='active'";?> >Home</li></a>
+            <a href="index?idpage=<?php echo $idpage ?>"><li <?php if($id=="") echo "class='active'";?> >Home</li></a>
             <?php 
                 for($i=0; $i<count($category); $i++)
                 {
             ?>
-            	<a href="category?id=<?php echo base64_encode($category[$i]["idloaisp"]) ?>">
+            	<a href="category?id=<?php echo base64_encode($category[$i]["idloaisp"]) ?>&idpage=<?php echo $idpage ?>">
                     <li <?php if($id == base64_encode($category[$i]["idloaisp"])) echo "class='active'"; ?>><?php echo $category[$i]["tenloaisp"] ?></li>
                 </a>
             <?php 

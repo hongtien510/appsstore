@@ -12,7 +12,21 @@ class ProductController extends App_Controller_FrontController {
         $sp = base64_decode($this->_request->getParam("sp"));
 
 		
-        @$idpage = $_SESSION['idpage'];
+        //$idpage = $_SESSION['idpage'];
+		//$idpage = $this->_request->getParam("idpage");
+		//$this->view->idpage = $idpage;
+		if(isset($_SESSION['idpage']) && $_SESSION['idpage'] != "")
+		{
+			$idpage = $_SESSION['idpage'];
+			$this->view->idpage = $idpage;
+		}
+		else
+		{
+			//$idpage = $_GET["idpage"];
+			$idpage = $this->_request->getParam("idpage");
+			echo $this->view->idpage = $idpage;
+		}
+		
 
 		$linkpage = $store->getLinkPage($idpage);
 		$this->view->linkpage = $linkpage;
