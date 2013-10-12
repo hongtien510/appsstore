@@ -137,7 +137,9 @@
 		</a>
 
 		<iframe src="//www.facebook.com/plugins/like.php?href=<?php echo $this->link_page;?>/&amp;send=false&amp;layout=button_count&amp;width=100&amp;show_faces=false&amp;font&amp;colorscheme=light&amp;action=like&amp;height=20&amp;appId=340376799398737" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:20px;" allowTransparency="true"></iframe>
-	
+		<br/>
+		<span style="font-size:12px">Link chia sẻ:</span>
+		<input class="input-share" type="text" value="<?php echo $linkchiase ?>"/>
 	</div>
     
     
@@ -148,7 +150,7 @@
             for($i=0; $i<count($splienquan); $i++)
             {
         ?>
-            <li><a href="product?id=<?php echo base64_encode($splienquan[$i]['idloaisp']); ?>&sp=<?php echo base64_encode($splienquan[$i]['idsp']); ?>"><img src="<?php echo APP_DOMAIN . '/application/layouts/tmpstore/images/upload/images/' . $splienquan[$i]['hinhchinh'] ?>" /></a></li>
+            <li><a href="product?id=<?php echo base64_encode($splienquan[$i]['idloaisp']); ?>&sp=<?php echo base64_encode($splienquan[$i]['idsp']); ?>&idpage=<?php echo $this->idpage; ?>"><img src="<?php echo APP_DOMAIN . '/application/layouts/tmpstore/images/upload/images/' . $splienquan[$i]['hinhchinh'] ?>" /></a></li>
             
         <?php } ?>
         </ul>
@@ -170,7 +172,7 @@
 		<ul class="ul_list_tab">
 		<?php
 			$store = App_Models_StoreModel::getInstance();
-			$idpage = $_SESSION['idpage'];
+			$idpage = $this->idpage;
 			$color = $store->GetColor($idpage);
 			for($i=0; $i<count($list_menu); $i++)
 			{
@@ -184,9 +186,9 @@
 		</ul>
 	</div>
 	<?php 
-			for($i=0; $i<count($list_menu); $i++)
-			{
-		?>
+		for($i=0; $i<count($list_menu); $i++)
+		{
+	?>
 	<div id="ctn_tab<?php echo $i+1; ?>" class="ctn_tab">
 		<?php echo $noidung[$i]; ?>
 	</div>
