@@ -20,7 +20,7 @@ class CategoryController extends App_Controller_FrontController {
 		{
 			//$idpage = $_GET["idpage"];
 			$idpage = $this->_request->getParam("idpage");
-			echo $this->view->idpage = $idpage;
+			$this->view->idpage = $idpage;
 		}
         $sql = "select count(*) as tongsp ";
         $sql.= "from ishali_sanpham ";
