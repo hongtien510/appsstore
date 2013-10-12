@@ -13,9 +13,11 @@
             {  
         ?>
     	<li <?php if(($i+1)%4==0) echo "class='pro_last'"; ?>>
-        	<a href="product?id=<?php echo base64_encode(stripslashes($showsp[$i]["idloaisp"])) ?>&sp=<?php echo base64_encode(stripslashes($showsp[$i]["idsp"]))?>">
-            	<img src="<?php echo APP_DOMAIN . '/application/layouts/tmpstore/images/upload/images/' . $showsp[$i]["hinhchinh"]?>" alt="<?php echo $showsp[$i]["tensp"] ?>" title="<?php echo $showsp[$i]["tensp"] ?>" />
-            </a>
+        	<p class="pro_img">
+				<a href="product?id=<?php echo base64_encode(stripslashes($showsp[$i]["idloaisp"])) ?>&sp=<?php echo base64_encode(stripslashes($showsp[$i]["idsp"]))?>">
+					<img src="<?php echo APP_DOMAIN . '/application/layouts/tmpstore/images/upload/images/' . $showsp[$i]["hinhchinh"]?>" alt="<?php echo $showsp[$i]["tensp"] ?>" title="<?php echo $showsp[$i]["tensp"] ?>" />
+				</a>
+			</p>
             <p class="pro_name"><a href=""><?php echo $showsp[$i]["tensp"] ?></a></p>
             <p class="pro_price"><?php echo number_format($showsp[$i]["gia"],0,',','.') ?> VNĐ</p>
         </li>

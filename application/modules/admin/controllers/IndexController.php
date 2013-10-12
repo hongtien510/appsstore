@@ -8,24 +8,24 @@ class Admin_IndexController extends App_Controller_AdminController {
     }
 
     public function indexAction() {
-        if(!isset($this->_SESSION->iduseradmin))
-		{
-			$link_login = APP_DOMAIN."/admin/login";
-			header("Location:$link_login");
-		}
-		
+		$_SESSION['list_page'] = "0";
 
         $facebookadmin = new Ishali_FacebookAdmin();  
         $facebook = new Ishali_Facebook();  
 		$facebook->begins_works('1');
-        
-    	$manage_pages =  $facebookadmin->checkpermissions('manage_pages');
+		$manage_pages =  $facebookadmin->checkpermissions('manage_pages');
+		if(!isset($this->_SESSION->iduseradmin))
+		{
+			$link_login = APP_DOMAIN."/admin/login";
+			header("Location:$link_login");
+		}
+
     	if ($manage_pages)
     	{
     	
-		$this->view->appid = $facebook->getAppId();
-	 	$this->view->fbuserid = $facebook->getuserfbid();
-		$this->view->list_pages = $facebookadmin->list_pages($this->view->fbuserid, 'page');
+			$this->view->appid = $facebook->getAppId();
+			$this->view->fbuserid = $facebook->getuserfbid();
+			$this->view->list_pages = $facebookadmin->list_pages($this->view->fbuserid, 'page');
 		
 		
 		
