@@ -186,7 +186,7 @@ h1
 	height: 27px;
     line-height: 30px;
     margin: 3px auto 7px;
-    width: 500px;
+    width: 550px;
 	float:left;
 }
 
@@ -221,7 +221,7 @@ h1
 }
 
 
-.list_page{width:200px; height:25px; float:right; margin-right:10px}
+.list_page{width:180px; height:25px; float:right; margin-right:10px}
 
 .select_list_page{width:100%; height:100%; border:1px solid #739763; padding:2px;}
 
